@@ -5,14 +5,14 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-		<servlet-name>Bidforme_v1_0</servlet-name>
-		<servlet-class>com.amadeus.bid.Bidforme_v1_0Servlet</servlet-class>
+		<servlet-name>index</servlet-name>
+		<servlet-class>com.amadeus.bid.ui.servlet.IndexPageServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Bidforme_v1_0</servlet-name>
-		<url-pattern>/bidforme_v1_0</url-pattern>
+		<servlet-name>index</servlet-name>
+		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>resources/html/index.jsp</welcome-file>
+		<welcome-file>index</welcome-file>
 	</welcome-file-list>
 </web-app>

@@ -40,6 +40,7 @@ public abstract class ApplicationServlet extends HttpServlet {
 		this.doPost(req, resp);
 	}
 	
+	@SuppressWarnings("unused")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -52,30 +53,37 @@ public abstract class ApplicationServlet extends HttpServlet {
 		JSONObject data = new JSONObject();
 		data.put(this.getViewName(), view);
 		
-		String json = data.toString();
-		String contentType = "application/json";
-		String characterEncoding = "UTF-8";
+		if (true) {
+			req.getRequestDispatcher(IApplicationConstant.CONST_JSP_PATH).include(req, resp);
+		} else {
+			String json = data.toString();
+			String contentType = "application/json";
+			String characterEncoding = "UTF-8";
 
-	    byte[] jsonBytes = json.getBytes(characterEncoding);
-	    resp.addHeader("Access-Control-Allow-Origin", "*");
-	    resp.setContentType(contentType + ";charset=" + characterEncoding);
+		    byte[] jsonBytes = json.getBytes(characterEncoding);
+		    resp.addHeader("Access-Control-Allow-Origin", "*");
+		    resp.setContentType(contentType + ";charset=" + characterEncoding);
 
-	    /* This to be commented after testing of JSON response is over in browser */
-	    OutputStream os = resp.getOutputStream();
-	    os.write(jsonBytes);
-	    os.flush();
-	    
-	    // clear memory
-	    os = null;
-	    view = null;
-	    data = null;
-	    json = null;
-	    jsonBytes = null;
-	    contentType = null;
-	    characterEncoding = null;
-	    
-	    // flush the buffer
-	    resp.flushBuffer();
+		    /* This to be commented after testing of JSON response is over in browser */
+		    OutputStream os = resp.getOutputStream();
+		    os.write(jsonBytes);
+		    os.flush();
+		    
+		    // clear memory
+		    os = null;
+		    view = null;
+		    data = null;
+		    json = null;
+		    jsonBytes = null;
+		    contentType = null;
+		    characterEncoding = null;
+		    
+		    // flush the buffer
+		    resp.flushBuffer();
+		}
+		
+		
+		
 	}
 	
 	/**

@@ -14,4 +14,6 @@ public interface IApplicationConstant {
 	public String CONST_MODEL = "model";
 	
 	public String CONST_ERROR = "error";
+	
+	public String CONST_JSP_PATH = "resources/html/index.jsp";
 }
