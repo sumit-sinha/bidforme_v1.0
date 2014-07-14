@@ -1,0 +1,9 @@
+<div>
+Country:
+<input type="text" data-ng-model="filter.coutryName" />
+	<ul>
+		<li data-ng-repeat="country in countries|filter:filter.coutryName">
+			{{ country.name }}
+		</li>
+	</ul>
+</div>

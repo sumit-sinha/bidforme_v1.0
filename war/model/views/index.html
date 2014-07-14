@@ -1,0 +1,11 @@
+<div>
+Country:
+<input type="text" data-ng-model="filter.coutryName" />
+	<ul>
+		<li data-ng-repeat="country in countries|filter:filter.coutryName">
+			{{ country.name }} ({{ country.capital }})
+		</li>
+	</ul>
+	
+	<a href="#/traveller">Traveller</a>
+</div>
