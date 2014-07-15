@@ -40,7 +40,6 @@ public abstract class ApplicationServlet extends HttpServlet {
 		this.doPost(req, resp);
 	}
 	
-	@SuppressWarnings("unused")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -53,7 +52,8 @@ public abstract class ApplicationServlet extends HttpServlet {
 		JSONObject data = new JSONObject();
 		data.put(this.getViewName(), view);
 		
-		if (true) {
+		String result = req.getHeader(IApplicationConstant.CONST_PARAM_RESULT);
+		if (result == null || !result.equals(IApplicationConstant.CONST_PARAM_VALUE_JSON)) {
 			req.setAttribute(IApplicationConstant.CONST_DATA_NAME, data);
 			req.getRequestDispatcher(IApplicationConstant.CONST_JSP_PATH).include(req, resp);
 		} else {

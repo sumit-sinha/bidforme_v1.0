@@ -5,15 +5,65 @@
 var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker']);
 
 var controllers = {};
-controllers.IndexPageCtrl = function ($scope, appFactory) {
+controllers.IndexPageCtrl = function ($scope, appFactory, $http) {
 	$scope.headerTpl = 'model/views/common/header.html';
 	
 	var indexData = appFactory.getViewData('index');
 	$scope.label = indexData.label;
 	$scope.model = indexData.model;
 	
-	$scope.showCapital = function(index) {
-		$scope.country = $scope.model.countries[index];
+	$scope.onTransportClick = function(mode) {
+		
+		// if not existing
+		if ($scope.data == null) {
+			$scope.data = {};
+		}
+		
+		if ($scope.data.mode == null) {
+			$scope.data.mode = {};
+		}
+		
+		var element = document.getElementById(mode + 'El');
+		if (element != null) {
+			if (element.className.indexOf('selected') == -1) {
+				$scope.data.mode[mode] = 1;
+				element.className += ' selected';
+			} else {
+				$scope.data.mode[mode] = 0;
+				element.className = element.className.replace( /(?:^|\s)selected(?!\S)/g , '' );
+			}
+		}
+	};
+	
+	$scope.onSubmitPress = function() {
+		
+		// create parameters
+		var params = '';
+		if ($scope.data != null) {
+			for (var key in $scope.data) {
+				if ($scope.data.hasOwnProperty(key)) {
+					params += ((params != '')?'&': '') + key + '=' + $scope.data[key];
+				}
+			}
+		}
+
+		$http({
+				method: 'POST',
+				params: params, 
+				url: '/index',
+				headers: {'X-HTTP-RESULT':'json'}
+		}).
+	    success(function(data, status, headers, config) {
+	      console.log(data);
+	      // this callback will be called asynchronously
+	      // when the response is available
+	    }).
+	    error(function(data, status, headers, config) {
+	      // called asynchronously if an error occurs
+	      // or server returns response with an error status.
+	    });
+		
+		alert('You pressed submit button');
 	}
 };
 
