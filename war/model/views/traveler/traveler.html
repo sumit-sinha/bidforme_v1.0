@@ -14,12 +14,12 @@
 							<td>
 								<img src="resources/images/home.jpg"/>
 								<b>{{ label.tx_bidforme_origin_city }}</b>
-								<input style="clear: left; display: inline;" type='text' class='holo'></input>
+								<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.origin"></input>
 							</td>
 							<td>
 								<img src="resources/images/destination.jpg"/>
 								<b>{{ label.tx_bidforme_dest_city }}</b>
-								<input style="clear: left; display: inline;" type='text' class='holo'></input>
+								<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.destination"></input>
 							</td>
 						</tr>
 					</table>
@@ -30,29 +30,20 @@
 							<td>
 								<img src="resources/images/calendar.jpg"/>
 								<b>{{ label.tx_bidforme_strt_date }}</b> 
-								<input id="ori-date" style="display: inline;" type='text' value="{{ data.startDate|date: 'yyyy MMM dd' }}" class='holo'></input>
-								<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
-							</td>
-							<td style="width:180px;">
-								<div class="btn-group">
-									<button class="btn btn-mini">{{ label.tx_bidforme_number_days }}</button>
-									<button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
-										<div class="caret"></div>
-									</button>
-									<ul class="dropdown-menu">
-										<!-- dropdown menu links -->
-									</ul>
-								</div>
+								<input id="ori-date" style="display: inline;" type='text' value="{{ data.startDate|date: 'dd MMM yyyy' }}" class='holo'></input>
 							</td>
 							<td>
 								<img src="resources/images/calendar.jpg"/>
 								<b>{{ label.tx_bidforme_end_date }}</b> 
-								<input id="dest-date" style="display: inline;" type='text' class='holo'  value="{{ data.endDate|date: 'yyyy MMM dd' }}"></input>
-								<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
+								<input id="dest-date" style="display: inline;" type='text' class='holo'  value="{{ data.endDate|date: 'dd MMM yyyy' }}"></input>
 							</td>
 						</tr>
 						<tr>
 							<td>
+								<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
+							</td>
+							<td>
+								<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
 							</td>
 						</tr>
 					</table>
@@ -64,18 +55,18 @@
 			<div id="transportation">
 				<table style="width:100%;">
 					<tr>
-						<td><img src="resources/images/air.jpg"/></td>
-						<td><img src="resources/images/car.jpg"/></td>
-						<td><img src="resources/images/train.jpg"/></td>
-						<td><img src="resources/images/ship.jpg"/></td>
+						<td data-ng-click="onTransportClick('air')"><img id='airEl' src="resources/images/air.jpg"/></td>
+						<td data-ng-click="onTransportClick('car')"><img id='carEl' src="resources/images/car.jpg"/></td>
+						<td data-ng-click="onTransportClick('train')"><img id='trainEl' src="resources/images/train.jpg"/></td>
+						<td data-ng-click="onTransportClick('ship')"><img id='shipEl' src="resources/images/ship.jpg"/></td>
 					</tr>
 				</table>
 			</div>
 		</div>
 		<div class="page-header">
-			<h2><img src="resources/images/3.jpg"/></span> {{ label.tx_bidforme_budget_range }} <span data-ng-show="budget != null">[{{ budget|currency:'&euro;' }}]</span></h2>
+			<h2><img src="resources/images/3.jpg"/></span> {{ label.tx_bidforme_budget_range }} <span data-ng-show="data.budget != null">[{{ data.budget|currency:'&euro;' }}]</span></h2>
 			<div data-role="fieldcontain">
-				<input type="range" name="slider" id="slider" value="50000" min="0" max="100000" data-ng-model="budget"/>
+				<input type="range" name="slider" id="slider" value="50000" min="0" max="100000" data-ng-model="data.budget"/>
 			</div>
 		</div>
 		<div class="page-header">
@@ -85,7 +76,7 @@
 					<tr>
 						<td>
 							<b>{{ label.tx_bidforme_personal_criteria }}</b>
-							<input style="clear: left; display: inline;" type='text' class='holo'></input>
+							<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.criteria"></input>
 							<img src="resources/images/plus.jpg"/>
 						</td>
 					</tr>
@@ -95,9 +86,9 @@
 		<div class="page-header">
 			<h2><img src="resources/images/5.jpg"/></span> {{ label.tx_bidforme_any_comments }}</h2>
 			<div>
-				<textarea id="styled" class="span6" rows="3" placeholder="{{ label.tx_bidforme_any_comments_placeholder }}" required></textarea>
+				<textarea id="styled" class="span6" rows="3" placeholder="{{ label.tx_bidforme_any_comments_placeholder }}" data-ng-model="data.comments"></textarea>
 			</div>
 		</div>
-		<button id="submit" class="btn btn-lg btn-success" type="button">{{ label.tx_bidforme_submit_request }}</button>
+		<button id="submit" class="btn btn-lg btn-success" type="button" data-ng-click="onSubmitPress()">{{ label.tx_bidforme_submit_request }}</button>
 	</div>
 </div>

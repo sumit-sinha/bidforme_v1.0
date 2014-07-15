@@ -41,16 +41,15 @@ public abstract class ApplicationServlet extends HttpServlet {
 		this.doPost(req, resp);
 	}
 	
-	@SuppressWarnings("unused")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		userId = -1;
 		try {
-			userId = Integer.parseInt(req.getParameter("user"));
-		} catch (Exception aEx)
-		{}
+			userId = Integer.parseInt(req.getParameter(IApplicationConstant.CONST_PARAM_USER));
+		} catch (NumberFormatException aEx){
+			userId = -1;
+		}
 		
 		JSONObject view = new JSONObject();
 		view.put(IApplicationConstant.CONST_LABEL, this.getLabels());
@@ -60,7 +59,8 @@ public abstract class ApplicationServlet extends HttpServlet {
 		JSONObject data = new JSONObject();
 		data.put(this.getViewName(), view);
 		
-		if (true) {
+		String result = req.getHeader(IApplicationConstant.CONST_PARAM_RESULT);
+		if (result == null || !result.equals(IApplicationConstant.CONST_PARAM_VALUE_JSON)) {
 			req.setAttribute(IApplicationConstant.CONST_DATA_NAME, data);
 			req.getRequestDispatcher(IApplicationConstant.CONST_JSP_PATH).include(req, resp);
 		} else {

@@ -18,4 +18,10 @@ public interface IApplicationConstant {
 	public String CONST_DATA_NAME = "serverResponse";
 	
 	public String CONST_JSP_PATH = "resources/html/index.jsp";
+	
+	public String CONST_PARAM_USER = "user";
+	
+	public String CONST_PARAM_RESULT = "X-HTTP-RESULT";
+	
+	public String CONST_PARAM_VALUE_JSON = "json";
 }
