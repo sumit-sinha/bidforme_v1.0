@@ -6,7 +6,7 @@ var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker']);
 
 var controllers = {};
 
-controllers.TravelerPageCtrl = function ($scope, appFactory) {
+controllers.TravelerPageCtrl = function ($scope, appFactory, $http) {
 
 	$scope.headerTpl = 'model/views/common/header.html';
 	var indexData = appFactory.getViewData('traveler');
@@ -38,19 +38,9 @@ controllers.TravelerPageCtrl = function ($scope, appFactory) {
 	
 	$scope.onSubmitPress = function() {
 		
-		// create parameters
-		var params = '';
-		if ($scope.data != null) {
-			for (var key in $scope.data) {
-				if ($scope.data.hasOwnProperty(key)) {
-					params += ((params != '')?'&': '') + key + '=' + $scope.data[key];
-				}
-			}
-		}
-
 		$http({
 				method: 'POST',
-				params: params, 
+				params: $scope.data, 
 				url: '/index',
 				headers: {'X-HTTP-RESULT':'json'}
 		}).
