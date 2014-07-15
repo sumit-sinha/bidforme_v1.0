@@ -14,6 +14,25 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 	$scope.label = indexData.label;
 	$scope.model = indexData.model;
 	
+	$scope.onRegisterClick = function() {
+		
+		console.log("getting");
+		
+		requestManager.makeServerCall({
+			method: 'POST',
+			url: '/register',
+			data: $scope.register,
+			showOverlay: true,
+			onSuccessCallback: $scope._onRegisterSuccessCallback,
+			onErrorCallback: $scope._onRegisterSuccessCallback
+		});
+	}
+	
+	$scope._onRegisterSuccessCallback = function (args) {
+		// remove overlay
+		hideOverlay();
+	}
+	
 	$scope.onSignInClick = function() {
 		showOverlay();
 		$scope.loginTpl = 'model/views/traveler/loginPopup.html';
@@ -61,15 +80,15 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 
 		requestManager.makeServerCall({
 			method: 'POST',
-			url: '/index',
-			data: $scope.data,
+			url: '/register',
+			data: $scope.register,
 			showOverlay: true,
 			onSuccessCallback: $scope._onSuccessCallback
 		});
 	}
 	
 	$scope._onSuccessCallback = function (args) {
-		hideOverlay();
+		$scope.onRegisterCloseClick();
 	}
 };
 

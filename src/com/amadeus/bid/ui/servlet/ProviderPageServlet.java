@@ -37,7 +37,7 @@ public class ProviderPageServlet extends ApplicationServlet {
 		
 		JSONObject json = new JSONObject();
 		
-		json.put("provider_id", userId);
+		json.put("provider_id", getUserId());
 		
 		return json;
 	}

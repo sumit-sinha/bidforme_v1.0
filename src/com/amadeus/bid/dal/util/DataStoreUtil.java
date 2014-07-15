@@ -29,7 +29,7 @@ public class DataStoreUtil {
 	 * method to add an {@link Entity} to datastore
 	 * @param contract
 	 */
-	public void addEntity(IBeanContract contract) {
+	public static void addEntity(IBeanContract contract) {
 		dataStore.put(contract.getEntity());		
 	}
 	
@@ -38,7 +38,7 @@ public class DataStoreUtil {
 	 * @param keys {@link List} of {@link Key}
 	 * @return
 	 */
-	public Map<Key, Entity> getData(List<Key> keys) {
+	public static Map<Key, Entity> getData(List<Key> keys) {
 		
 		Map<Key, Entity> entities = dataStore.get(keys);
 		
@@ -49,7 +49,7 @@ public class DataStoreUtil {
 	 * delete the data from data store
 	 * @param keys {@link List} of {@link Key}
 	 */
-	public void deleteData(List<Key> keys) {
+	public static void deleteData(List<Key> keys) {
 		dataStore.delete(keys);
 	}
 }

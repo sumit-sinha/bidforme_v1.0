@@ -1,5 +1,7 @@
 package com.amadeus.bid.dal.contract;
 
+import java.io.Serializable;
+
 import com.google.appengine.api.datastore.Entity;
 
 /**
@@ -7,7 +9,7 @@ import com.google.appengine.api.datastore.Entity;
  * @author ssinha
  *
  */
-public interface IBeanContract {
+public interface IBeanContract extends Serializable {
 	
 	/**
 	 * return name of table

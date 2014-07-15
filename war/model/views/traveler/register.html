@@ -2,7 +2,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
-				<button type="button" class="bootbox-close-button close" style="margin-top: -10px;" data-ng-click="onRegisterCloseClick()">x</button>
+				<button type="button" class="bootbox-close-button close" data-ng-click="onRegisterCloseClick()">x</button>
 				<form role="form">
 					<div class="form-group">
 						<label for="EMAIL_1">{{ label.tx_bidforme_email_address }}</label>
@@ -16,7 +16,7 @@
 						<label for="CONFIRM_PASSWORD_1">{{ label.tx_bidforme_confirm_password }}</label>
 						<input type="password" class="form-control" id="CONFIRM_PASSWORD_1" placeholder="{{ label.tx_bidforme_confirm_password }}" data-ng-model="register.confirmPassword">
 					</div>
-					<button class="btn btn-lg btn-primary btn-block" type="button" data-ng-click="onRegisterClick()">{{ label.tx_bidforme_register_btn }}</button>
+					<button class="btn btn-lg btn-primary btn-block" type="button" data-ng-click="onSubmitPress()">{{ label.tx_bidforme_register_btn }}</button>
 				</form>
 			</div>
 		</div>

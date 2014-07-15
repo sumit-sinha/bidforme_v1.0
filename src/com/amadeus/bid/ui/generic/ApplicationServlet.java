@@ -21,8 +21,27 @@ public abstract class ApplicationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
+	private int userId;
 	private String viewName;
-	protected int userId;
+	private HttpServletRequest request;
+	private HttpServletResponse response;
+	
+	/**
+	 * method to get an instance of {@link HttpServletRequest} variable
+	 * @return {@link HttpServletRequest}
+	 */
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	/**
+	 * method to get an instance of {@link HttpServletResponse} variable
+	 * @return {@link HttpServletResponse}
+	 */
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
 	/**
 	 * get the name of view
 	 * @return
@@ -33,7 +52,7 @@ public abstract class ApplicationServlet extends HttpServlet {
 	
 	public ApplicationServlet(String viewName) {
 		this.viewName = viewName;
-		this.userId = -1;
+		this.setUserId(-1);
 	}
 	
 	@Override
@@ -45,12 +64,11 @@ public abstract class ApplicationServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
-		try {
-			userId = Integer.parseInt(req.getParameter(IApplicationConstant.CONST_PARAM_USER));
-		} catch (NumberFormatException aEx){
-			userId = -1;
-		}
+		
+		this.request = req;
+		this.response = resp;
+		
+		this.doTask(req, resp);
 		
 		JSONObject view = new JSONObject();
 		view.put(IApplicationConstant.CONST_LABEL, this.getLabels());
@@ -95,14 +113,24 @@ public abstract class ApplicationServlet extends HttpServlet {
 		
 	}
 	
-	protected void fillHeaderLabels(JSONObject ioJson)
-	{
+	protected void fillHeaderLabels(JSONObject ioJson) {
 		ioJson.put("tx_bidforme_app_name", LocalizationUtil.getString("tx_bidforme_app_name"));
 		ioJson.put("tx_bidforme_nav_home", LocalizationUtil.getString("tx_bidforme_nav_home"));
 		ioJson.put("tx_bidforme_nav_what", LocalizationUtil.getString("tx_bidforme_nav_what"));
 		ioJson.put("tx_bidforme_nav_contactus", LocalizationUtil.getString("tx_bidforme_nav_contactus"));
 		ioJson.put("tx_bidforme_nav_signin", LocalizationUtil.getString("tx_bidforme_nav_signin"));
 		ioJson.put("tx_bidforme_nav_register", LocalizationUtil.getString("tx_bidforme_nav_register"));
+	}
+	
+	/**
+	 * method to be called before data creation
+	 */
+	protected void doTask(HttpServletRequest req, HttpServletResponse res) {
+		try {
+			setUserId(Integer.parseInt(req.getParameter(IApplicationConstant.CONST_PARAM_USER)));
+		} catch (NumberFormatException aEx){
+			setUserId(-1);
+		}
 	}
 	
 	/**
@@ -122,4 +150,12 @@ public abstract class ApplicationServlet extends HttpServlet {
 	 * @return {@link JSONObject}
 	 */
 	protected abstract JSONObject getErrors();
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 }

@@ -33,7 +33,7 @@ public class RequestPageServlet extends ApplicationServlet {
 	@Override
 	protected JSONObject getModel() {
 		JSONObject json = new JSONObject();
-		json.put("provider_id", userId);
+		json.put("provider_id", getUserId());
 		return json;
 	}
 
