@@ -15,5 +15,7 @@ public interface IApplicationConstant {
 	
 	public String CONST_ERROR = "error";
 	
+	public String CONST_DATA_NAME = "serverResponse";
+	
 	public String CONST_JSP_PATH = "resources/html/index.jsp";
 }

@@ -2,45 +2,37 @@
  * This file takes care of initializing Angula js and setting up data
  * @author ssinha
  */
-var app = angular.module('bidForMe',[]);
+var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker']);
 
 var controllers = {};
-controllers.SampleController = function ($scope, appFactory) {
-	$scope.countries = appFactory.getViewData('sample');
+controllers.IndexPageCtrl = function ($scope, appFactory) {
+	$scope.headerTpl = 'model/views/common/header.html';
+	
+	var indexData = appFactory.getViewData('index');
+	$scope.label = indexData.label;
+	$scope.model = indexData.model;
+	
+	$scope.showCapital = function(index) {
+		$scope.country = $scope.model.countries[index];
+	}
 };
 
 app.controller(controllers);
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/index', {
-		controller: 'SampleController',
+		controller: 'IndexPageCtrl',
 		templateUrl: 'model/views/index.html'
 	}).when('/traveller', {
-		controller: 'SampleController',
+		controller: 'IndexPageCtrl',
 		templateUrl: 'model/views/traveller/traveller.html'
 	}).otherwise( {redirectTo: '/index'} )
 });
 
 app.factory('appFactory', function() {
-	var data = {
-		'sample': [{
-				name: 'India',
-				capital: 'New Delhi'
-			}, {
-				name: 'United States of America',
-				capital: 'Washington DC'
-			}, {
-				name: 'France',
-				capital: 'Paris'
-			}, {
-				name: 'Germany',
-				capital: 'Berlin'
-			}, {
-				name: 'United Kingdom',
-				capital: 'London'
-			}]
-	};
+	
 	var factory = {};
+	var data = jsonResponse;
 	
 	/**
 	 * returns data stored in this factory

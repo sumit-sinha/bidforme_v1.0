@@ -6,24 +6,37 @@
 
 <%-- set resource file location --%>
 <fmt:setBundle basename="properties.ResourceBundle"/>
-<html data-ng-app='bidForMe'>
+<html>
 	<head>
 		<title><fmt:message key="tx_bidforme_app_name"/></title>
     	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    	<link rel="icon" type="image/png" href="/static/images/icon.png" />
+    	<link rel="icon" type="image/png" href="resources/images/favicon.png" />
     	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    	<link rel="stylesheet" type="text/css" href="//getbootstrap.com/dist/css/bootstrap.min.css"/>
+    	<link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+    	<link rel="stylesheet" type="text/css" href="resources/css/datetimepicker.css"/>
+    	
+    	<!-- Specific Google fonts -->
+	    <link href="http://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" type="text/css">
+	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+	    <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-
-		<div data-ng-view=""></div>
+			
+		<div data-ng-app='bidForMe'>
+			<div data-ng-view=""></div>
+		</div>
 
 		<%-- include dependencies js [START] --%>
 		<script type="text/javascript" src="resources/scripts/angular/angular.js"></script>
+		<script type="text/javascript" src="resources/scripts/application/moment.js"></script>
 		<script type="text/javascript" src="resources/scripts/application/application.js"></script>
+	    <script type="text/javascript" src="resources/scripts/application/datetimepicker.js"></script>
+		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>    
 		<%-- include dependencies js [ END ] --%>
 		
 		<script type="text/javascript">
-			
+			var jsonResponse = ${serverResponse};
 		</script>
 	</body>
 </html>

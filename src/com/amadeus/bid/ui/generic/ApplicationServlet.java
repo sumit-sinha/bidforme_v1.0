@@ -54,6 +54,7 @@ public abstract class ApplicationServlet extends HttpServlet {
 		data.put(this.getViewName(), view);
 		
 		if (true) {
+			req.setAttribute(IApplicationConstant.CONST_DATA_NAME, data);
 			req.getRequestDispatcher(IApplicationConstant.CONST_JSP_PATH).include(req, resp);
 		} else {
 			String json = data.toString();
