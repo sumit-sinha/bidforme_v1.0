@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.amadeus.bid.be.fwk.LocalizationUtil;
 import com.amadeus.bid.ui.constants.IApplicationConstant;
 import com.amadeus.bid.ui.fwk.json.JSONObject;
 
@@ -92,6 +93,16 @@ public abstract class ApplicationServlet extends HttpServlet {
 		
 		
 		
+	}
+	
+	protected void fillHeaderLabels(JSONObject ioJson)
+	{
+		ioJson.put("tx_bidforme_app_name", LocalizationUtil.getString("tx_bidforme_app_name"));
+		ioJson.put("tx_bidforme_nav_home", LocalizationUtil.getString("tx_bidforme_nav_home"));
+		ioJson.put("tx_bidforme_nav_what", LocalizationUtil.getString("tx_bidforme_nav_what"));
+		ioJson.put("tx_bidforme_nav_contactus", LocalizationUtil.getString("tx_bidforme_nav_contactus"));
+		ioJson.put("tx_bidforme_nav_signin", LocalizationUtil.getString("tx_bidforme_nav_signin"));
+		ioJson.put("tx_bidforme_nav_register", LocalizationUtil.getString("tx_bidforme_nav_register"));
 	}
 	
 	/**

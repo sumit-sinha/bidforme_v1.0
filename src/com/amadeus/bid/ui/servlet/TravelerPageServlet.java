@@ -24,12 +24,7 @@ public class TravelerPageServlet extends ApplicationServlet {
 		JSONObject json = new JSONObject();
 		
 		// labels for header
-		json.put("tx_bidforme_app_name", LocalizationUtil.getString("tx_bidforme_app_name"));
-		json.put("tx_bidforme_nav_home", LocalizationUtil.getString("tx_bidforme_nav_home"));
-		json.put("tx_bidforme_nav_what", LocalizationUtil.getString("tx_bidforme_nav_what"));
-		json.put("tx_bidforme_nav_contactus", LocalizationUtil.getString("tx_bidforme_nav_contactus"));
-		json.put("tx_bidforme_nav_signin", LocalizationUtil.getString("tx_bidforme_nav_signin"));
-		json.put("tx_bidforme_nav_register", LocalizationUtil.getString("tx_bidforme_nav_register"));
+		this.fillHeaderLabels(json);
 		
 		// for body
 		json.put("tx_bidforme_plan_holiday", LocalizationUtil.getString("tx_bidforme_plan_holiday"));
