@@ -23,4 +23,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>provider</servlet-name>
 		<url-pattern>/provider</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>request</servlet-name>
+		<servlet-class>com.amadeus.bid.ui.servlet.RequestPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>request</servlet-name>
+		<url-pattern>/request</url-pattern>
+	</servlet-mapping>
 </web-app>

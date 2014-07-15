@@ -81,6 +81,12 @@ controllers.ProviderPageCtrl = function ($scope, appFactory) {
 	$scope.label = providerData.label;
 	$scope.model = providerData.model;
 }
+controllers.RequestPageCtrl = function ($scope, appFactory) {
+	$scope.headerTpl = 'model/views/common/header.html';
+	var requestData = appFactory.getViewData('request');
+	$scope.label = requestData.label;
+	$scope.model = requestData.model;
+}
 
 app.controller(controllers);
 
@@ -97,6 +103,9 @@ app.config(function($routeProvider) {
 	}).when('/provider', {
 		controller: 'ProviderPageCtrl',
 		templateUrl: 'model/views/provider/provider.html'
+	}).when('/request', {
+		controller: 'RequestPageCtrl',
+		templateUrl: 'model/views/request/request.html'
 	}).otherwise( {redirectTo: pathName} )
 });
 

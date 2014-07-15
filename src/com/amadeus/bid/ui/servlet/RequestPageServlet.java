@@ -10,12 +10,12 @@ import com.amadeus.bid.ui.generic.ApplicationServlet;
  * @author pmoulinier
  *
  */
-public class ProviderPageServlet extends ApplicationServlet {
+public class RequestPageServlet extends ApplicationServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public ProviderPageServlet() {
-		super("provider");
+	public RequestPageServlet() {
+		super("request");
 	}
 
 	@Override
@@ -24,21 +24,16 @@ public class ProviderPageServlet extends ApplicationServlet {
 		JSONObject json = new JSONObject();
 		
 		// labels for header
-		fillHeaderLabels(json);
-		
-		// for body
-		
-		
+		this.fillHeaderLabels(json);
+
+		// for body		
 		return json;
 	}
 
 	@Override
 	protected JSONObject getModel() {
-		
 		JSONObject json = new JSONObject();
-		
 		json.put("provider_id", userId);
-		
 		return json;
 	}
 
