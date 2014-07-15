@@ -181,3 +181,10 @@ div.msk {
 .hidden {
 	display: none;
 }
+.form-signin input {
+  margin-bottom: 5px;
+}
+button.bootbox-close-button.close{
+	margin-top: -10px;
+	margin-bottom: 10px;
+}

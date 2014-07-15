@@ -3,7 +3,6 @@ package com.amadeus.bid.ui.servlet;
 import javax.servlet.http.HttpServletRequest;
 
 import com.amadeus.bid.be.fwk.LocalizationUtil;
-import com.amadeus.bid.ui.fwk.json.JSONArray;
 import com.amadeus.bid.ui.fwk.json.JSONObject;
 import com.amadeus.bid.ui.generic.ApplicationServlet;
 
@@ -44,37 +43,19 @@ public class TravelerPageServlet extends ApplicationServlet {
 		json.put("tx_bidforme_number_days", LocalizationUtil.getString("tx_bidforme_number_days"));
 		json.put("tx_bidforme_insert_criteria", LocalizationUtil.getString("tx_bidforme_insert_criteria"));
 		json.put("tx_bidforme_personal_criteria", LocalizationUtil.getString("tx_bidforme_personal_criteria"));
-		
+		json.put("tx_bidforme_email_address", LocalizationUtil.getString("tx_bidforme_email_address"));
+		json.put("tx_bidforme_password", LocalizationUtil.getString("tx_bidforme_password"));
+		json.put("tx_bidforme_remember_me", LocalizationUtil.getString("tx_bidforme_remember_me"));
+		json.put("tx_bidforme_signin_btn", LocalizationUtil.getString("tx_bidforme_signin_btn"));
+		json.put("tx_bidforme_sign_in", LocalizationUtil.getString("tx_bidforme_sign_in"));
+		json.put("tx_bidforme_confirm_password", LocalizationUtil.getString("tx_bidforme_confirm_password"));
+		json.put("tx_bidforme_register_btn", LocalizationUtil.getString("tx_bidforme_register_btn"));
 		return json;
 	}
 
 	@Override
 	protected JSONObject getModel(HttpServletRequest iRequest) {
-		
-		JSONObject json = new JSONObject();
-		JSONArray countries = new JSONArray();
-		
-		JSONObject country1 = new JSONObject();
-		country1.put("name", "India");
-		country1.put("capital", "New Delhi");
-		countries.put(country1);
-		
-		JSONObject country2 = new JSONObject();
-		country2.put("name", "France");
-		country2.put("capital", "Paris");
-		countries.put(country2);
-		
-		JSONObject country3 = new JSONObject();
-		country3.put("name", "Germany");
-		country3.put("capital", "Berlin");
-		countries.put(country3);
-		
-		JSONObject country4 = new JSONObject();
-		country4.put("name", "Spain");
-		country4.put("capital", "Madrid");
-		countries.put(country4);
-		
-		return json.put("countries", countries);
+		return null;
 	}
 
 	@Override
