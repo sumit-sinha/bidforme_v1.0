@@ -10,12 +10,12 @@ import com.amadeus.bid.ui.generic.ApplicationServlet;
  * @author ssinha
  *
  */
-public class IndexPageServlet extends ApplicationServlet {
+public class TravelerPageServlet extends ApplicationServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public IndexPageServlet() {
-		super("index");
+	public TravelerPageServlet() {
+		super("traveler");
 	}
 
 	@Override

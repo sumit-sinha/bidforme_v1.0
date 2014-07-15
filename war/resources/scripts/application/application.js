@@ -5,12 +5,16 @@
 var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker']);
 
 var controllers = {};
+<<<<<<< HEAD
 controllers.IndexPageCtrl = function ($scope, appFactory, $http) {
+=======
+controllers.TravelerPageCtrl = function ($scope, appFactory) {
+>>>>>>> origin/master
 	$scope.headerTpl = 'model/views/common/header.html';
-	
-	var indexData = appFactory.getViewData('index');
+	var indexData = appFactory.getViewData('traveler');
 	$scope.label = indexData.label;
 	$scope.model = indexData.model;
+<<<<<<< HEAD
 	
 	$scope.onTransportClick = function(mode) {
 		
@@ -65,18 +69,28 @@ controllers.IndexPageCtrl = function ($scope, appFactory, $http) {
 		
 		alert('You pressed submit button');
 	}
+=======
+>>>>>>> origin/master
 };
+controllers.ProviderPageCtrl = function ($scope, appFactory) {
+	$scope.headerTpl = 'model/views/common/header.html';
+	var providerData = appFactory.getViewData('provider');
+	$scope.label = providerData.label;
+	$scope.model = prodiderData.model;
+}
 
 app.controller(controllers);
 
+/*var url_split = document.URL.split("#")[0].split("/")*/
+
 app.config(function($routeProvider) {
-	$routeProvider.when('/index', {
-		controller: 'IndexPageCtrl',
-		templateUrl: 'model/views/index.html'
-	}).when('/traveller', {
-		controller: 'IndexPageCtrl',
-		templateUrl: 'model/views/traveller/traveller.html'
-	}).otherwise( {redirectTo: '/index'} )
+	$routeProvider.when('/traveler', {
+		controller: 'TravelerPageCtrl',
+		templateUrl: 'model/views/traveler/traveler.html'
+	}).when('/provider', {
+		controller: 'ProviderPageCtrl',
+		templateUrl: 'model/views/provider/provider.html'
+	}).otherwise( {redirectTo: '/traveler'} )
 });
 
 app.factory('appFactory', function() {

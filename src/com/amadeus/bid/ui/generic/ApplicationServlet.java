@@ -21,7 +21,7 @@ public abstract class ApplicationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private String viewName;
-	
+	protected int userId;
 	/**
 	 * get the name of view
 	 * @return
@@ -32,6 +32,7 @@ public abstract class ApplicationServlet extends HttpServlet {
 	
 	public ApplicationServlet(String viewName) {
 		this.viewName = viewName;
+		this.userId = -1;
 	}
 	
 	@Override
@@ -43,6 +44,12 @@ public abstract class ApplicationServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+
+		userId = -1;
+		try {
+			userId = Integer.parseInt(req.getParameter("user"));
+		} catch (Exception aEx)
+		{}
 		
 		JSONObject view = new JSONObject();
 		view.put(IApplicationConstant.CONST_LABEL, this.getLabels());
