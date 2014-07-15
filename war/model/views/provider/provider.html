@@ -1,0 +1,10 @@
+<div>
+	Country:
+	<input type="text" data-ng-model="filter.coutryName" />
+	<ul>
+		<li data-ng-repeat="country in model.countries|filter:filter.coutryName" data-ng-click="showCapital($index)">
+			{{ country.name }}
+		</li>
+	</ul>
+	<div data-ng-show="country != null">{{ 'Capital: ' + country.capital }}</div>
+</div>
