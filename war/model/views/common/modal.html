@@ -1,0 +1,15 @@
+<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button type="button" class="bootbox-close-button close" data-ng-show="modal.close != null" style="margin-top: -10px;" data-ng-click="{{ modal.close.functionName}}">×</button>
+				<div class="bootbox-body" data-ng-show="modal.message != null">{{ modal.message }}</div>
+			</div>
+			<div class="btn-group btn-group-justified border-bottom" data-ng-show="modal.buttons != null">
+				<a data-ng-repeat="button in modal.buttons" class="btn btn-default" role="button" data-ng-click="{{button.functionName}}">
+					{{ button.label }}
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

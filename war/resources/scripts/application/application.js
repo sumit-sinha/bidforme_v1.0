@@ -57,6 +57,7 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, $http) {
 		alert('You pressed submit button');
 	}
 };
+
 controllers.ProviderPageCtrl = function ($scope, appFactory) {
 	$scope.headerTpl = 'model/views/common/header.html';
 	var providerData = appFactory.getViewData('provider');
@@ -66,16 +67,20 @@ controllers.ProviderPageCtrl = function ($scope, appFactory) {
 
 app.controller(controllers);
 
-/*var url_split = document.URL.split("#")[0].split("/")*/
-
 app.config(function($routeProvider) {
+	
+	var pathName = document.location.pathname;
+	if (pathName == null || pathName == '' || pathName == '/') {
+		pathName = '/traveler';
+	}
+	
 	$routeProvider.when('/traveler', {
 		controller: 'TravelerPageCtrl',
 		templateUrl: 'model/views/traveler/traveler.html'
 	}).when('/provider', {
 		controller: 'ProviderPageCtrl',
 		templateUrl: 'model/views/provider/provider.html'
-	}).otherwise( {redirectTo: '/traveler'} )
+	}).otherwise( {redirectTo: pathName} )
 });
 
 app.factory('appFactory', function() {
@@ -110,3 +115,27 @@ app.factory('appFactory', function() {
 	
 	return factory;
 });
+
+/**
+ * displays the overlay
+ * @param loading Boolean, if true displays the loading icon
+ */
+function showOverlay() {
+	var mskEls = document.getElementsByClassName('msk');
+	for (var i = 0; i < mskEls.length; i++) {
+		mskEls[i].className = 'msk';
+		if (loading) {
+			mskEls[i].className += ' loading';
+		}
+	}
+}
+
+/**
+ * hides the overlay
+ */
+function hideOverlay() {
+	var mskEls = document.getElementsByClassName('msk');
+	for (var i = 0; i < mskEls.length; i++) {
+		mskEls[i].className = 'msk loading hidden';
+	}
+}
