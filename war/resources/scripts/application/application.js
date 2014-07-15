@@ -61,7 +61,7 @@ controllers.ProviderPageCtrl = function ($scope, appFactory) {
 	$scope.headerTpl = 'model/views/common/header.html';
 	var providerData = appFactory.getViewData('provider');
 	$scope.label = providerData.label;
-	$scope.model = prodiderData.model;
+	$scope.model = providerData.model;
 }
 
 app.controller(controllers);
