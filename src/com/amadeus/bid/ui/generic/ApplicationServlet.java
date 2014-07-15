@@ -45,11 +45,11 @@ public abstract class ApplicationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		userId = -1;
 		try {
-			userId = Integer.parseInt(req.getParameter("user"));
-		} catch (Exception aEx)
-		{}
+			userId = Integer.parseInt(req.getParameter(IApplicationConstant.CONST_PARAM_USER));
+		} catch (NumberFormatException aEx){
+			userId = -1;
+		}
 		
 		JSONObject view = new JSONObject();
 		view.put(IApplicationConstant.CONST_LABEL, this.getLabels());

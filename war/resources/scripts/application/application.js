@@ -5,16 +5,13 @@
 var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker']);
 
 var controllers = {};
-<<<<<<< HEAD
-controllers.IndexPageCtrl = function ($scope, appFactory, $http) {
-=======
+
 controllers.TravelerPageCtrl = function ($scope, appFactory) {
->>>>>>> origin/master
+
 	$scope.headerTpl = 'model/views/common/header.html';
 	var indexData = appFactory.getViewData('traveler');
 	$scope.label = indexData.label;
 	$scope.model = indexData.model;
-<<<<<<< HEAD
 	
 	$scope.onTransportClick = function(mode) {
 		
@@ -69,8 +66,6 @@ controllers.TravelerPageCtrl = function ($scope, appFactory) {
 		
 		alert('You pressed submit button');
 	}
-=======
->>>>>>> origin/master
 };
 controllers.ProviderPageCtrl = function ($scope, appFactory) {
 	$scope.headerTpl = 'model/views/common/header.html';
