@@ -44,6 +44,10 @@ public class RequestPageServlet extends ApplicationServlet {
 		
 		JSONObject json = new JSONObject();
 		json.put("request_id", aRequestId);
+		json.put("request_origin", "NCE");
+		json.put("request_destination", "JFK");
+		json.put("request_comment", "bla bla bla");
+		
 		return json;
 	}
 
