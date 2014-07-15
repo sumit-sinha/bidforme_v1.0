@@ -25,6 +25,7 @@
 			
 		<div data-ng-app='bidForMe'>
 			<div data-ng-view=""></div>
+			<div class="msk loading hidden">&nbsp;</div>
 		</div>
 
 		<%-- include dependencies js [START] --%>
