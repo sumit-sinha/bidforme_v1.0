@@ -1,0 +1,24 @@
+<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="false" style="display:block">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button type="button" class="bootbox-close-button close" style="margin-top: -10px;" data-ng-click="onRegisterCloseClick()">x</button>
+				<form role="form">
+					<div class="form-group">
+						<label for="EMAIL_1">{{ label.tx_bidforme_email_address }}</label>
+						<input type="email" class="form-control" id="EMAIL_1" placeholder="{{ label.tx_bidforme_email_address }}" data-ng-model="register.email">
+					</div>
+					<div class="form-group">
+						<label for="PASSWORD_1">{{ label.tx_bidforme_password }}</label>
+						<input type="password" class="form-control" id="PASSWORD_1" placeholder="{{ label.tx_bidforme_password }}" data-ng-model="register.password">
+					</div>
+					<div class="form-group">
+						<label for="CONFIRM_PASSWORD_1">{{ label.tx_bidforme_confirm_password }}</label>
+						<input type="password" class="form-control" id="CONFIRM_PASSWORD_1" placeholder="{{ label.tx_bidforme_confirm_password }}" data-ng-model="register.confirmPassword">
+					</div>
+					<button class="btn btn-lg btn-primary btn-block" type="button" data-ng-click="onRegisterClick()">{{ label.tx_bidforme_register_btn }}</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

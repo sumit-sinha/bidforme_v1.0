@@ -33,7 +33,6 @@
 		<script type="text/javascript" src="resources/scripts/application/moment.js"></script>
 		<script type="text/javascript" src="resources/scripts/application/application.js"></script>
 	    <script type="text/javascript" src="resources/scripts/application/datetimepicker.js"></script>
-		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>    
 		<%-- include dependencies js [ END ] --%>
 		
 		<script type="text/javascript">

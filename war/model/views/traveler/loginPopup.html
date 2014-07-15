@@ -1,0 +1,19 @@
+<div class="bootbox modal" tabindex="-1" role="dialog" aria-hidden="false" style="display:block">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button type="button" class="bootbox-close-button close" data-ng-click="onLoginCloseClick()">x</button>
+				<form class="form-signin" role="form">
+       				<input type="email" class="form-control" placeholder="{{ label.tx_bidforme_email_address }}" autofocus="">
+        			<input type="password" class="form-control" placeholder="{{ label.tx_bidforme_password }}">
+        			<div class="checkbox">
+          				<label>
+            				<input type="checkbox" value="remember-me"> {{ label.tx_bidforme_remember_me }}
+          				</label>
+        			</div>
+        			<button class="btn btn-lg btn-primary btn-block" type="submit">{{ label.tx_bidforme_signin_btn }}</button>
+      			</form>
+			</div>
+		</div>
+	</div>
+</div>
