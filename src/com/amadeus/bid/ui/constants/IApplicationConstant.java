@@ -21,6 +21,8 @@ public interface IApplicationConstant {
 	
 	public String CONST_PARAM_USER = "user";
 	
+	public String CONST_PARAM_REQUEST = "request";
+	
 	public String CONST_PARAM_RESULT = "X-HTTP-RESULT";
 	
 	public String CONST_PARAM_VALUE_JSON = "json";

@@ -22,7 +22,6 @@ public abstract class ApplicationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private String viewName;
-	protected int userId;
 	/**
 	 * get the name of view
 	 * @return
@@ -33,7 +32,6 @@ public abstract class ApplicationServlet extends HttpServlet {
 	
 	public ApplicationServlet(String viewName) {
 		this.viewName = viewName;
-		this.userId = -1;
 	}
 	
 	@Override
@@ -45,16 +43,10 @@ public abstract class ApplicationServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
-		try {
-			userId = Integer.parseInt(req.getParameter(IApplicationConstant.CONST_PARAM_USER));
-		} catch (NumberFormatException aEx){
-			userId = -1;
-		}
 		
 		JSONObject view = new JSONObject();
 		view.put(IApplicationConstant.CONST_LABEL, this.getLabels());
-		view.put(IApplicationConstant.CONST_MODEL, this.getModel());
+		view.put(IApplicationConstant.CONST_MODEL, this.getModel(req));
 		view.put(IApplicationConstant.CONST_ERROR, this.getErrors());
 		
 		JSONObject data = new JSONObject();
@@ -115,7 +107,7 @@ public abstract class ApplicationServlet extends HttpServlet {
 	 * method to construct business data required for UI
 	 * @return {@link JSONObject}
 	 */
-	protected abstract JSONObject getModel();
+	protected abstract JSONObject getModel(HttpServletRequest iRequest);
 	
 	/**
 	 * method to construct error if any for UI

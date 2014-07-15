@@ -1,5 +1,7 @@
 package com.amadeus.bid.ui.servlet;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.amadeus.bid.be.fwk.LocalizationUtil;
 import com.amadeus.bid.ui.fwk.json.JSONArray;
 import com.amadeus.bid.ui.fwk.json.JSONObject;
@@ -47,7 +49,7 @@ public class TravelerPageServlet extends ApplicationServlet {
 	}
 
 	@Override
-	protected JSONObject getModel() {
+	protected JSONObject getModel(HttpServletRequest iRequest) {
 		
 		JSONObject json = new JSONObject();
 		JSONArray countries = new JSONArray();
