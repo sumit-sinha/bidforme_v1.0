@@ -43,6 +43,8 @@ public class RegisterUserServlet extends ApplicationServlet {
 		String confirmPassword = req.getParameter("confirmPassword");
 		List<MessageBean> messages = new ArrayList<MessageBean>();
 		
+		IUserDataContract user = new UserDataImpl();
+		
 		if (email == null || email.trim().equals("") || !pattern.matcher(email).matches()) {
 			MessageBean message = new MessageBean();
 			message.setType("E");
@@ -50,6 +52,16 @@ public class RegisterUserServlet extends ApplicationServlet {
 			message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_email_error"));
 			
 			messages.add(message);
+		} else {
+			UserBean existingUser = user.getUserData(email);
+			if (existingUser != null) {
+				MessageBean message = new MessageBean();
+				message.setType("E");
+				message.setNumber("1004");
+				message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_existing"));
+				
+				messages.add(message);
+			}
 		}
 		
 		if (password == null || password.trim().equals("")) {
@@ -74,8 +86,6 @@ public class RegisterUserServlet extends ApplicationServlet {
 			UserBean bean = new UserBean();
 			bean.setEmail(email);
 			bean.setPassword(password);
-			
-			IUserDataContract user = new UserDataImpl();
 			user.saveUserData(bean);
 		} else {
 			req.setAttribute("errors", messages);

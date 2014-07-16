@@ -1,5 +1,6 @@
 package com.amadeus.bid.dal.util;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,8 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
 
 /**
  * utility class used to persist data in storage
@@ -41,6 +44,21 @@ public class DataStoreUtil {
 	public static Map<Key, Entity> getData(List<Key> keys) {
 		
 		Map<Key, Entity> entities = dataStore.get(keys);
+		
+		return entities;
+	}
+	
+	/**
+	 * method to read data from storage based on {@link Query}
+	 * @param query {@link Query}
+	 * @return {@link Map} of {@link Entity}
+	 */
+	public static Map<Key, Entity> getData(Query query) {
+		PreparedQuery pq = dataStore.prepare(query);
+		Map<Key, Entity> entities = new HashMap<Key, Entity>();
+		for (Entity result : pq.asIterable()) {		
+			entities.put(result.getKey(), result);
+		}
 		
 		return entities;
 	}
