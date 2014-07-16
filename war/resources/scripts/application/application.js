@@ -101,6 +101,17 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 			classes: ['loading']
 		});		
 	}
+	
+	$scope.openDtPicker = function(elementId) {
+		var element = document.getElementById(elementId);
+		if (element != null) {
+			if (element.className.indexOf('open') == -1) {
+				element.className += ' open';
+			} else {
+				element.className = element.className.replace( /(?:^|\s)open(?!\S)/g , '' );
+			}
+		}
+	}
 };
 
 controllers.ProviderPageCtrl = function ($scope, appFactory) {
@@ -136,7 +147,11 @@ app.config(function($routeProvider) {
 	}).when('/request', {
 		controller: 'RequestPageCtrl',
 		templateUrl: 'model/views/request/request.html'
+	}).when('/bid', {
+		controller: 'TravelerPageCtrl',
+		templateUrl: 'model/views/request/bid.html'
 	}).otherwise( {redirectTo: pathName} )
+	
 });
 
 app.factory('appFactory', function() {
