@@ -48,11 +48,26 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	$scope.transport.shipsegment = 'resources/images/ship-checked.png';
 	
 	var indexData = appFactory.getViewData('traveler');
+	$scope.user = appFactory.getViewData('user');
 	$scope.label = indexData.label;
 	$scope.model = indexData.model;
 	
+	$scope.onToggleUnderConstruction = function() {
+		var element = document.getElementById('underConstEl');
+		if (element != null) {
+			if (element.className.indexOf('show') == -1) {
+				element.className += ' show';
+				showOverlay();
+			} else {
+				element.className = element.className.replace( /(?:^|\s)show(?!\S)/g , '' );
+				hideOverlay();
+			}
+		}
+	}
+	
 	$scope.onSignInClick = function() {
 		showOverlay();
+		$scope.register = null;
 		$scope.popupTpl = 'model/views/traveler/loginPopup.html';
 	}
 	
@@ -67,7 +82,7 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		$scope.popupTpl = 'model/views/traveler/register.html';
 	}
 	
-	$scope.onCloseClick = function(tplName) {
+	$scope.onCloseClick = function() {
 		hideOverlay();
 		$scope['popupTpl'] = null;
 	}
@@ -83,6 +98,42 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	$scope.onCriteriaRemoveClick = function() {
 		if ($scope.criterias != null && $scope.criterias.length > 0) {
 			$scope.criterias.pop();
+		}
+	}
+	
+	$scope.onLoginClick = function() {
+		requestManager.makeServerCall({
+			method: 'POST',
+			url: '/signin',
+			data: this.login,
+			showOverlay: true,
+			onSuccessCallback: $scope._onLoginSuccessCallback,
+			onErrorCallback: $scope._onLoginSuccessCallback
+		});
+	}
+	
+	$scope._onLoginSuccessCallback = function(args) {
+		
+		if (args.data.login.model.success) {
+			
+			// show success
+			appFactory.setViewData({key: 'login', data: args.data.login});
+			appFactory.setViewData({key: 'user', data: args.data.user});
+			
+			$scope.user = args.data.user;
+			$scope.onCloseClick();
+			
+		} else {
+			$scope.signin = {
+				error: {
+					title: args.data.login.label.tx_bidforme_common_errors,
+					list: args.data.login.error.validation_error
+				}
+			}
+			
+			removeOverlayClass({
+				classes: ['loading']
+			});
 		}
 	}
 	

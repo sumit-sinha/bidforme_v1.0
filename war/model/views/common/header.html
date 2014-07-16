@@ -16,9 +16,22 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">{{ label.tx_bidforme_nav_home }}</a></li>
 				<li><a href="javascript:void(0);" data-ng-click="onContactUsClick()">{{ label.tx_bidforme_nav_contactus }}</a></li>
-				<li><a href="javascript:void(0);" data-ng-click="onSignInClick()">{{ label.tx_bidforme_nav_signin }}</a></li>
-				<li><a href="javascript:void(0);" data-ng-click="onRegisterClick()">{{ label.tx_bidforme_nav_register }}</a></li>
+				<li data-ng-show="user != null"><a href="javascript:void(0);" data-ng-click="onToggleUnderConstruction()">Hello {{ user.email }}</a></li>
+				<li data-ng-show="user == null"><a href="javascript:void(0);" data-ng-click="onSignInClick()">{{ label.tx_bidforme_nav_signin }}</a></li>
+				<li data-ng-show="user == null"><a href="javascript:void(0);" data-ng-click="onRegisterClick()">{{ label.tx_bidforme_nav_register }}</a></li>
 			</ul>
+		</div>
+	</div>
+</div>
+<div class="bootbox modal" id="underConstEl" tabindex="-1" role="dialog" aria-hidden="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button type="button" class="bootbox-close-button close" style="margin-top: -10px;" data-ng-click="onToggleUnderConstruction()">x</button>
+				<div class="bootbox-body">
+					Sorry!!! This page is under construction
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
