@@ -125,7 +125,8 @@ min-height: 80px;
    margin-right: auto;
 }
 .panel.traveler {
-	margin-top: 80px !important;	
+	margin-top: 80px !important;
+	opacity: 0.95;
 }
 p.lead.logo {
 	margin-left: 18px;
@@ -208,9 +209,6 @@ font-family: Tahoma, sans-serif;
 background-color: WHITE;
 background-position: bottom right;
 background-repeat: no-repeat;
-}
-.datetimepicker table {
-  border: 1px solid rgb(184, 171, 171);
 }
 ul.autocomplete-results {
   list-style: none;
@@ -326,6 +324,9 @@ span.buttonText {
   padding-right: 35px;
   font-size: 14px;
   font-weight: bold;
-  /* Use the Roboto font that is loaded in the <head> */
   font-family: 'Roboto',arial,sans-serif;
+}
+div.input-group.holo {
+	width: 210px;
+	margin-top: 10px;
 }
