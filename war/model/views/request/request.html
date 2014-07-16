@@ -2,6 +2,14 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<br>
-		<h2 class="panel-title">Hello dear provider: {{ model.provider_id }} </h2>
+		<h2 class="panel-title">View request number: {{ model.request_id }} </h2>
+		<br><br><br><br>
+		<div>
+		Origin: {{ model.request_origin }}
+		<br>
+		Destination: {{ model.request_destination }}
+		<br><br>
+		Comment: {{ model.request_comment }}
+		</div>
 	</div>
 </div>

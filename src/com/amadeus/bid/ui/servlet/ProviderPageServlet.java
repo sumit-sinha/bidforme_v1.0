@@ -1,7 +1,6 @@
 package com.amadeus.bid.ui.servlet;
 
-import com.amadeus.bid.be.fwk.LocalizationUtil;
-import com.amadeus.bid.ui.fwk.json.JSONArray;
+import com.amadeus.bid.ui.constants.IApplicationConstant;
 import com.amadeus.bid.ui.fwk.json.JSONObject;
 import com.amadeus.bid.ui.generic.ApplicationServlet;
 
@@ -28,16 +27,22 @@ public class ProviderPageServlet extends ApplicationServlet {
 		
 		// for body
 		
-		
 		return json;
 	}
 
 	@Override
 	protected JSONObject getModel() {
 		
-		JSONObject json = new JSONObject();
+		int aUserId;
+		try {
+			aUserId = Integer.parseInt(this.getRequest().getParameter(IApplicationConstant.CONST_PARAM_USER));
+		} catch (NumberFormatException aEx){
+			aUserId = -1;
+		}
 		
+		JSONObject json = new JSONObject();
 		json.put("provider_id", getUserId());
+		json.put("user_id", aUserId);
 		
 		return json;
 	}
