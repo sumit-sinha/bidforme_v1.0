@@ -1,5 +1,9 @@
 
+
 package com.amadeus.bid.ui.servlet;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.amadeus.bid.be.fwk.LocalizationUtil;
 import com.amadeus.bid.ui.constants.IApplicationConstant;
@@ -14,6 +18,8 @@ import com.amadeus.bid.ui.generic.ApplicationServlet;
 public class RequestPageServlet extends ApplicationServlet {
 	
 	private static final long serialVersionUID = 1L;
+	
+	protected String travelRequestKey;
 	
 	public RequestPageServlet() {
 		super("request");
@@ -44,22 +50,23 @@ public class RequestPageServlet extends ApplicationServlet {
 	}
 
 	@Override
-	protected JSONObject getModel() {
-		int aRequestId;
+	protected void doTask(HttpServletRequest req, HttpServletResponse res) {
+		travelRequestKey = null;
 		try {
-			aRequestId = Integer.parseInt(this.getRequest().getParameter(IApplicationConstant.CONST_PARAM_REQUEST));
+			travelRequestKey = req.getParameter(IApplicationConstant.CONST_PARAM_REQUEST);
 		} catch (NumberFormatException aEx){
-			aRequestId = -1;
+			
 		}
-		
+	}
+	
+	@Override
+	protected JSONObject getModel() {
 		JSONObject json = new JSONObject();
 		json.put("provider_id", getUserId());
-
-		json.put("request_id", aRequestId);
+		json.put("request_id", travelRequestKey);
 		json.put("request_origin", "NCE");
 		json.put("request_destination", "JFK");
-		json.put("request_comment", "bla bla bla");
-		
+		json.put("request_comment", "bla bla bla");	
 		return json;
 	}
 

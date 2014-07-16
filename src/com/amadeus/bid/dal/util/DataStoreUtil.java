@@ -29,8 +29,10 @@ public class DataStoreUtil {
 	 * method to add an {@link Entity} to datastore
 	 * @param contract
 	 */
-	public static void addEntity(IBeanContract contract) {
-		dataStore.put(contract.getEntity());		
+	public static String addEntity(IBeanContract contract) {
+		Entity aEntity = contract.getEntity();
+		dataStore.put(aEntity);
+		return (aEntity.getProperty("key").toString());
 	}
 	
 	/**

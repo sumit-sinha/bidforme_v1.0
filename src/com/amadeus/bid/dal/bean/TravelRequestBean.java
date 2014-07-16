@@ -1,6 +1,7 @@
 package com.amadeus.bid.dal.bean;
 
 import java.awt.List;
+import java.util.ArrayList;
 
 import com.amadeus.bid.dal.contract.IBeanContract;
 import com.google.appengine.api.datastore.Entity;
@@ -38,12 +39,59 @@ public class TravelRequestBean implements IBeanContract {
 	
 	private int nbOfChildren;
 	
-	private Destination[] destinations;
+	private ArrayList<Destination> destinations;
 	
-	private String[] criteria;
+	private ArrayList<String> criteria;
 	
 	private int budget;
 	
 	private String freeTextComment;
-	
+
+	public int getNbOfAdults() {
+		return nbOfAdults;
+	}
+
+	public int getNbOfChildren() {
+		return nbOfChildren;
+	}
+
+	public ArrayList<Destination> getDestinations() {
+		return destinations;
+	}
+
+	public ArrayList<String> getCriteria() {
+		return criteria;
+	}
+
+	public int getBudget() {
+		return budget;
+	}
+
+	public String getFreeTextComment() {
+		return freeTextComment;
+	}
+
+	public void setNbOfAdults(int nbOfAdults) {
+		this.nbOfAdults = nbOfAdults;
+	}
+
+	public void setNbOfChildren(int nbOfChildren) {
+		this.nbOfChildren = nbOfChildren;
+	}
+
+	public void setDestinations(ArrayList<Destination> destinations) {
+		this.destinations = destinations;
+	}
+
+	public void setCriteria(ArrayList<String> criteria) {
+		this.criteria = criteria;
+	}
+
+	public void setBudget(int budget) {
+		this.budget = budget;
+	}
+
+	public void setFreeTextComment(String freeTextComment) {
+		this.freeTextComment = freeTextComment;
+	}
 }
