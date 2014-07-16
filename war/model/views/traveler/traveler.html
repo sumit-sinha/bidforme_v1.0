@@ -1,96 +1,103 @@
 <div data-ng-include="" src="headerTpl"></div>
-<div data-ng-include="" src="loginTpl"></div>
-<div data-ng-include="" src="registerTpl"></div>
-<h3>{{ label.tx_bidforme_plan_holiday }}</h3>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h2 class="panel-title">{{ label.tx_bidforme_build_trip }}</h2>
+<div data-ng-include="" src="popupTpl"></div>
+
+<div class="panel panel-default traveler">
+	
+	<div class="well title">
+		<h2 class="panel-title logo">{{ label.tx_bidforme_build_trip }}</h2>
+        <p class="lead logo">{{ label.tx_bidforme_plan_holiday }}</p>
 	</div>
 	<div class="panel-body">
-		<div class="page-header">
-			<h2><img src="resources/images/1.jpg"/></span> {{ label.tx_bidforme_select_dest_dates }}</h2>
-			<div id="datelocation">
-				<div id="location-forms">
-					<table style="width:100%; text-align:center;">
-						<tr>
-							<td>
-								<img src="resources/images/home.jpg"/>
-								<b>{{ label.tx_bidforme_origin_city }}</b>
-								<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.origin"></input>
-							</td>
-							<td>
-								<img src="resources/images/destination.jpg"/>
-								<b>{{ label.tx_bidforme_dest_city }}</b>
-								<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.destination"></input>
-							</td>
-						</tr>
-					</table>
-				</div>
-				<div id="date-forms">
-					<table style="width:100%;text-align:center;">
-						<tr>
-							<td>
-								<img src="resources/images/calendar.jpg"/>
-								<b>{{ label.tx_bidforme_strt_date }}</b> 
-								<input id="ori-date" style="display: inline;" type='text' value="{{ data.startDate|date: 'dd MMM yyyy' }}" class='holo'></input>
-							</td>
-							<td>
-								<img src="resources/images/calendar.jpg"/>
-								<b>{{ label.tx_bidforme_end_date }}</b> 
-								<input id="dest-date" style="display: inline;" type='text' class='holo'  value="{{ data.endDate|date: 'dd MMM yyyy' }}"></input>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
-							</td>
-							<td>
-								<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
-							</td>
-						</tr>
-					</table>
-				</div>
+		<div class="row logo">
+			<div class="col-md-1">
+				<img src="resources/images/1.jpg"/>
+			</div>
+			<div class="col-md-10 section-title">{{ label.tx_bidforme_select_dest_dates }}</div>
+		</div>
+		<div class="row logo content">
+			<div class="col-md-2">
+				<img src="resources/images/home.jpg"/><br/>
+				<b>{{ label.tx_bidforme_origin_city }}</b>
+			</div>
+			<div class="col-md-4">
+				<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.origin"></input>
+			</div>
+			<div class="col-md-2">
+				<img src="resources/images/destination.jpg"/><br/>
+				<b>{{ label.tx_bidforme_dest_city }}</b>
+			</div>
+			<div class="col-md-4">
+				<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.destination"></input>
 			</div>
 		</div>
-		<div class="page-header">
-			<h2><img src="resources/images/2.jpg"/></span> {{ label.tx_bidforme_preferred_transport }}</h2>
-			<div id="transportation">
-				<table style="width:100%;">
-					<tr>
-						<td data-ng-click="onTransportClick('air')"><img id='airEl' src="resources/images/air.jpg"/></td>
-						<td data-ng-click="onTransportClick('car')"><img id='carEl' src="resources/images/car.jpg"/></td>
-						<td data-ng-click="onTransportClick('train')"><img id='trainEl' src="resources/images/train.jpg"/></td>
-						<td data-ng-click="onTransportClick('ship')"><img id='shipEl' src="resources/images/ship.jpg"/></td>
-					</tr>
-				</table>
+		<div class="row logo content">
+			<div class="col-md-2">
+				<img src="resources/images/calendar.jpg"/><br/>
+				<b>{{ label.tx_bidforme_strt_date }}</b>
+			</div>
+			<div class="col-md-4">
+				<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
+			</div>
+			<div class="col-md-2">
+				<img src="resources/images/calendar.jpg"/><br/>
+				<b>{{ label.tx_bidforme_end_date }}</b>
+			</div>
+			<div class="col-md-4">
+				<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
 			</div>
 		</div>
-		<div class="page-header">
-			<h2><img src="resources/images/3.jpg"/></span> {{ label.tx_bidforme_budget_range }} <span data-ng-show="data.budget != null">[{{ data.budget|currency:'&euro;' }}]</span></h2>
-			<div data-role="fieldcontain">
-				<input type="range" name="slider" id="slider" value="50000" min="0" max="100000" data-ng-model="data.budget"/>
+		<div class="row logo">
+			<div class="col-md-1">
+				<img src="resources/images/2.jpg"/>
+			</div>
+			<div class="col-md-10 section-title">{{ label.tx_bidforme_preferred_transport }}</div>
+		</div>
+		<div class="row logo content">
+			<div class="col-md-3" data-ng-click="onTransportClick('air')">
+				<img id='airEl' src="resources/images/air.jpg"/>
+			</div>
+			<div class="col-md-3" data-ng-click="onTransportClick('car')">
+				<img id='carEl' src="resources/images/car.jpg"/>
+			</div>
+			<div class="col-md-3" data-ng-click="onTransportClick('train')">
+				<img id='trainEl' src="resources/images/train.jpg"/>
+			</div>
+			<div class="col-md-3" data-ng-click="onTransportClick('ship')">
+				<img id='shipEl' src="resources/images/ship.jpg"/>
 			</div>
 		</div>
-		<div class="page-header">
-			<h2><img src="resources/images/4.jpg"/></span> {{ label.tx_bidforme_insert_criteria }}</h2>
-			<div id="location-forms">
-				<table style="width:100%; text-align:center;">
-					<tr>
-						<td>
-							<b>{{ label.tx_bidforme_personal_criteria }}</b>
-							<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.criteria"></input>
-							<img src="resources/images/plus.jpg"/>
-						</td>
-					</tr>
-				</table>
+		<div class="row logo">
+			<div class="col-md-1">
+				<img src="resources/images/3.jpg"/>
+			</div>
+			<div class="col-md-2 section-title">{{ label.tx_bidforme_budget_range }}</div>
+			<div class="col-md-9">
+				<span class="symbol">&euro;</span>&nbsp;<input type="number" class="holo currency" value="0" autosuggest="off" value="100" data-ng-model="data.budget"/>
 			</div>
 		</div>
-		<div class="page-header">
-			<h2><img src="resources/images/5.jpg"/></span> {{ label.tx_bidforme_any_comments }}</h2>
-			<div>
+		<div class="row logo marginup">
+			<div class="col-md-1">
+				<img src="resources/images/4.jpg"/>
+			</div>
+			<div class="col-md-11 section-title">{{ label.tx_bidforme_any_comments }}</div>
+		</div>
+		<div class="row logo content lessmargin">
+			<div class="col-md-11">
 				<textarea id="styled" class="span6" rows="3" placeholder="{{ label.tx_bidforme_any_comments_placeholder }}" data-ng-model="data.comments"></textarea>
 			</div>
 		</div>
-		<button id="submit" class="btn btn-lg btn-success" type="button" data-ng-click="onSubmitPress()">{{ label.tx_bidforme_submit_request }}</button>
+		<div class="row logo marginup">
+			<div class="col-md-1">
+				<img src="resources/images/5.jpg"/>
+			</div>
+			<div class="col-md-4 section-title">{{ label.tx_bidforme_insert_criteria }}</div>
+		</div>
+		<div class="row logo content lessmargin">
+			<div class="col-md-11">
+				<input type="text" class="holo fullwidth" value="0" autosuggest="off" value="100" data-ng-model="data.criteria"/>
+			</div>
+		</div>
+		
+		<button type="button" class="btn btn-primary dropdown-toggle marginup" data-toggle="dropdown" data-ng-click="onSubmitPress()">{{ label.tx_bidforme_submit_request }}</button>
 	</div>
 </div>

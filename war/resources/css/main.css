@@ -124,6 +124,20 @@ min-height: 80px;
    margin-left: auto;
    margin-right: auto;
 }
+.panel.traveler {
+	margin-top: 80px !important;	
+}
+p.lead.logo {
+	margin-left: 18px;
+	font-size: 15px;
+}
+.panel-title.logo {
+	font-size: 25px;
+}
+.well.title {
+	padding-bottom: 1px;
+	margin-bottom: 0px;
+}
 
 #datepicker{
    width: 100%;
@@ -196,7 +210,6 @@ background-position: bottom right;
 background-repeat: no-repeat;
 }
 .datetimepicker table {
-  margin-left: 190px !important;
   border: 1px solid rgb(184, 171, 171);
 }
 ul.autocomplete-results {
@@ -210,6 +223,7 @@ img.selected {
 }
 .msk.loading {
   background:url('../images/ajax-loader.gif') no-repeat center rgba(0, 0, 0, 0.5) !important;
+  z-index: 9999;
 }
 div.msk {
   position:fixed;
@@ -229,4 +243,45 @@ div.msk {
 button.bootbox-close-button.close{
 	margin-top: -10px;
 	margin-bottom: 10px;
+}
+.alert ul li:first-child{
+  list-style: none;
+  margin-left: -30px;
+}
+div.modal-body div.alert {
+	margin-top: 15px;
+}
+div.section-title {
+	font-size: 25px;
+	font-family: 'Josefin Slab', serif;
+	-webkit-font-smoothing: antialiased;
+	margin-top: 15px;	
+}
+div.row.logo {
+	margin-left: 5px;
+}
+div.row.logo.content {
+	margin-left: 88px;
+	margin-top: 30px;
+}
+input.holo.currency {
+	width: 87%;
+	margin-top: 21px;
+}
+span.symbol {
+	font-weight: bold;
+}
+.marginup {
+	margin-top: 10px;
+}
+div.row.logo.content.lessmargin {
+	margin-top: 10px !important;
+}
+button.btn.btn-primary.dropdown-toggle.marginup.ng-binding {
+	width: 83%;
+	height: 40px;
+	margin-left: 100px;
+}
+.fullwidth {
+	width: 100% !important;
 }

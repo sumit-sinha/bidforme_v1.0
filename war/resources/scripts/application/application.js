@@ -14,43 +14,25 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 	$scope.label = indexData.label;
 	$scope.model = indexData.model;
 	
-	$scope.onRegisterClick = function() {
-		
-		console.log("getting");
-		
-		requestManager.makeServerCall({
-			method: 'POST',
-			url: '/register',
-			data: $scope.register,
-			showOverlay: true,
-			onSuccessCallback: $scope._onRegisterSuccessCallback,
-			onErrorCallback: $scope._onRegisterSuccessCallback
-		});
-	}
-	
-	$scope._onRegisterSuccessCallback = function (args) {
-		// remove overlay
-		hideOverlay();
-	}
-	
 	$scope.onSignInClick = function() {
 		showOverlay();
-		$scope.loginTpl = 'model/views/traveler/loginPopup.html';
+		$scope.popupTpl = 'model/views/traveler/loginPopup.html';
+	}
+	
+	$scope.onContactUsClick = function() {
+		showOverlay();
+		$scope.popupTpl = 'model/views/common/contactus.html';
 	}
 	
 	$scope.onRegisterClick = function() {
 		showOverlay();
-		$scope.registerTpl = 'model/views/traveler/register.html';
+		$scope.registeration = null;
+		$scope.popupTpl = 'model/views/traveler/register.html';
 	}
 	
-	$scope.onLoginCloseClick = function() {
+	$scope.onCloseClick = function(tplName) {
 		hideOverlay();
-		$scope.loginTpl = null;
-	}
-	
-	$scope.onRegisterCloseClick = function() {
-		hideOverlay();
-		$scope.registerTpl = null;
+		$scope['popupTpl'] = null;
 	}
 	
 	$scope.onTransportClick = function(mode) {
@@ -77,18 +59,47 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 	};
 
 	$scope.onSubmitPress = function() {
-
+		
+		// reset errors
+		$scope.registeration = null;
+		
 		requestManager.makeServerCall({
 			method: 'POST',
 			url: '/register',
-			data: $scope.register,
+			data: this.register,
 			showOverlay: true,
-			onSuccessCallback: $scope._onSuccessCallback
+			onSuccessCallback: $scope._onSuccessCallback,
+			onErrorCallback: $scope._onSuccessCallback
 		});
 	}
 	
 	$scope._onSuccessCallback = function (args) {
-		$scope.onRegisterCloseClick();
+		
+		if (args.data.register.model.success) {
+			
+			// show success
+			$scope.register = {
+				username: args.config.params.email,
+				message: {
+					type: 'I',
+					text: args.data.register.label.tx_bidforme_registration_success
+				}
+			}
+			
+			$scope.popupTpl = 'model/views/traveler/loginPopup.html';
+			
+		} else {
+			$scope.registeration = {
+				error: {
+					title: args.data.register.label.tx_bidforme_common_errors,
+					list: args.data.register.error.validation_error
+				}
+			}
+		}
+		
+		removeOverlayClass({
+			classes: ['loading']
+		});		
 	}
 };
 
@@ -226,3 +237,16 @@ function hideOverlay() {
 		mskEls[i].className = 'msk loading hidden';
 	}
 }
+
+/**
+ * removes any class from overlay
+ */
+function removeOverlayClass(args) {
+	var mskEls = document.getElementsByClassName('msk');
+	for (var i = 0; i < mskEls.length; i++) {
+		for (var j = 0; j < args.classes.length; j++) {
+			mskEls[i].className = mskEls[i].className.replace(args.classes[j], '');
+		}
+	}
+}
+
