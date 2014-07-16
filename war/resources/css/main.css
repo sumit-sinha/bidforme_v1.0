@@ -337,3 +337,6 @@ input.form-control.disable {
 .position-cursor {
 	cursor: pointer;
 }
+div.col-lg-6 {
+	margin-left: -18px;
+}

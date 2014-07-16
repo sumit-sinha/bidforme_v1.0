@@ -61,6 +61,20 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		$scope['popupTpl'] = null;
 	}
 	
+	$scope.onNewCriteriaClick = function() {
+		if ($scope.criterias == null) {
+			$scope.criterias = [];
+		}
+		
+		$scope.criterias.push({});
+	}
+	
+	$scope.onCriteriaRemoveClick = function() {
+		if ($scope.criterias != null && $scope.criterias.length > 0) {
+			$scope.criterias.pop();
+		}
+	}
+	
 	$scope.onTransportClick = function(mode) {
 
 		// if not existing

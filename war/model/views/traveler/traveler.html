@@ -94,7 +94,20 @@
 		</div>
 		<div class="row logo content lessmargin">
 			<div class="col-md-11">
-				<input type="text" class="holo fullwidth" value="0" autosuggest="off" value="100" data-ng-model="data.criteria"/>
+				<div>
+			        <div class="input-group">
+						<input type="text" class="form-control" id="criteria0">
+						<span class="input-group-btn">
+							<button class="btn btn-default glyphicon glyphicon-plus" style="margin-top: -1px;" type="button" data-ng-click="onNewCriteriaClick()"></button>
+						</span>
+			        </div>
+			        <div class="input-group marginup" data-ng-repeat="criteria in criterias">
+						<input type="text" class="form-control" id="criteria{{ $index + 1 }}">
+						<span class="input-group-btn">
+							<button class="btn btn-default glyphicon glyphicon-minus" style="margin-top: -1px;" type="button" data-ng-click="onCriteriaRemoveClick()"></button>
+						</span>
+			        </div>
+				</div>
 			</div>
 		</div>
 		
