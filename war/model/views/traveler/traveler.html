@@ -36,17 +36,37 @@
 				<b>{{ label.tx_bidforme_strt_date }}</b>
 			</div>
 			<div class="col-md-4">
-				<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
+				<div class="dropdown" id="dtStart">
+					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="javascript:void(0);" data-ng-click="openDtPicker('dtStart')">
+						<div class="input-group holo">
+							<input type="text" class="form-control" value="{{ data.startDate|date: 'dd MMM yyyy' }}">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+    					</div>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"/>
+					</ul>
+				</div>
 			</div>
 			<div class="col-md-2">
 				<img src="resources/images/calendar.jpg"/><br/>
 				<b>{{ label.tx_bidforme_end_date }}</b>
 			</div>
 			<div class="col-md-4">
-				<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
+				<div class="dropdown" id="dtEnd">
+					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="javascript:void(0);" data-ng-click="openDtPicker('dtEnd')">
+						<div class="input-group holo">
+							<input type="text" class="form-control" value="{{ data.endDate|date: 'dd MMM yyyy' }}">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+    					</div>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"/>
+					</ul>
+				</div>
 			</div>
 		</div>
-		<div class="row logo">
+		<div class="row logo marginup">
 			<div class="col-md-1">
 				<img src="resources/images/2.jpg"/>
 			</div>
@@ -79,7 +99,7 @@
 			<div class="col-md-1">
 				<img src="resources/images/4.jpg"/>
 			</div>
-			<div class="col-md-11 section-title">{{ label.tx_bidforme_any_comments }}</div>
+			<div class="col-md-11 section-title">{{ label.tx_bidforme_any_comments }} <abbr title="describe about trip e.g. i want to have local experience">[?]</abbr></div>
 		</div>
 		<div class="row logo content lessmargin">
 			<div class="col-md-11">

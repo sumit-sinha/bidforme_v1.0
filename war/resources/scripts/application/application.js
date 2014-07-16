@@ -101,6 +101,17 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 			classes: ['loading']
 		});		
 	}
+	
+	$scope.openDtPicker = function(elementId) {
+		var element = document.getElementById(elementId);
+		if (element != null) {
+			if (element.className.indexOf('open') == -1) {
+				element.className += ' open';
+			} else {
+				element.className = element.className.replace( /(?:^|\s)open(?!\S)/g , '' );
+			}
+		}
+	}
 };
 
 controllers.ProviderPageCtrl = function ($scope, appFactory) {
