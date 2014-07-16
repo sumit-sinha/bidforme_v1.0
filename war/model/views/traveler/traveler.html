@@ -36,34 +36,14 @@
 				<b>{{ label.tx_bidforme_strt_date }}</b>
 			</div>
 			<div class="col-md-4">
-				<div class="dropdown" id="startDate">
-					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="javascript:void(0);" data-ng-click="openDtPicker('startDate')">
-						<div class="input-group holo">
-							<input type="text" class="form-control" value="{{ data.startDate|date: 'dd MMM yyyy' }}">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-    					</div>
-					</a>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"/>
-					</ul>
-				</div>
+				<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
 			</div>
 			<div class="col-md-2">
 				<img src="resources/images/calendar.jpg"/><br/>
 				<b>{{ label.tx_bidforme_end_date }}</b>
 			</div>
 			<div class="col-md-4">
-				<div class="dropdown" id="endDate">
-					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="javascript:void(0);" data-ng-click="openDtPicker('endDate')">
-						<div class="input-group holo">
-							<input type="text" class="form-control" value="{{ data.endDate|date: 'dd MMM yyyy' }}">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-    					</div>
-					</a>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"/>
-					</ul>
-				</div>
+				<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
 			</div>
 		</div>
 		<div class="row logo marginup">
@@ -74,19 +54,19 @@
 		</div>
 		<div class="row logo content">
 			<div class="col-md-3" data-ng-click="onTransportClick('air')">
-				<img id='airEl' src="resources/images/air.jpg"/>
+				<img id='airEl' data-ng-show="transport.airsegment != null" class="position-cursor" src="{{ transport.airsegment }}"/>
 			</div>
 			<div class="col-md-3" data-ng-click="onTransportClick('car')">
-				<img id='carEl' src="resources/images/car.jpg"/>
+				<img id='carEl' data-ng-show="transport.carsegment != null" class="position-cursor" src="{{ transport.carsegment }}"/>
 			</div>
 			<div class="col-md-3" data-ng-click="onTransportClick('train')">
-				<img id='trainEl' src="resources/images/train.jpg"/>
+				<img id='trainEl' data-ng-show="transport.trainsegment != null" class="position-cursor" src="{{ transport.trainsegment }}"/>
 			</div>
 			<div class="col-md-3" data-ng-click="onTransportClick('ship')">
-				<img id='shipEl' src="resources/images/ship.jpg"/>
+				<img id='shipEl' data-ng-show="transport.shipsegment != null" class="position-cursor" src="{{ transport.shipsegment }}"/>
 			</div>
 		</div>
-		<div class="row logo">
+		<div class="row logo marginup">
 			<div class="col-md-1">
 				<img src="resources/images/3.jpg"/>
 			</div>

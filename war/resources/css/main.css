@@ -331,3 +331,9 @@ div.input-group.holo {
 	width: 210px;
 	margin-top: 10px;
 }
+input.form-control.disable {
+	cursor: pointer;
+}
+.position-cursor {
+	cursor: pointer;
+}

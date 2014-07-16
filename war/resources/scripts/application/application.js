@@ -25,8 +25,16 @@ controllers.AutoCompleteCtrl = function ($scope) {
 	  $scope.details3 = '';
 };
 controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestManager) {
-
+	
+	if ($scope.transport == null) {
+		$scope.transport = {};
+	}
+	
 	$scope.headerTpl = 'model/views/common/header.html';
+	$scope.transport.airsegment = 'resources/images/air-checked.png';
+	$scope.transport.carsegment = 'resources/images/car-checked.png';
+	$scope.transport.trainsegment = 'resources/images/train-checked.png';
+	$scope.transport.shipsegment = 'resources/images/ship-checked.png';
 	
 	var indexData = appFactory.getViewData('traveler');
 	$scope.label = indexData.label;
@@ -63,16 +71,13 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		if ($scope.data.mode == null) {
 			$scope.data.mode = {};
 		}
-
-		var element = document.getElementById(mode + 'El');
-		if (element != null) {
-			if (element.className.indexOf('selected') == -1) {
-				$scope.data.mode[mode] = 1;
-				element.className += ' selected';
-			} else {
-				$scope.data.mode[mode] = 0;
-				element.className = element.className.replace( /(?:^|\s)selected(?!\S)/g , '' );
-			}
+		
+		if ($scope.transport[mode + 'segment'].indexOf('unchecked') == -1) {
+			$scope.data.mode[mode] = 0;
+			$scope.transport[mode + 'segment'] = 'resources/images/' + mode + '-unchecked.png';
+		} else {
+			$scope.data.mode[mode] = 1;
+			$scope.transport[mode + 'segment'] = 'resources/images/' + mode + '-checked.png';
 		}
 	};
 
