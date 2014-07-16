@@ -162,7 +162,11 @@ app.config(function($routeProvider) {
 	}).when('/request', {
 		controller: 'RequestPageCtrl',
 		templateUrl: 'model/views/request/request.html'
+	}).when('/bid', {
+		controller: 'TravelerPageCtrl',
+		templateUrl: 'model/views/request/bid.html'
 	}).otherwise( {redirectTo: pathName} )
+	
 });
 
 app.factory('appFactory', function() {
