@@ -24,3 +24,5 @@
 ehthumbs.db
 Thumbs.db
 *.class
+/.settings
+/.gitignore

@@ -1,0 +1,33 @@
+<div data-ng-include="" src="headerTpl"></div>
+<div data-ng-include="" src="popupTpl"></div>
+<h3>{{ label.tx_bidforme_plan_holiday }}</h3>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h2 class="panel-title">{{ label.tx_bidforme_build_trip }}</h2>
+	</div>
+	<div class="panel-body">
+		<div class="page-header">
+			<h2><img src="resources/images/1.jpg"/></span> {{ label.tx_bidforme_select_dest_dates }}</h2>
+			<div id="summary">
+				here you'll have the summary of the trip
+			</div>
+		</div>
+
+
+		<div class="page-header">
+		<h2><img src="resources/images/1.jpg"/></span> {{ label.tx_bidforme_select_dest_dates }}</h2>
+			<div id="summary">
+				here instead the list of details
+			</div>
+		</div>
+		
+		<div class="page-header">
+			<h2><img src="resources/images/1.jpg"/></span> {{ label.tx_bidforme_select_dest_dates }}</h2>
+			<div id="summary">
+				and at last the chat
+			</div>
+		</div>
+
+		<button id="submit" class="btn btn-lg btn-success" type="button" data-ng-click="onSubmitPress()">{{ label.tx_bidforme_submit_request }}</button>
+	</div>
+</div>

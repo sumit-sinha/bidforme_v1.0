@@ -24,7 +24,7 @@ controllers.AutoCompleteCtrl = function ($scope) {
 	  };
 	  $scope.details3 = '';
 };
-controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
+controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestManager) {
 
 	$scope.headerTpl = 'model/views/common/header.html';
 	
@@ -86,12 +86,27 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 			url: '/register',
 			data: this.register,
 			showOverlay: true,
-			onSuccessCallback: $scope._onSuccessCallback,
-			onErrorCallback: $scope._onSuccessCallback
+			onSuccessCallback: $scope._onRegisterSuccessCallback,
+			onErrorCallback: $scope._onRegisterSuccessCallback
 		});
 	}
 	
-	$scope._onSuccessCallback = function (args) {
+	$scope.onSubmitTravelRequest = function() {
+		requestManager.makeServerCall({
+			method: 'POST',
+			url: '/requestCreate',
+			data: this.data,
+			showOverlay: true,
+			onSuccessCallback: $scope._onRequestSubmitSuccessCallback,
+			onErrorCallback: $scope._onRequestSubmitSuccessCallback
+		});
+	}
+	
+	$scope._onRequestSubmitSuccessCallback = function (args) {
+		
+	}
+	
+	$scope._onRegisterSuccessCallback = function (args) {
 		
 		if (args.data.register.model.success) {
 			
@@ -165,7 +180,11 @@ app.config(function($routeProvider) {
 	}).when('/request', {
 		controller: 'RequestPageCtrl',
 		templateUrl: 'model/views/request/request.html'
+	}).when('/bid', {
+		controller: 'TravelerPageCtrl',
+		templateUrl: 'model/views/request/bid.html'
 	}).otherwise( {redirectTo: pathName} )
+	
 });
 
 app.factory('appFactory', function() {
