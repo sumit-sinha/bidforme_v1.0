@@ -19,6 +19,11 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 		$scope.popupTpl = 'model/views/traveler/loginPopup.html';
 	}
 	
+	$scope.onContactUsClick = function() {
+		showOverlay();
+		$scope.popupTpl = 'model/views/common/contactus.html';
+	}
+	
 	$scope.onRegisterClick = function() {
 		showOverlay();
 		$scope.registeration = null;
@@ -73,17 +78,16 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 		if (args.data.register.model.success) {
 			
 			// show success
-			$scope.modal = {
+			$scope.register = {
+				username: args.config.params.email,
 				message: {
 					type: 'I',
 					text: args.data.register.label.tx_bidforme_registration_success
-				}, close: {
-					functionName: "onCloseClick('popupTpl')"
 				}
 			}
 			
-			$scope['popupTpl'] = null;
-			$scope.popupTpl = 'model/views/common/modal.html';
+			$scope.popupTpl = 'model/views/traveler/loginPopup.html';
+			
 		} else {
 			$scope.registeration = {
 				error: {
@@ -91,13 +95,11 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 					list: args.data.register.error.validation_error
 				}
 			}
-			
-			removeOverlayClass({
-				classes: ['loading']
-			});
 		}
 		
-		
+		removeOverlayClass({
+			classes: ['loading']
+		});		
 	}
 };
 

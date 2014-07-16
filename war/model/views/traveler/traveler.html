@@ -31,19 +31,11 @@
 							<td>
 								<img src="resources/images/calendar.jpg"/>
 								<b>{{ label.tx_bidforme_strt_date }}</b> 
-								<input id="ori-date" style="display: inline;" type='text' value="{{ data.startDate|date: 'dd MMM yyyy' }}" class='holo'></input>
+								<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
 							</td>
 							<td>
 								<img src="resources/images/calendar.jpg"/>
 								<b>{{ label.tx_bidforme_end_date }}</b> 
-								<input id="dest-date" style="display: inline;" type='text' class='holo'  value="{{ data.endDate|date: 'dd MMM yyyy' }}"></input>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
-							</td>
-							<td>
 								<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
 							</td>
 						</tr>

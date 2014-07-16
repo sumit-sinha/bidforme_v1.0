@@ -4,7 +4,10 @@
 			<div class="modal-body">
 				<button type="button" class="bootbox-close-button close" data-ng-click="onCloseClick()">x</button>
 				<form class="form-signin" role="form">
-       				<input type="email" class="form-control" placeholder="{{ label.tx_bidforme_email_address }}" autofocus="">
+					<div class="alert alert-success" role="alert" data-ng-show="register != null">
+						{{ register.message.text }}
+					</div>
+       				<input type="email" class="form-control" placeholder="{{ label.tx_bidforme_email_address }}" autofocus="" value="{{ register.username }}">
         			<input type="password" class="form-control" placeholder="{{ label.tx_bidforme_password }}">
         			<div class="checkbox">
           				<label>
