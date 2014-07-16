@@ -16,6 +16,11 @@ public class TravelRequestBean implements IBeanContract {
 
 	private static final long serialVersionUID = 1L;
 
+	public TravelRequestBean() {
+		this.destinations = new ArrayList<Destination>();
+		this.criteria = new ArrayList<String>();
+	}
+	
 	@Override
 	public String getName() {
 		return "TravelRequestTable";
@@ -27,8 +32,21 @@ public class TravelRequestBean implements IBeanContract {
 		Entity entity = new Entity(this.getName());
 		entity.setProperty("nb_of_adults", nbOfAdults);
 		entity.setProperty("nb_of_children", nbOfChildren);
-		entity.setProperty("destinations", destinations);
-		entity.setProperty("criteria", criteria);
+		
+		String aSerializedDestinations = new String();
+		for (Destination aDestination : destinations)
+		{
+			aSerializedDestinations += aDestination.place + ":" + aDestination.arrivalDate + ",";
+		}
+		entity.setProperty("destinations", aSerializedDestinations);
+		
+		String aSerializedCriteria = new String();
+		for (String aCriterion : criteria)
+		{
+			aSerializedCriteria += aCriterion + ",";
+		}
+		entity.setProperty("criteria", aSerializedCriteria);
+
 		entity.setProperty("budget", budget);
 		entity.setProperty("free_text_comment", freeTextComment);
 		

@@ -34,23 +34,28 @@ public class RequestCreateServlet extends RequestPageServlet {
 		int aNbOfChildren = 1;
 		aTravelRequest.setNbOfChildren(aNbOfChildren);
 		
-		
 		String aOrigin = req.getParameter("origin");
 		String aDestination = req.getParameter("destination");
-		Date aStartDate = new Date(Integer.parseInt(req.getParameter("startDate")));
-		Date aEndDate = new Date(Integer.parseInt(req.getParameter("endDate")));
+		Date aStartDate = new Date(Long.parseLong(req.getParameter("startDate")));
+		Date aEndDate = new Date(Long.parseLong(req.getParameter("endDate")));
 		
-		aTravelRequest.getDestinations().add(new Destination(aDestination, aStartDate));
-		aTravelRequest.getDestinations().add(new Destination(aOrigin, aEndDate));
+		//aTravelRequest.getDestinations().add(new Destination(aDestination, aStartDate));
+		//aTravelRequest.getDestinations().add(new Destination(aOrigin, aEndDate));
+		aTravelRequest.getDestinations().add(new Destination("SFO", aStartDate));
+		aTravelRequest.getDestinations().add(new Destination("NCE", aEndDate));
+		
 		
 		String aCriteria = req.getParameter("criteria");
-		String[] aSplitCriteria = aCriteria.split(",");
 		
-		for (int i = 0; i < aSplitCriteria.length; i++)
+		if (aCriteria != null)
 		{
-			aTravelRequest.getCriteria().add(aSplitCriteria[i]);
+			String[] aSplitCriteria = aCriteria.split(",");
+
+			for (int i = 0; i < aSplitCriteria.length; i++)
+			{
+				aTravelRequest.getCriteria().add(aSplitCriteria[i]);
+			}
 		}
-		
 		int aBudget = Integer.parseInt(req.getParameter("budget"));
 		aTravelRequest.setBudget(aBudget);
 		

@@ -9,6 +9,8 @@ import com.amadeus.bid.be.fwk.LocalizationUtil;
 import com.amadeus.bid.ui.constants.IApplicationConstant;
 import com.amadeus.bid.ui.fwk.json.JSONObject;
 import com.amadeus.bid.ui.generic.ApplicationServlet;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 /**
  * creates data required to display the provider page
@@ -19,7 +21,7 @@ public class RequestPageServlet extends ApplicationServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	protected String travelRequestKey;
+	protected Key travelRequestKey;
 	
 	public RequestPageServlet() {
 		super("request");
@@ -53,7 +55,7 @@ public class RequestPageServlet extends ApplicationServlet {
 	protected void doTask(HttpServletRequest req, HttpServletResponse res) {
 		travelRequestKey = null;
 		try {
-			travelRequestKey = req.getParameter(IApplicationConstant.CONST_PARAM_REQUEST);
+			travelRequestKey = KeyFactory.stringToKey(req.getParameter(IApplicationConstant.CONST_PARAM_REQUEST));
 		} catch (NumberFormatException aEx){
 			
 		}

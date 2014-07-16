@@ -2,10 +2,11 @@ package com.amadeus.bid.dal.impl;
 
 import com.amadeus.bid.dal.bean.TravelRequestBean;
 import com.amadeus.bid.dal.util.DataStoreUtil;
+import com.google.appengine.api.datastore.Key;
 
 public class TravelRequestDataImpl {
 
-	public String saveTravelRequestData(TravelRequestBean bean) {
+	public Key saveTravelRequestData(TravelRequestBean bean) {
 		if (bean != null)
 		{
 			return(DataStoreUtil.addEntity(bean));
@@ -16,7 +17,7 @@ public class TravelRequestDataImpl {
 		}
 	}
 	
-	public TravelRequestBean getTravelRequestData(String iKey) {
+	public TravelRequestBean getTravelRequestData(Key iKey) {
 		return null;
 	}
 }

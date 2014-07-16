@@ -129,7 +129,7 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		requestManager.makeServerCall({
 			method: 'POST',
 			url: '/requestCreate',
-			data: this.data,
+			data: $scope.data,
 			showOverlay: true,
 			onSuccessCallback: $scope._onRequestSubmitSuccessCallback,
 			onErrorCallback: $scope._onRequestSubmitSuccessCallback
