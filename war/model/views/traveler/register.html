@@ -29,6 +29,15 @@
 						<input type="password" class="form-control" id="CONFIRM_PASSWORD_1" placeholder="{{ label.tx_bidforme_confirm_password }}" data-ng-model="register.confirmPassword">
 					</div>
 					<button class="btn btn-lg btn-primary btn-block" type="button" data-ng-click="onSubmitPress()">{{ label.tx_bidforme_register_btn }}</button>
+					<hr/>
+        			<div class="customGPlusSignIn customBtn" data-gapiattached="true">
+						<span class="icon"></span>
+						<span class="buttonText">{{ label.tx_bidforme_register_with_google }}</span>
+					</div>
+					<div class="customGPlusSignIn customBtn facebookBtn" data-gapiattached="true">
+						<span class="icon facebook"></span>
+						<span class="buttonText">{{ label.tx_bidforme_register_with_facebook }}</span>
+					</div>
 				</form>
 			</div>
 		</div>

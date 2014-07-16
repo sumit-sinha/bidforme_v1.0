@@ -48,6 +48,10 @@ public class TravelerPageServlet extends ApplicationServlet {
 		json.put("tx_bidforme_sign_in", LocalizationUtil.getString("tx_bidforme_sign_in"));
 		json.put("tx_bidforme_confirm_password", LocalizationUtil.getString("tx_bidforme_confirm_password"));
 		json.put("tx_bidforme_register_btn", LocalizationUtil.getString("tx_bidforme_register_btn"));
+		json.put("tx_bidforme_login_with_google", LocalizationUtil.getString("tx_bidforme_login_with_google"));
+		json.put("tx_bidforme_login_with_facebook", LocalizationUtil.getString("tx_bidforme_login_with_facebook"));
+		json.put("tx_bidforme_register_with_google", LocalizationUtil.getString("tx_bidforme_register_with_google"));
+		json.put("tx_bidforme_register_with_facebook", LocalizationUtil.getString("tx_bidforme_register_with_facebook"));
 		return json;
 	}
 
