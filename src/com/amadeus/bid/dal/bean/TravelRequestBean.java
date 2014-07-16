@@ -2,6 +2,9 @@ package com.amadeus.bid.dal.bean;
 
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Date;
+
+import org.apache.jsp.ah.entityDetailsBody_jsp;
 
 import com.amadeus.bid.dal.contract.IBeanContract;
 import com.google.appengine.api.datastore.Entity;
@@ -17,8 +20,39 @@ public class TravelRequestBean implements IBeanContract {
 	private static final long serialVersionUID = 1L;
 
 	public TravelRequestBean() {
+		this.nbOfAdults = 0;
+		this.nbOfChildren = 0;
 		this.destinations = new ArrayList<Destination>();
 		this.criteria = new ArrayList<String>();
+		this.budget = 0;
+		this.freeTextComment = null;
+	}
+	
+	public TravelRequestBean(Entity iEntity) {
+		this.nbOfAdults = ((Long)iEntity.getProperty("nb_of_adults")).intValue();
+		this.nbOfChildren = ((Long)iEntity.getProperty("nb_of_children")).intValue();
+		
+		this.destinations = new ArrayList<Destination>();
+		String aSerializedDestinations = (String)iEntity.getProperty("destinations");
+		String[] aSplitDestinations = aSerializedDestinations.split(",");
+		for (String aDestinationPair : aSplitDestinations)
+		{
+			String[] aSplitDestinationPair = aDestinationPair.split(":");	
+			Date aDate = new Date(Long.parseLong(aSplitDestinationPair[1]));
+			this.destinations.add(new Destination(aSplitDestinationPair[0], aDate));
+		}
+		
+		this.criteria = new ArrayList<String>();
+		String aSerializedCriteria = (String)iEntity.getProperty("criteria");
+		String[] aSplitCriteria = aSerializedCriteria.split(",");
+		for (String aCriterion : aSplitCriteria)
+		{
+			this.criteria.add(aCriterion);
+		}
+		
+		this.budget = ((Long)iEntity.getProperty("budget")).intValue();
+		
+		this.freeTextComment = (String)iEntity.getProperty("free_text_comment");
 	}
 	
 	@Override
@@ -36,7 +70,7 @@ public class TravelRequestBean implements IBeanContract {
 		String aSerializedDestinations = new String();
 		for (Destination aDestination : destinations)
 		{
-			aSerializedDestinations += aDestination.place + ":" + aDestination.arrivalDate + ",";
+			aSerializedDestinations += aDestination.place + ":" + aDestination.arrivalDate.getTime() + ",";
 		}
 		entity.setProperty("destinations", aSerializedDestinations);
 		

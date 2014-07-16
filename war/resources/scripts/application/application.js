@@ -137,26 +137,6 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 			});
 		}
 	}
-	
-	$scope.onTransportClick = function(mode) {
-
-		// if not existing
-		if ($scope.data == null) {
-			$scope.data = {};
-		}
-
-		if ($scope.data.mode == null) {
-			$scope.data.mode = {};
-		}
-		
-		if ($scope.transport[mode + 'segment'].indexOf('unchecked') == -1) {
-			$scope.data.mode[mode] = 0;
-			$scope.transport[mode + 'segment'] = 'resources/images/' + mode + '-unchecked.png';
-		} else {
-			$scope.data.mode[mode] = 1;
-			$scope.transport[mode + 'segment'] = 'resources/images/' + mode + '-checked.png';
-		}
-	};
 
 	$scope.onSubmitPress = function() {
 		
@@ -189,7 +169,7 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	}
 	
 	$scope._onRequestSubmitSuccessCallback = function (args) {
-		
+		hideOverlay();
 	}
 	
 	$scope._onRegisterSuccessCallback = function (args) {
