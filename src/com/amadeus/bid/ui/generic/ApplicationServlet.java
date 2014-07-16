@@ -78,6 +78,11 @@ public abstract class ApplicationServlet extends HttpServlet {
 		JSONObject data = new JSONObject();
 		data.put(this.getViewName(), view);
 		
+		// set user data to response
+		if (this.getRequest().getSession().getAttribute("user") != null) {
+			data.put("user", new JSONObject(this.getRequest().getSession().getAttribute("user")));
+		}
+		
 		String result = req.getHeader(IApplicationConstant.CONST_PARAM_RESULT);
 		if (result == null || !result.equals(IApplicationConstant.CONST_PARAM_VALUE_JSON)) {
 			req.setAttribute(IApplicationConstant.CONST_DATA_NAME, data);

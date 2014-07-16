@@ -340,3 +340,6 @@ input.form-control.disable {
 div.col-lg-6 {
 	margin-left: -18px;
 }
+div.bootbox.modal.show {
+	display: block !important;
+}
