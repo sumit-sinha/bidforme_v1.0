@@ -28,6 +28,16 @@ public class RequestPageServlet extends ApplicationServlet {
 		this.fillHeaderLabels(json);
 		
 		json.put("tx_bidforme_request_page_title", LocalizationUtil.getString("tx_bidforme_request_page_title"));
+		json.put("tx_bidforme_request_travel_summary", LocalizationUtil.getString("tx_bidforme_request_travel_summary"));
+		json.put("tx_bidforme_request_adults", LocalizationUtil.getString("tx_bidforme_request_adults"));
+		json.put("tx_bidforme_request_children", LocalizationUtil.getString("tx_bidforme_request_children"));
+		json.put("tx_bidforme_request_travelfrom", LocalizationUtil.getString("tx_bidforme_request_travelfrom"));
+		json.put("tx_bidforme_request_to", LocalizationUtil.getString("tx_bidforme_request_to"));
+		json.put("tx_bidforme_request_return_date", LocalizationUtil.getString("tx_bidforme_request_return_date"));
+		json.put("tx_bidforme_travelers", LocalizationUtil.getString("tx_bidforme_travelers"));
+		json.put("tx_bidforme_budget", LocalizationUtil.getString("tx_bidforme_budget"));
+		json.put("tx_bidforme_itinerary", LocalizationUtil.getString("tx_bidforme_itinerary"));
+		json.put("tx_bidforme_criteria", LocalizationUtil.getString("tx_bidforme_criteria"));
 
 		// for body		
 		return json;
