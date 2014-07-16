@@ -5,25 +5,6 @@
 var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker', 'ngAutocomplete']);
 
 var controllers = {};
-controllers.AutoCompleteCtrl = function ($scope) {
-
-	  $scope.result1 = '';
-	  $scope.options1 = null;
-	  $scope.details1 = '';
-
-	  $scope.result2 = '';
-	  $scope.options2 = {
-	    country: 'ca',
-	    types: '(cities)'
-	  };    $scope.details2 = '';
-	  
-	  $scope.result3 = '';
-	  $scope.options3 = {
-	    country: 'gb',
-	    types: 'establishment'
-	  };
-	  $scope.details3 = '';
-};
 controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestManager) {
 	
 	if ($scope.transport == null) {
@@ -33,6 +14,13 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	if ($scope.data == null) {
 		$scope.data = {};
 	}
+	
+	// for autocomplete [START] */
+	$scope.data.origin = '';
+	$scope.data.destination = '';
+	$scope.options1 = null;
+	$scope.details1 = '';
+	// for autocomplete [ END ] */
 	
 	$scope.data.mode = {
 		air: 1,
