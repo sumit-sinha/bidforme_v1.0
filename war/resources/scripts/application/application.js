@@ -6,7 +6,7 @@ var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker']);
 
 var controllers = {};
 
-controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
+controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestManager) {
 
 	$scope.headerTpl = 'model/views/common/header.html';
 	
@@ -68,12 +68,27 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 			url: '/register',
 			data: this.register,
 			showOverlay: true,
-			onSuccessCallback: $scope._onSuccessCallback,
-			onErrorCallback: $scope._onSuccessCallback
+			onSuccessCallback: $scope._onRegisterSuccessCallback,
+			onErrorCallback: $scope._onRegisterSuccessCallback
 		});
 	}
 	
-	$scope._onSuccessCallback = function (args) {
+	$scope.onSubmitTravelRequest = function() {
+		requestManager.makeServerCall({
+			method: 'POST',
+			url: '/requestCreate',
+			data: this.data,
+			showOverlay: true,
+			onSuccessCallback: $scope._onRequestSubmitSuccessCallback,
+			onErrorCallback: $scope._onRequestSubmitSuccessCallback
+		});
+	}
+	
+	$scope._onRequestSubmitSuccessCallback = function (args) {
+		
+	}
+	
+	$scope._onRegisterSuccessCallback = function (args) {
 		
 		if (args.data.register.model.success) {
 			
