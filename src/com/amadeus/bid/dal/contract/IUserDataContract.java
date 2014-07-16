@@ -19,8 +19,15 @@ public interface IUserDataContract {
 	
 	/**
 	 * method to fetch all the user data from storage
-	 * @return
+	 * @return {@link List} of {@link UserBean}
 	 */
 	public List<UserBean> getUserData();
+	
+	/**
+	 * method to fetch user data from storage based on email
+	 * @param email {@link String}
+	 * @return {@link UserBean}
+	 */
+	public UserBean getUserData(String email);
 	
 }

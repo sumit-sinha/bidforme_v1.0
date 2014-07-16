@@ -30,6 +30,17 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		$scope.transport = {};
 	}
 	
+	if ($scope.data == null) {
+		$scope.data = {};
+	}
+	
+	$scope.data.mode = {
+		air: 1,
+		car: 1,
+		ship: 1,
+		train: 1
+	}
+	
 	$scope.headerTpl = 'model/views/common/header.html';
 	$scope.transport.airsegment = 'resources/images/air-checked.png';
 	$scope.transport.carsegment = 'resources/images/car-checked.png';

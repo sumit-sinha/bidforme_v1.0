@@ -33,6 +33,22 @@ public class UserBean implements IBeanContract {
 		return entity;
 	}
 	
+	public static UserBean getUserBean(Entity entity) {
+		
+		UserBean user = new UserBean();
+		user.setAboutMe((String)entity.getProperty("aboutme"));
+		user.setUsername((String)entity.getProperty("username"));
+		user.setEmail((String)entity.getProperty("email"));
+		user.setPassword((String)entity.getProperty("password"));
+		user.setMobile((String)entity.getProperty("mobile"));
+		user.setAddress((String)entity.getProperty("address"));
+		user.setState((String)entity.getProperty("state"));
+		user.setCountry((String)entity.getProperty("country"));
+		user.setPinCode((String)entity.getProperty("pincode"));
+		
+		return user;
+	}
+	
 	private String username;
 	
 	private String email;
