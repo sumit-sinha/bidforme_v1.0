@@ -101,6 +101,19 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		}
 	}
 	
+	$scope.onLogoutClick = function() {
+		
+		// remove local data
+		$scope.onToggleUnderConstruction();
+		$scope.user = null;
+		
+		requestManager.makeServerCall({
+			method: 'POST',
+			url: '/logout',
+			showOverlay: false
+		});
+	}
+	
 	$scope.onLoginClick = function() {
 		requestManager.makeServerCall({
 			method: 'POST',
