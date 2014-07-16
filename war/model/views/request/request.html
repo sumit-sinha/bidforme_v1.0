@@ -1,15 +1,45 @@
 <div data-ng-include="" src="headerTpl"></div>
-<div class="panel panel-default">
+<h3>View bids for your travel request</h3>
+<div class="panel panel-default" id="travelSummary">
 	<div class="panel-heading">
-		<br>
-		<h2 class="panel-title">View request number: {{ model.request_id }} </h2>
-		<br><br><br><br>
-		<div>
-		Origin: {{ model.request_origin }}
-		<br>
-		Destination: {{ model.request_destination }}
-		<br><br>
-		Comment: {{ model.request_comment }}
-		</div>
+		<h2 class="panel-title">Your travel request summary</h2>
+	</div>
+	<div class="panel-body">
+		<table class="basic-table">
+			<tr>
+				<td width="18%" class="table-title"><img src="resources/images/travelers.png">Travelers</td>
+				<td width="60%" class="table-title"><img src="resources/images/itinerary.png">Itinerary</td>
+				<td width="22%" class="table-title"><img src="resources/images/criteria.png">Custom criteria</td>
+			</tr>
+			<tr>
+				<td>2 adults <br> 1 child <br> 1 infant</td>
+				<td rowspan="4">Traveling from: Nice <br> To: Los-Angeles (12-JAN-15) <br> To: Boston (18-JAN-15) <br> Returning on: 31-JAN-15</td>
+				<td rowspan="4">
+					<span class="criteria">No Plane</span>
+					<span class="criteria">4-star</span> 
+					<span class="criteria">Nature</span>
+					<span class="criteria">Quiet</span>
+					<span class="criteria">Trekking</span>
+				</td>
+			</tr>
+			<tr class="hspacer">
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td class="table-title"><img src="resources/images/budget.png">Budget</td>
+			</tr>
+			<tr>
+				<td>$ 3500</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="panel panel-default" id="bidList">
+	<div class="panel-heading">
+		<h2 class="panel-title">Bids from providers</h2>
+	</div>
+	<div class="panel-body">
+		empty
 	</div>
 </div>

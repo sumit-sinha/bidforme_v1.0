@@ -27,7 +27,49 @@ h2 {
    -webkit-font-smoothing: antialiased;
 }
 
-html { 
+table.basic-table
+{
+	width: 100%;
+}
+
+.basic-table td {
+	text-align: left;
+	vertical-align: top;
+	color: rgb(100, 100, 100);
+	font-family: 'Josefin Slab', serif;
+	-webkit-font-smoothing: antialiased;
+	margin-top: 0px;
+	padding-left: 50px;
+	font-size: 20px;
+}
+
+.table-title img {
+	width: 48px;
+	height: 48px;
+	margin-right: 3px;
+}
+
+td.table-title  {
+	color: rgb(100, 100, 100);
+	margin-top: 0px;
+	padding-left: 0px;
+	font-size: 22px;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+span.criteria {
+	background-color: lightblue;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.hspacer td {
+	height: 15px;
+}
+
+html {
  background: url(../images/bg.jpg) no-repeat center center fixed; 
  -webkit-background-size: cover;
  -moz-background-size: cover;
@@ -176,7 +218,7 @@ div.msk {
   left:0;
   width:100%;
   height:100%;
-  background: rgba(0, 0, 0, 0.3) !important
+  background: rgba(0, 0, 0, 0.3) !important;
 }
 .hidden {
 	display: none;

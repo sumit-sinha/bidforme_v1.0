@@ -1,5 +1,7 @@
+
 package com.amadeus.bid.ui.servlet;
 
+import com.amadeus.bid.be.fwk.LocalizationUtil;
 import com.amadeus.bid.ui.constants.IApplicationConstant;
 import com.amadeus.bid.ui.fwk.json.JSONObject;
 import com.amadeus.bid.ui.generic.ApplicationServlet;
@@ -24,6 +26,8 @@ public class RequestPageServlet extends ApplicationServlet {
 		
 		// labels for header
 		this.fillHeaderLabels(json);
+		
+		json.put("tx_bidforme_request_page_title", LocalizationUtil.getString("tx_bidforme_request_page_title"));
 
 		// for body		
 		return json;
