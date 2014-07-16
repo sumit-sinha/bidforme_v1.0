@@ -2,13 +2,39 @@
  * This file takes care of initializing Angula js and setting up data
  * @author ssinha
  */
-var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker']);
+var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker', 'ngAutocomplete']);
 
 var controllers = {};
+controllers.AutoCompleteCtrl = function ($scope) {
 
+	  $scope.result1 = '';
+	  $scope.options1 = null;
+	  $scope.details1 = '';
+
+	  $scope.result2 = '';
+	  $scope.options2 = {
+	    country: 'ca',
+	    types: '(cities)'
+	  };    $scope.details2 = '';
+	  
+	  $scope.result3 = '';
+	  $scope.options3 = {
+	    country: 'gb',
+	    types: 'establishment'
+	  };
+	  $scope.details3 = '';
+};
 controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestManager) {
-
+	
+	if ($scope.transport == null) {
+		$scope.transport = {};
+	}
+	
 	$scope.headerTpl = 'model/views/common/header.html';
+	$scope.transport.airsegment = 'resources/images/air-checked.png';
+	$scope.transport.carsegment = 'resources/images/car-checked.png';
+	$scope.transport.trainsegment = 'resources/images/train-checked.png';
+	$scope.transport.shipsegment = 'resources/images/ship-checked.png';
 	
 	var indexData = appFactory.getViewData('traveler');
 	$scope.label = indexData.label;
@@ -35,6 +61,20 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		$scope['popupTpl'] = null;
 	}
 	
+	$scope.onNewCriteriaClick = function() {
+		if ($scope.criterias == null) {
+			$scope.criterias = [];
+		}
+		
+		$scope.criterias.push({});
+	}
+	
+	$scope.onCriteriaRemoveClick = function() {
+		if ($scope.criterias != null && $scope.criterias.length > 0) {
+			$scope.criterias.pop();
+		}
+	}
+	
 	$scope.onTransportClick = function(mode) {
 
 		// if not existing
@@ -45,16 +85,13 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		if ($scope.data.mode == null) {
 			$scope.data.mode = {};
 		}
-
-		var element = document.getElementById(mode + 'El');
-		if (element != null) {
-			if (element.className.indexOf('selected') == -1) {
-				$scope.data.mode[mode] = 1;
-				element.className += ' selected';
-			} else {
-				$scope.data.mode[mode] = 0;
-				element.className = element.className.replace( /(?:^|\s)selected(?!\S)/g , '' );
-			}
+		
+		if ($scope.transport[mode + 'segment'].indexOf('unchecked') == -1) {
+			$scope.data.mode[mode] = 0;
+			$scope.transport[mode + 'segment'] = 'resources/images/' + mode + '-unchecked.png';
+		} else {
+			$scope.data.mode[mode] = 1;
+			$scope.transport[mode + 'segment'] = 'resources/images/' + mode + '-checked.png';
 		}
 	};
 
@@ -245,6 +282,68 @@ app.factory('requestManager', function ($http) {
 	}
 	
 	return factory;
+});
+
+angular.module( "ngAutocomplete", [])
+.directive('ngAutocomplete', function($parse) {
+  return {
+
+    scope: {
+      details: '=',
+      ngAutocomplete: '=',
+      options: '='
+    },
+
+    link: function(scope, element, attrs, model) {
+
+      //options for autocomplete
+      var opts
+
+      //convert options provided to opts
+      var initOpts = function() {
+        opts = {}
+        if (scope.options) {
+          if (scope.options.types) {
+            opts.types = []
+            opts.types.push(scope.options.types)
+          }
+          if (scope.options.bounds) {
+            opts.bounds = scope.options.bounds
+          }
+          if (scope.options.country) {
+            opts.componentRestrictions = {
+              country: scope.options.country
+            }
+          }
+        }
+      }
+      initOpts()
+
+      //create new autocomplete
+      //reinitializes on every change of the options provided
+      var newAutocomplete = function() {
+        scope.gPlace = new google.maps.places.Autocomplete(element[0], opts);
+        google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
+          scope.$apply(function() {
+              scope.details = scope.gPlace.getPlace();
+            scope.ngAutocomplete = element.val();
+          });
+        })
+      }
+      newAutocomplete()
+
+      //watch options provided to directive
+      scope.watchOptions = function () {
+        return scope.options
+      };
+      scope.$watch(scope.watchOptions, function () {
+        initOpts()
+        newAutocomplete()
+        element[0].value = '';
+        scope.ngAutocomplete = element.val();
+      }, true);
+    }
+  };
 });
 
 /**

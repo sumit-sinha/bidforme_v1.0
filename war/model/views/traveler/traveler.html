@@ -20,14 +20,14 @@
 				<b>{{ label.tx_bidforme_origin_city }}</b>
 			</div>
 			<div class="col-md-4">
-				<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.origin"></input>
+				<input type="text" class="holo" ng-autocomplete="result1" details="details1" options="options1" data-ng-model="data.origin"/>
 			</div>
 			<div class="col-md-2">
 				<img src="resources/images/destination.jpg"/><br/>
 				<b>{{ label.tx_bidforme_dest_city }}</b>
 			</div>
 			<div class="col-md-4">
-				<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.destination"></input>
+				<input type="text" class="holo" ng-autocomplete="result1" details="details1" options="options1" data-ng-model="data.destination"/>
 			</div>
 		</div>
 		<div class="row logo content">
@@ -36,34 +36,14 @@
 				<b>{{ label.tx_bidforme_strt_date }}</b>
 			</div>
 			<div class="col-md-4">
-				<div class="dropdown" id="dtStart">
-					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="javascript:void(0);" data-ng-click="openDtPicker('dtStart')">
-						<div class="input-group holo">
-							<input type="text" class="form-control" value="{{ data.startDate|date: 'dd MMM yyyy' }}">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-    					</div>
-					</a>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"/>
-					</ul>
-				</div>
+				<datetimepicker data-ng-model="data.startDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
 			</div>
 			<div class="col-md-2">
 				<img src="resources/images/calendar.jpg"/><br/>
 				<b>{{ label.tx_bidforme_end_date }}</b>
 			</div>
 			<div class="col-md-4">
-				<div class="dropdown" id="dtEnd">
-					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="javascript:void(0);" data-ng-click="openDtPicker('dtEnd')">
-						<div class="input-group holo">
-							<input type="text" class="form-control" value="{{ data.endDate|date: 'dd MMM yyyy' }}">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-    					</div>
-					</a>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }"/>
-					</ul>
-				</div>
+				<datetimepicker data-ng-model="data.endDate" data-datetimepicker-config="{ startView:'day', minView:'day' }" />
 			</div>
 		</div>
 		<div class="row logo marginup">
@@ -74,24 +54,24 @@
 		</div>
 		<div class="row logo content">
 			<div class="col-md-3" data-ng-click="onTransportClick('air')">
-				<img id='airEl' src="resources/images/air.jpg"/>
+				<img id='airEl' data-ng-show="transport.airsegment != null" class="position-cursor" src="{{ transport.airsegment }}"/>
 			</div>
 			<div class="col-md-3" data-ng-click="onTransportClick('car')">
-				<img id='carEl' src="resources/images/car.jpg"/>
+				<img id='carEl' data-ng-show="transport.carsegment != null" class="position-cursor" src="{{ transport.carsegment }}"/>
 			</div>
 			<div class="col-md-3" data-ng-click="onTransportClick('train')">
-				<img id='trainEl' src="resources/images/train.jpg"/>
+				<img id='trainEl' data-ng-show="transport.trainsegment != null" class="position-cursor" src="{{ transport.trainsegment }}"/>
 			</div>
 			<div class="col-md-3" data-ng-click="onTransportClick('ship')">
-				<img id='shipEl' src="resources/images/ship.jpg"/>
+				<img id='shipEl' data-ng-show="transport.shipsegment != null" class="position-cursor" src="{{ transport.shipsegment }}"/>
 			</div>
 		</div>
-		<div class="row logo">
+		<div class="row logo marginup">
 			<div class="col-md-1">
 				<img src="resources/images/3.jpg"/>
 			</div>
-			<div class="col-md-2 section-title">{{ label.tx_bidforme_budget_range }}</div>
-			<div class="col-md-9">
+			<div class="col-md-3 section-title">{{ label.tx_bidforme_budget_range }}</div>
+			<div class="col-md-8">
 				<span class="symbol">&euro;</span>&nbsp;<input type="number" class="holo currency" value="0" autosuggest="off" value="100" data-ng-model="data.budget"/>
 			</div>
 		</div>
@@ -114,7 +94,20 @@
 		</div>
 		<div class="row logo content lessmargin">
 			<div class="col-md-11">
-				<input type="text" class="holo fullwidth" value="0" autosuggest="off" value="100" data-ng-model="data.criteria"/>
+				<div>
+			        <div class="input-group">
+						<input type="text" class="form-control" id="criteria0">
+						<span class="input-group-btn">
+							<button class="btn btn-default glyphicon glyphicon-plus" style="margin-top: -1px;" type="button" data-ng-click="onNewCriteriaClick()"></button>
+						</span>
+			        </div>
+			        <div class="input-group marginup" data-ng-repeat="criteria in criterias">
+						<input type="text" class="form-control" id="criteria{{ $index + 1 }}">
+						<span class="input-group-btn">
+							<button class="btn btn-default glyphicon glyphicon-minus" style="margin-top: -1px;" type="button" data-ng-click="onCriteriaRemoveClick()"></button>
+						</span>
+			        </div>
+				</div>
 			</div>
 		</div>
 		
