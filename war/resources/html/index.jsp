@@ -33,6 +33,7 @@
 		<script type="text/javascript" src="resources/scripts/application/moment.js"></script>
 		<script type="text/javascript" src="resources/scripts/application/application.js"></script>
 	    <script type="text/javascript" src="resources/scripts/application/datetimepicker.js"></script>
+	    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 		<%-- include dependencies js [ END ] --%>
 		
 		<script type="text/javascript">
