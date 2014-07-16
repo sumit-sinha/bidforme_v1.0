@@ -111,6 +111,10 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	}
 	
 	$scope.onSubmitTravelRequest = function() {
+		
+		this.data.startDate = this.data.startDate.getTime();
+		this.data.endDate = this.data.endDate.getTime();
+		
 		requestManager.makeServerCall({
 			method: 'POST',
 			url: '/requestCreate',
