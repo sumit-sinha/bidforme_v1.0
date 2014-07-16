@@ -20,14 +20,14 @@
 				<b>{{ label.tx_bidforme_origin_city }}</b>
 			</div>
 			<div class="col-md-4">
-				<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.origin"></input>
+				<input type="text" class="holo" ng-autocomplete="result1" details="details1" options="options1" data-ng-model="data.origin"/>
 			</div>
 			<div class="col-md-2">
 				<img src="resources/images/destination.jpg"/><br/>
 				<b>{{ label.tx_bidforme_dest_city }}</b>
 			</div>
 			<div class="col-md-4">
-				<input style="clear: left; display: inline;" type='text' class='holo' data-ng-model="data.destination"></input>
+				<input type="text" class="holo" ng-autocomplete="result1" details="details1" options="options1" data-ng-model="data.destination"/>
 			</div>
 		</div>
 		<div class="row logo content">
@@ -36,8 +36,8 @@
 				<b>{{ label.tx_bidforme_strt_date }}</b>
 			</div>
 			<div class="col-md-4">
-				<div class="dropdown" id="dtStart">
-					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="javascript:void(0);" data-ng-click="openDtPicker('dtStart')">
+				<div class="dropdown" id="startDate">
+					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="javascript:void(0);" data-ng-click="openDtPicker('startDate')">
 						<div class="input-group holo">
 							<input type="text" class="form-control" value="{{ data.startDate|date: 'dd MMM yyyy' }}">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -53,8 +53,8 @@
 				<b>{{ label.tx_bidforme_end_date }}</b>
 			</div>
 			<div class="col-md-4">
-				<div class="dropdown" id="dtEnd">
-					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="javascript:void(0);" data-ng-click="openDtPicker('dtEnd')">
+				<div class="dropdown" id="endDate">
+					<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="javascript:void(0);" data-ng-click="openDtPicker('endDate')">
 						<div class="input-group holo">
 							<input type="text" class="form-control" value="{{ data.endDate|date: 'dd MMM yyyy' }}">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -118,6 +118,6 @@
 			</div>
 		</div>
 		
-		<button type="button" class="btn btn-primary dropdown-toggle marginup" data-toggle="dropdown" data-ng-click="onSubmitPress()">{{ label.tx_bidforme_submit_request }}</button>
+		<button type="button" class="btn btn-primary dropdown-toggle marginup" data-toggle="dropdown" data-ng-click="onSubmitTravelRequest()">{{ label.tx_bidforme_submit_request }}</button>
 	</div>
 </div>

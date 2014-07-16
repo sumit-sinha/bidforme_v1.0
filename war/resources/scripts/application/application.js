@@ -2,11 +2,29 @@
  * This file takes care of initializing Angula js and setting up data
  * @author ssinha
  */
-var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker']);
+var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker', 'ngAutocomplete']);
 
 var controllers = {};
+controllers.AutoCompleteCtrl = function ($scope) {
 
-controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
+	  $scope.result1 = '';
+	  $scope.options1 = null;
+	  $scope.details1 = '';
+
+	  $scope.result2 = '';
+	  $scope.options2 = {
+	    country: 'ca',
+	    types: '(cities)'
+	  };    $scope.details2 = '';
+	  
+	  $scope.result3 = '';
+	  $scope.options3 = {
+	    country: 'gb',
+	    types: 'establishment'
+	  };
+	  $scope.details3 = '';
+};
+controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestManager) {
 
 	$scope.headerTpl = 'model/views/common/header.html';
 	
@@ -68,12 +86,27 @@ controllers.TravelerPageCtrl = function ($scope, appFactory, requestManager) {
 			url: '/register',
 			data: this.register,
 			showOverlay: true,
-			onSuccessCallback: $scope._onSuccessCallback,
-			onErrorCallback: $scope._onSuccessCallback
+			onSuccessCallback: $scope._onRegisterSuccessCallback,
+			onErrorCallback: $scope._onRegisterSuccessCallback
 		});
 	}
 	
-	$scope._onSuccessCallback = function (args) {
+	$scope.onSubmitTravelRequest = function() {
+		requestManager.makeServerCall({
+			method: 'POST',
+			url: '/requestCreate',
+			data: this.data,
+			showOverlay: true,
+			onSuccessCallback: $scope._onRequestSubmitSuccessCallback,
+			onErrorCallback: $scope._onRequestSubmitSuccessCallback
+		});
+	}
+	
+	$scope._onRequestSubmitSuccessCallback = function (args) {
+		
+	}
+	
+	$scope._onRegisterSuccessCallback = function (args) {
 		
 		if (args.data.register.model.success) {
 			
@@ -227,6 +260,68 @@ app.factory('requestManager', function ($http) {
 	}
 	
 	return factory;
+});
+
+angular.module( "ngAutocomplete", [])
+.directive('ngAutocomplete', function($parse) {
+  return {
+
+    scope: {
+      details: '=',
+      ngAutocomplete: '=',
+      options: '='
+    },
+
+    link: function(scope, element, attrs, model) {
+
+      //options for autocomplete
+      var opts
+
+      //convert options provided to opts
+      var initOpts = function() {
+        opts = {}
+        if (scope.options) {
+          if (scope.options.types) {
+            opts.types = []
+            opts.types.push(scope.options.types)
+          }
+          if (scope.options.bounds) {
+            opts.bounds = scope.options.bounds
+          }
+          if (scope.options.country) {
+            opts.componentRestrictions = {
+              country: scope.options.country
+            }
+          }
+        }
+      }
+      initOpts()
+
+      //create new autocomplete
+      //reinitializes on every change of the options provided
+      var newAutocomplete = function() {
+        scope.gPlace = new google.maps.places.Autocomplete(element[0], opts);
+        google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
+          scope.$apply(function() {
+              scope.details = scope.gPlace.getPlace();
+            scope.ngAutocomplete = element.val();
+          });
+        })
+      }
+      newAutocomplete()
+
+      //watch options provided to directive
+      scope.watchOptions = function () {
+        return scope.options
+      };
+      scope.$watch(scope.watchOptions, function () {
+        initOpts()
+        newAutocomplete()
+        element[0].value = '';
+        scope.ngAutocomplete = element.val();
+      }, true);
+    }
+  };
 });
 
 /**

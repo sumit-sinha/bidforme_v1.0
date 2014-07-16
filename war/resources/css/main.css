@@ -63,6 +63,7 @@ span.criteria {
 	display: inline-block;
 	margin-top: 2px;
 	margin-bottom: 2px;
+	border-radius: 2px;
 }
 
 .hspacer td {
