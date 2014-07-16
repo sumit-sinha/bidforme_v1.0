@@ -168,6 +168,7 @@ img.selected {
 }
 .msk.loading {
   background:url('../images/ajax-loader.gif') no-repeat center rgba(0, 0, 0, 0.5) !important;
+  z-index: 9999;
 }
 div.msk {
   position:fixed;
@@ -187,4 +188,11 @@ div.msk {
 button.bootbox-close-button.close{
 	margin-top: -10px;
 	margin-bottom: 10px;
+}
+.alert ul li:first-child{
+  list-style: none;
+  margin-left: -30px;
+}
+div.modal-body div.alert.alert-danger {
+	margin-top: 15px;
 }

@@ -20,7 +20,7 @@ public class UserBean implements IBeanContract {
 	@Override
 	public Entity getEntity() {
 		
-		Entity entity = new Entity(this.getEmail());
+		Entity entity = new Entity(this.getName(), this.getEmail());
 		entity.setProperty("username", this.getUsername());
 		entity.setProperty("email", this.getEmail());
 		entity.setProperty("password", this.getPassword());

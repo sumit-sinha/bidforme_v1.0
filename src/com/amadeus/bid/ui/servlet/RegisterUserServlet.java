@@ -38,9 +38,9 @@ public class RegisterUserServlet extends ApplicationServlet {
 	protected void doTask(HttpServletRequest req, HttpServletResponse res) {
 		
 		// read parameters from request
-		String email = req.getParameter("");
-		String password = req.getParameter("");
-		String confirmPassword = req.getParameter("");
+		String email = req.getParameter("email");
+		String password = req.getParameter("password");
+		String confirmPassword = req.getParameter("confirmPassword");
 		List<MessageBean> messages = new ArrayList<MessageBean>();
 		
 		if (email == null || email.trim().equals("") || !pattern.matcher(email).matches()) {
@@ -59,9 +59,7 @@ public class RegisterUserServlet extends ApplicationServlet {
 			message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_password_error"));
 			
 			messages.add(message);
-		}
-		
-		if (!password.equalsIgnoreCase(confirmPassword)) {
+		} else if (!password.equals(confirmPassword)) {
 			MessageBean message = new MessageBean();
 			message.setType("E");
 			message.setNumber("1003");
@@ -69,6 +67,8 @@ public class RegisterUserServlet extends ApplicationServlet {
 			
 			messages.add(message);
 		}
+		
+		
 		
 		if (messages.size() == 0) {
 			UserBean bean = new UserBean();
@@ -89,14 +89,22 @@ public class RegisterUserServlet extends ApplicationServlet {
 
 	@Override
 	protected JSONObject getLabels() {
-		return null;
+		
+		JSONObject labels = new JSONObject();
+		if (!(this.getRequest().getAttribute("errors") instanceof List<?>)) {	
+			labels.put("tx_bidforme_registration_success", LocalizationUtil.getString("tx_bidforme_registration_success"));
+		} else {
+			labels.put("tx_bidforme_common_errors", LocalizationUtil.getString("tx_bidforme_common_errors"));
+		}
+		
+		return labels;
 	}
 
 	@Override
 	protected JSONObject getModel() {
 		
 		JSONObject json = new JSONObject();
-		json.put("success", this.getRequest().getAttribute("errors") instanceof List<?>);		
+		json.put("success", !(this.getRequest().getAttribute("errors") instanceof List<?>));		
 		return json;
 	}
 
