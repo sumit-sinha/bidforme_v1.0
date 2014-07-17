@@ -5,28 +5,8 @@
 var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker', 'ngAutocomplete']);
 
 var controllers = {};
-controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestManager) {
-	
-	if ($scope.transport == null) {
-		$scope.transport = {};
-	}
-	
-	if ($scope.data == null) {
-		$scope.data = {};
-	}
-	
-	// for autocomplete [START] */
-	$scope.data.origin = '';
-	$scope.data.destination = '';
-	$scope.options1 = null;
-	$scope.details1 = '';
-	// for autocomplete [ END ] */
-	
+controllers.HeaderCtrl = function ($scope, appFactory, requestManager) {
 	$scope.headerTpl = 'model/views/common/header.html';
-	var indexData = appFactory.getViewData('traveler');
-	$scope.user = appFactory.getViewData('user');
-	$scope.label = indexData.label;
-	$scope.model = indexData.model;
 	
 	$scope.onToggleUnderConstruction = function() {
 		var element = document.getElementById('underConstEl');
@@ -78,22 +58,6 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		$scope['popupTpl'] = null;
 	}
 	
-	$scope.onTagEntry = function() {
-		if ($scope.data.tag != null && $scope.data.tag.indexOf(';') != -1) {
-			if ($scope.data.tags == null) {
-				$scope.data.tags = [];
-			}
-			var tags = $scope.data.tag.split(';');
-			for (var i = 0; i < tags.length; i++) {
-				if (tags[i] != null && tags[i] != '') {
-					$scope.data.tags.push(tags[i]);
-				}
-			}
-			
-			$scope.data.tag = '';
-		}
-	}
-	
 	$scope.onCloseTutorialClick = function() {
 		hideOverlay();
 		$scope.popupTpl = null;
@@ -120,19 +84,6 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		
 		showOverlay();
 		$scope.popupTpl = 'model/views/common/modal.html';
-	}
-	
-	$scope.onRemoveTag = function(index) {
-		if ($scope.data.tags != null && $scope.data.tags.length > 0) {
-			$scope.data.tags.splice(index,1);
-		}
-	}
-	
-	$scope.onTagClick = function() {
-		var element = document.getElementById('txtTag');
-		if (element != null) {
-			element.focus();
-		}
 	}
 	
 	$scope.onLogoutClick = function() {
@@ -202,6 +153,93 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 			onSuccessCallback: $scope._onRegisterSuccessCallback,
 			onErrorCallback: $scope._onRegisterSuccessCallback
 		});
+	}
+	
+	$scope._onRegisterSuccessCallback = function (args) {
+		
+		if (args.data.register.model.success) {
+			
+			// show success
+			$scope.register = {
+				message: {
+					type: 'I',
+					text: args.data.register.label.tx_bidforme_registration_success
+				}
+			}
+			
+			if ($scope.login == null) {
+				$scope.login = {};
+			}
+			$scope.login.email = args.config.params.email;
+			$scope.popupTpl = 'model/views/traveler/loginPopup.html';
+			
+		} else {
+			$scope.registeration = {
+				error: {
+					title: args.data.register.label.tx_bidforme_common_errors,
+					list: args.data.register.error.validation_error
+				}
+			}
+		}
+		
+		removeOverlayClass({
+			classes: ['loading']
+		});		
+	}
+	
+	// to show the tutorial
+	if (localStorage.getItem('no_tutorial') != 'true') {
+		$scope.onTutorialClick();
+	}
+}
+
+controllers.TravelerPageCtrl = function ($scope, $location, $injector, appFactory, requestManager) {
+	
+	$injector.invoke(controllers.HeaderCtrl, this, {$scope: $scope});
+
+	if ($scope.data == null) {
+		$scope.data = {};
+	}
+	
+	// for autocomplete [START] */
+	$scope.data.origin = '';
+	$scope.data.destination = '';
+	$scope.options1 = null;
+	$scope.details1 = '';
+	// for autocomplete [ END ] */
+	
+	var indexData = appFactory.getViewData('traveler');
+	$scope.user = appFactory.getViewData('user');
+	$scope.label = indexData.label;
+	$scope.model = indexData.model;
+	
+	$scope.onTagEntry = function() {
+		if ($scope.data.tag != null && $scope.data.tag.indexOf(';') != -1) {
+			if ($scope.data.tags == null) {
+				$scope.data.tags = [];
+			}
+			var tags = $scope.data.tag.split(';');
+			for (var i = 0; i < tags.length; i++) {
+				if (tags[i] != null && tags[i] != '') {
+					$scope.data.tags.push(tags[i]);
+				}
+			}
+			
+			$scope.data.tag = '';
+		}
+	}
+	
+	$scope.onRemoveTag = function(index) {
+		if ($scope.data.tags != null && $scope.data.tags.length > 0) {
+			$scope.data.tags.splice(index,1);
+		}
+	}
+	
+	$scope.onTagClick = function() {
+		var element = document.getElementById('txtTag');
+		if (element != null) {
+			element.focus();
+		}
 	}
 	
 	$scope.onSubmitTravelRequest = function() {
@@ -275,66 +313,18 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		hideOverlay();
 		document.location = 'request?request=' + args.data.request.model.request_id;
 	}
-	
-	$scope._onRegisterSuccessCallback = function (args) {
-		
-		if (args.data.register.model.success) {
-			
-			// show success
-			$scope.register = {
-				message: {
-					type: 'I',
-					text: args.data.register.label.tx_bidforme_registration_success
-				}
-			}
-			
-			if ($scope.login == null) {
-				$scope.login = {};
-			}
-			$scope.login.email = args.config.params.email;
-			$scope.popupTpl = 'model/views/traveler/loginPopup.html';
-			
-		} else {
-			$scope.registeration = {
-				error: {
-					title: args.data.register.label.tx_bidforme_common_errors,
-					list: args.data.register.error.validation_error
-				}
-			}
-		}
-		
-		removeOverlayClass({
-			classes: ['loading']
-		});		
-	}
-	
-	$scope.openDtPicker = function(elementId) {
-		var element = document.getElementById(elementId);
-		if (element != null) {
-			if (element.className.indexOf('open') == -1) {
-				element.className += ' open';
-			} else {
-				element.className = element.className.replace( /(?:^|\s)open(?!\S)/g , '' );
-			}
-		}
-	}
-	
-	// to show the tutorial
-	if (localStorage.getItem('no_tutorial') != 'true') {
-		$scope.onTutorialClick();
-	}
 };
 
 controllers.ProviderPageCtrl = function ($scope, appFactory) {
 	
-	$scope.headerTpl = 'model/views/common/header.html';
-	
+	$injector.invoke(controllers.HeaderCtrl, this, {$scope: $scope});	
 	var providerData = appFactory.getViewData('provider');
 	$scope.label = providerData.label;
 	$scope.model = providerData.model;
 }
+
 controllers.RequestPageCtrl = function ($scope, appFactory) {
-	$scope.headerTpl = 'model/views/common/header.html';
+	$injector.invoke(controllers.HeaderCtrl, this, {$scope: $scope});
 	$scope.bidList = 'model/views/request/bidList.html';
 	$scope.travelSummaryTpl = 'model/views/common/travelsummary.html';
 	
