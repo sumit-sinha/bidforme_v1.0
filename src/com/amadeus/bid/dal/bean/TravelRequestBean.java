@@ -34,17 +34,17 @@ public class TravelRequestBean implements IBeanContract {
 		
 		this.destinations = new ArrayList<Destination>();
 		String aSerializedDestinations = (String)iEntity.getProperty("destinations");
-		String[] aSplitDestinations = aSerializedDestinations.split(",");
+		String[] aSplitDestinations = aSerializedDestinations.split("/");
 		for (String aDestinationPair : aSplitDestinations)
 		{
-			String[] aSplitDestinationPair = aDestinationPair.split(":");	
+			String[] aSplitDestinationPair = aDestinationPair.split("\\+");	
 			Date aDate = new Date(Long.parseLong(aSplitDestinationPair[1]));
 			this.destinations.add(new Destination(aSplitDestinationPair[0], aDate));
 		}
 		
 		this.criteria = new ArrayList<String>();
 		String aSerializedCriteria = (String)iEntity.getProperty("criteria");
-		String[] aSplitCriteria = aSerializedCriteria.split(",");
+		String[] aSplitCriteria = aSerializedCriteria.split("/");
 		for (String aCriterion : aSplitCriteria)
 		{
 			this.criteria.add(aCriterion);
@@ -70,14 +70,14 @@ public class TravelRequestBean implements IBeanContract {
 		String aSerializedDestinations = new String();
 		for (Destination aDestination : destinations)
 		{
-			aSerializedDestinations += aDestination.place + ":" + aDestination.arrivalDate.getTime() + ",";
+			aSerializedDestinations += aDestination.place + "+" + aDestination.arrivalDate.getTime() + "/";
 		}
 		entity.setProperty("destinations", aSerializedDestinations);
 		
 		String aSerializedCriteria = new String();
 		for (String aCriterion : criteria)
 		{
-			aSerializedCriteria += aCriterion + ",";
+			aSerializedCriteria += aCriterion + "/";
 		}
 		entity.setProperty("criteria", aSerializedCriteria);
 
