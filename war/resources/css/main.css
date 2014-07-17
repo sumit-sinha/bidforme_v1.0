@@ -377,3 +377,53 @@ span.post-tag span.glyphicon {
 	margin-top: 3px;
 	float: right;
 }
+
+div.bootbox.modal.tutorial {
+	width: 100%;
+}
+.msk.tutorial1 {
+  background:url('../images/tutorial/tutorial-1.png') no-repeat center rgba(0, 0, 0, 0.5) !important;
+  z-index: 9999;
+}
+.msk.tutorial2 {
+  background:url('../images/tutorial/tutorial-2.png') no-repeat center rgba(0, 0, 0, 0.5) !important;
+  z-index: 9999;
+}
+.msk.tutorial12 {
+  background:url('../images/tutorial/tutorial-3.png') no-repeat center rgba(0, 0, 0, 0.5) !important;
+  z-index: 9999;
+}
+div.tutorial button.close {
+    opacity: 1;
+    font-size: 45px;
+    margin-right: 15px;
+    color: white;
+    margin-top: -79px;
+    z-index: 10000;
+    cursor: pointer;
+    position: fixed;
+    right: 0;
+}
+div.tutorial .close:hover,.close:focus {
+    color: #EEE;
+}
+div.tutorial button.next {
+	opacity: 1;
+	font-size: 45px;
+	margin-right: 15px;
+	color: white;
+	z-index: 10000;
+	cursor: pointer;
+	position: fixed;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	font-weight: 700;
+}
+button.next {
+	-webkit-appearance: none;
+	padding: 0;
+	cursor: pointer;
+	background: 0 0;
+	border: 0;
+}

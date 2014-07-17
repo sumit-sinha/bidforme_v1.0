@@ -94,6 +94,26 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		}
 	}
 	
+	$scope.onCloseTutorialClick = function() {
+		$scope.popupTpl = null;
+		localStorage.setItem('no_tutorial', 'true');
+	}
+	
+	$scope.onNextTutorialClick = function() {
+		var element = document.getElementById('dvTutorial');
+		if (element.className.indexOf('tutorial1') == -1) {
+			element.className += ' tutorial1';
+		} else {
+			element.className += ' tutorial2';
+			element.className = element.className.replace( /(?:^|\s)tutorial1(?!\S)/g , '' );
+		}
+	}
+	
+	$scope.onTutorialClick = function() {
+		showOverlay();
+		$scope.popupTpl = 'model/views/common/modal.html';
+	}
+	
 	$scope.onRemoveTag = function(index) {
 		if ($scope.data.tags != null && $scope.data.tags.length > 0) {
 			$scope.data.tags.splice(index,1);

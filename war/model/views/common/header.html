@@ -16,6 +16,7 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">{{ label.tx_bidforme_nav_home }}</a></li>
+				<li><a href="javascript:void(0);" data-ng-click="onTutorialClick()">What we do?</a></li>
 				<li><a href="javascript:void(0);" data-ng-click="onContactUsClick()">{{ label.tx_bidforme_nav_contactus }}</a></li>
 				<li data-ng-show="user != null"><a href="javascript:void(0);" data-ng-click="onToggleUnderConstruction()">Hello {{ user.email }}</a></li>
 				<li data-ng-show="user == null"><a href="javascript:void(0);" data-ng-click="onSignInClick()">{{ label.tx_bidforme_nav_signin }}</a></li>
