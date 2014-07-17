@@ -2,7 +2,6 @@ package com.amadeus.bid.dal.bean;
 
 import com.amadeus.bid.dal.contract.IBeanContract;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.PropertyContainer;
 
 /**
  * bean class to represent User data structure
@@ -124,6 +123,11 @@ public class UserBean implements IBeanContract {
 	}
 
 	public String getUsername() {
+		
+		if (username == null && this.getEmail() != null) {
+			return this.getEmail().substring(0, this.getEmail().indexOf('@'));
+		}
+		
 		return username;
 	}
 

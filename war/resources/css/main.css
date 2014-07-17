@@ -203,6 +203,7 @@ background-size: 1px 6px, 1px 1px, 1px 6px;
 
 .container{
    margin-left: 0px;
+   width: 100%;
 }
 
 textarea#styled {
@@ -410,4 +411,7 @@ div.tutorial button.close {
 }
 div.tutorial .close:hover,.close:focus {
     color: #EEE;
+}
+div.modal-dialog.profile {
+	width: 400px;
 }

@@ -6,6 +6,9 @@ var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker', 'ngAutocompl
 
 var controllers = {};
 controllers.HeaderCtrl = function ($scope, appFactory, requestManager) {
+	
+	// set required data
+	$scope.user = appFactory.getViewData('user');
 	$scope.headerTpl = 'model/views/common/header.html';
 	
 	$scope.onToggleUnderConstruction = function() {
@@ -167,9 +170,11 @@ controllers.HeaderCtrl = function ($scope, appFactory, requestManager) {
 				}
 			}
 			
+			$scope.signin = null;
 			if ($scope.login == null) {
 				$scope.login = {};
 			}
+			
 			$scope.login.email = args.config.params.email;
 			$scope.popupTpl = 'model/views/traveler/loginPopup.html';
 			
@@ -209,7 +214,6 @@ controllers.TravelerPageCtrl = function ($scope, $location, $injector, appFactor
 	// for autocomplete [ END ] */
 	
 	var indexData = appFactory.getViewData('traveler');
-	$scope.user = appFactory.getViewData('user');
 	$scope.label = indexData.label;
 	$scope.model = indexData.model;
 	
@@ -315,7 +319,7 @@ controllers.TravelerPageCtrl = function ($scope, $location, $injector, appFactor
 	}
 };
 
-controllers.ProviderPageCtrl = function ($scope, appFactory) {
+controllers.ProviderPageCtrl = function ($scope, $injector, appFactory) {
 	
 	$injector.invoke(controllers.HeaderCtrl, this, {$scope: $scope});	
 	var providerData = appFactory.getViewData('provider');
@@ -323,7 +327,7 @@ controllers.ProviderPageCtrl = function ($scope, appFactory) {
 	$scope.model = providerData.model;
 }
 
-controllers.RequestPageCtrl = function ($scope, appFactory) {
+controllers.RequestPageCtrl = function ($scope, $injector, appFactory) {
 	$injector.invoke(controllers.HeaderCtrl, this, {$scope: $scope});
 	$scope.bidList = 'model/views/request/bidList.html';
 	$scope.travelSummaryTpl = 'model/views/common/travelsummary.html';

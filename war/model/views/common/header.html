@@ -18,11 +18,13 @@
 				<li class="active"><a href="#">{{ label.tx_bidforme_nav_home }}</a></li>
 				<li><a href="javascript:void(0);" data-ng-click="onTutorialClick()">What we do?</a></li>
 				<li><a href="javascript:void(0);" data-ng-click="onContactUsClick()">{{ label.tx_bidforme_nav_contactus }}</a></li>
-				<li data-ng-show="user != null"><a href="javascript:void(0);" data-ng-click="onToggleUnderConstruction()">Hello {{ user.email }}</a></li>
-				<li data-ng-show="user == null"><a href="javascript:void(0);" data-ng-click="onSignInClick()">{{ label.tx_bidforme_nav_signin }}</a></li>
-				<li data-ng-show="user == null"><a href="javascript:void(0);" data-ng-click="onRegisterClick()">{{ label.tx_bidforme_nav_register }}</a></li>
 			</ul>
-		</div>
+		</div>	
+		<ul class="nav navbar-nav pull-right">
+			<li data-ng-show="user != null"><a href="javascript:void(0);" data-ng-click="onToggleUnderConstruction()">{{ user.username }}+</a></li>
+			<li data-ng-show="user == null"><a href="javascript:void(0);" data-ng-click="onSignInClick()">{{ label.tx_bidforme_nav_signin }}</a></li>
+			<li data-ng-show="user == null"><a href="javascript:void(0);" data-ng-click="onRegisterClick()">{{ label.tx_bidforme_nav_register }}</a></li>
+		</ul>
 	</div>
 </div>
 <div class="bootbox modal" id="underConstEl" tabindex="-1" role="dialog" aria-hidden="false">
