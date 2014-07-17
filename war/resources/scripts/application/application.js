@@ -302,12 +302,31 @@ controllers.ProviderPageCtrl = function ($scope, appFactory) {
 }
 controllers.RequestPageCtrl = function ($scope, appFactory) {
 	$scope.headerTpl = 'model/views/common/header.html';
+	$scope.bidList = 'model/views/request/bidList.html';
 	$scope.travelSummaryTpl = 'model/views/common/travelsummary.html';
+	
+	if ($scope.data == null) {
+		$scope.data = {};
+	}
+	
+	$scope.data.bids = [{
+		name: 'TUI Travel',
+		amount: '300'
+	}, {
+		name: 'Global Travel',
+		amount: '500'
+	}]
 	
 	var requestData = appFactory.getViewData('request');
 	$scope.label = requestData.label;
 	$scope.model = requestData.model;
+	
+	$scope.onBidClick = function(index) {
+		$scope.selected_bid = $scope.data.bids[index];
+		$scope.bidList = 'model/views/request/bid.html';
+	}
 }
+
 
 app.controller(controllers);
 
