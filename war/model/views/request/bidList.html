@@ -1,6 +1,6 @@
-<div class="panel panel-success" id="bidList">
+<div class="panel panel-default" id="bidList">
 	<div class="panel-heading">
-		<h2 class="panel-title"><img class="provider-logo" src="resources/images/tui-logo.jpg"></img>TUI Travel Proposal</h2>
+		<h2 class="panel-title">Bids from providers</h2>
 	</div>
 	<div class="panel-body">
 	
@@ -45,38 +45,32 @@
 		<table class="table table-hover">
       		<thead>
         		<tr>
-          			<th>Travel Element</th>
-          			<th>Description</th>
+          			<th>#</th>
+          			<th>Travel Provider</th>
+          			<th>Rating</th>
           			<th>Price</th>
-        		</tr>
-      		</thead>
-      		<tr>
-      			<td>Airplane</td>
-      			<td>Flight Nice to New York</td>
-      			<td>$ 345</td>
-      		</tr>
-      		<tr>
-      			<td>Accomodation</td>
-      			<td>Holiday Inn for 5 Days in Manhattan</td>
-      			<td>$ 555</td>
-      		</tr>
-      		<tr>
-      			<td>Museum</td>
-      			<td>MET Guided Visit</td>
-      			<td>$ 0</td>
-      		</tr>
-      		<tr>
-      			<td>Activity</td>
-      			<td>Visit to Geroge IV Gardens</td>
-      			<td>$ 15</td>
-      		</tr>
-      		<tr>
-      			<td>Airplane</td>
-      			<td>Flight New York to Nice</td>
-      			<td>$ 243</td>
-      		</tr>
-
-    	</table>
-    	
+          			<th><span class="criteria">Criteria #1</span></th>
+          			<th><span class="criteria">Criteria #2</span></th>
+          			<th><span class="criteria">Criteria #3</span></th>
+        </tr>
+      </thead>
+		<tbody>
+        <tr data-ng-repeat="bid in data.bids" class="position-cursor" data-ng-click="onBidClick($index)">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ bid.name }}</td>
+          <td>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          </td>
+          <td>&euro; {{ bid.amount }}</td>
+          <td><span class="glyphicon glyphicon-ok"></span></td>
+          <td><span class="glyphicon glyphicon-remove"></span></td>
+          <td><span class="glyphicon glyphicon-remove"></span></td>
+        </tr>
+      </tbody>
+    </table>
 	</div>
 </div>

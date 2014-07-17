@@ -109,6 +109,10 @@ min-height: 80px;
    float:left;
 }
 
+.provider-logo{
+	margin-right:20px;	
+}
+
 #date-forms{
    margin:20px;
    float:inherit;
@@ -338,7 +342,7 @@ input.form-control.disable {
 	cursor: pointer;
 }
 div.col-lg-6 {
-	margin-left: -18px;
+	/*margin-left: -18px;*/
 }
 div.bootbox.modal.show {
 	display: block !important;
