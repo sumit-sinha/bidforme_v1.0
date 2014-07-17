@@ -3,12 +3,9 @@ package com.amadeus.bid.ui.servlet;
 
 import java.util.Date;
 
-import com.amadeus.bid.be.fwk.LocalizationUtil;
 import com.amadeus.bid.dal.bean.Destination;
 import com.amadeus.bid.dal.bean.TravelRequestBean;
 import com.amadeus.bid.dal.impl.TravelRequestDataImpl;
-import com.amadeus.bid.ui.constants.IApplicationConstant;
-import com.amadeus.bid.ui.fwk.json.JSONObject;
 
 /**
  * creates data required to display the provider page
@@ -39,10 +36,8 @@ public class RequestCreateServlet extends RequestPageServlet {
 		Date aStartDate = new Date(Long.parseLong(req.getParameter("startDate")));
 		Date aEndDate = new Date(Long.parseLong(req.getParameter("endDate")));
 		
-		//aTravelRequest.getDestinations().add(new Destination(aDestination, aStartDate));
-		//aTravelRequest.getDestinations().add(new Destination(aOrigin, aEndDate));
-		aTravelRequest.getDestinations().add(new Destination("SFO", aStartDate));
-		aTravelRequest.getDestinations().add(new Destination("NCE", aEndDate));
+		aTravelRequest.getDestinations().add(new Destination(aDestination, aStartDate));
+		aTravelRequest.getDestinations().add(new Destination(aOrigin, aEndDate));
 		
 		
 		String aCriteria = req.getParameter("criteria");

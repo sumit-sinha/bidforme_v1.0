@@ -15,13 +15,6 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		$scope.data = {};
 	}
 	
-	if ($scope.register == null) {
-		$scope.register = {};
-	}
-	
-	// for prefilling
-	$scope.register.username = localStorage.getItem('email');
-	
 	// for autocomplete [START] */
 	$scope.data.origin = '';
 	$scope.data.destination = '';
@@ -65,7 +58,10 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		$scope.signin = null;
 		if ($scope.register != null) {
 			$scope.register.message = null;
-		}
+		} else {
+			$scope.register = {};
+			$scope.register.username = localStorage.getItem('email');
+		}	
 		
 		$scope.popupTpl = 'model/views/traveler/loginPopup.html';
 	}
