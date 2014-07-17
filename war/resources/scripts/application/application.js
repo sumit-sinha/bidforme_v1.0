@@ -5,29 +5,28 @@
 var app = angular.module('bidForMe',['ui.bootstrap.datetimepicker', 'ngAutocomplete']);
 
 var controllers = {};
-controllers.AutoCompleteCtrl = function ($scope) {
-
-	  $scope.result1 = '';
-	  $scope.options1 = null;
-	  $scope.details1 = '';
-
-	  $scope.result2 = '';
-	  $scope.options2 = {
-	    country: 'ca',
-	    types: '(cities)'
-	  };    $scope.details2 = '';
-	  
-	  $scope.result3 = '';
-	  $scope.options3 = {
-	    country: 'gb',
-	    types: 'establishment'
-	  };
-	  $scope.details3 = '';
-};
 controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestManager) {
 	
 	if ($scope.transport == null) {
 		$scope.transport = {};
+	}
+	
+	if ($scope.data == null) {
+		$scope.data = {};
+	}
+	
+	// for autocomplete [START] */
+	$scope.data.origin = '';
+	$scope.data.destination = '';
+	$scope.options1 = null;
+	$scope.details1 = '';
+	// for autocomplete [ END ] */
+	
+	$scope.data.mode = {
+		air: 1,
+		car: 1,
+		ship: 1,
+		train: 1
 	}
 	
 	$scope.headerTpl = 'model/views/common/header.html';
@@ -37,11 +36,26 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	$scope.transport.shipsegment = 'resources/images/ship-checked.png';
 	
 	var indexData = appFactory.getViewData('traveler');
+	$scope.user = appFactory.getViewData('user');
 	$scope.label = indexData.label;
 	$scope.model = indexData.model;
 	
+	$scope.onToggleUnderConstruction = function() {
+		var element = document.getElementById('underConstEl');
+		if (element != null) {
+			if (element.className.indexOf('show') == -1) {
+				element.className += ' show';
+				showOverlay();
+			} else {
+				element.className = element.className.replace( /(?:^|\s)show(?!\S)/g , '' );
+				hideOverlay();
+			}
+		}
+	}
+	
 	$scope.onSignInClick = function() {
 		showOverlay();
+		$scope.register = null;
 		$scope.popupTpl = 'model/views/traveler/loginPopup.html';
 	}
 	
@@ -56,30 +70,73 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		$scope.popupTpl = 'model/views/traveler/register.html';
 	}
 	
-	$scope.onCloseClick = function(tplName) {
+	$scope.onCloseClick = function() {
 		hideOverlay();
 		$scope['popupTpl'] = null;
 	}
 	
-	$scope.onTransportClick = function(mode) {
-
-		// if not existing
-		if ($scope.data == null) {
-			$scope.data = {};
-		}
-
-		if ($scope.data.mode == null) {
-			$scope.data.mode = {};
+	$scope.onNewCriteriaClick = function() {
+		if ($scope.criterias == null) {
+			$scope.criterias = [];
 		}
 		
-		if ($scope.transport[mode + 'segment'].indexOf('unchecked') == -1) {
-			$scope.data.mode[mode] = 0;
-			$scope.transport[mode + 'segment'] = 'resources/images/' + mode + '-unchecked.png';
-		} else {
-			$scope.data.mode[mode] = 1;
-			$scope.transport[mode + 'segment'] = 'resources/images/' + mode + '-checked.png';
+		$scope.criterias.push({});
+	}
+	
+	$scope.onCriteriaRemoveClick = function() {
+		if ($scope.criterias != null && $scope.criterias.length > 0) {
+			$scope.criterias.pop();
 		}
-	};
+	}
+	
+	$scope.onLogoutClick = function() {
+		
+		// remove local data
+		$scope.onToggleUnderConstruction();
+		$scope.user = null;
+		
+		requestManager.makeServerCall({
+			method: 'POST',
+			url: '/logout',
+			showOverlay: false
+		});
+	}
+	
+	$scope.onLoginClick = function() {
+		requestManager.makeServerCall({
+			method: 'POST',
+			url: '/signin',
+			data: this.login,
+			showOverlay: true,
+			onSuccessCallback: $scope._onLoginSuccessCallback,
+			onErrorCallback: $scope._onLoginSuccessCallback
+		});
+	}
+	
+	$scope._onLoginSuccessCallback = function(args) {
+		
+		if (args.data.login.model.success) {
+			
+			// show success
+			appFactory.setViewData({key: 'login', data: args.data.login});
+			appFactory.setViewData({key: 'user', data: args.data.user});
+			
+			$scope.user = args.data.user;
+			$scope.onCloseClick();
+			
+		} else {
+			$scope.signin = {
+				error: {
+					title: args.data.login.label.tx_bidforme_common_errors,
+					list: args.data.login.error.validation_error
+				}
+			}
+			
+			removeOverlayClass({
+				classes: ['loading']
+			});
+		}
+	}
 
 	$scope.onSubmitPress = function() {
 		
@@ -97,10 +154,14 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	}
 	
 	$scope.onSubmitTravelRequest = function() {
+		
+		this.data.startDate = this.data.startDate.getTime();
+		this.data.endDate = this.data.endDate.getTime();
+		
 		requestManager.makeServerCall({
 			method: 'POST',
 			url: '/requestCreate',
-			data: this.data,
+			data: $scope.data,
 			showOverlay: true,
 			onSuccessCallback: $scope._onRequestSubmitSuccessCallback,
 			onErrorCallback: $scope._onRequestSubmitSuccessCallback
@@ -108,7 +169,7 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	}
 	
 	$scope._onRequestSubmitSuccessCallback = function (args) {
-		
+		hideOverlay();
 	}
 	
 	$scope._onRegisterSuccessCallback = function (args) {
@@ -183,6 +244,9 @@ app.config(function($routeProvider) {
 		controller: 'ProviderPageCtrl',
 		templateUrl: 'model/views/provider/provider.html'
 	}).when('/request', {
+		controller: 'RequestPageCtrl',
+		templateUrl: 'model/views/request/request.html'
+	}).when('/requestCreate', {
 		controller: 'RequestPageCtrl',
 		templateUrl: 'model/views/request/request.html'
 	}).when('/bid', {

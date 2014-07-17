@@ -7,14 +7,24 @@
 					<div class="alert alert-success" role="alert" data-ng-show="register != null">
 						{{ register.message.text }}
 					</div>
-       				<input type="email" class="form-control" placeholder="{{ label.tx_bidforme_email_address }}" autofocus="" value="{{ register.username }}">
-        			<input type="password" class="form-control" placeholder="{{ label.tx_bidforme_password }}">
+					<div class="alert alert-danger" role="alert" data-ng-show="signin.error != null">
+						<ul>
+							<li>
+								<span>{{ signin.error.title }}</span>
+							</li>
+							<li data-ng-repeat="item in signin.error.list">
+								<span>{{ item.message }}</span>
+							</li>
+						</ul>
+					</div>
+       				<input type="email" class="form-control" data-ng-model="login.email" placeholder="{{ label.tx_bidforme_email_address }}" autofocus="" value="{{ register.username }}">
+        			<input type="password" class="form-control" data-ng-model="login.password" placeholder="{{ label.tx_bidforme_password }}">
         			<div class="checkbox">
           				<label>
             				<input type="checkbox" value="remember-me"> {{ label.tx_bidforme_remember_me }}
           				</label>
         			</div>
-        			<button class="btn btn-lg btn-primary btn-block" type="submit">{{ label.tx_bidforme_signin_btn }}</button>
+        			<button class="btn btn-lg btn-primary btn-block" type="button" data-ng-click="onLoginClick()">{{ label.tx_bidforme_signin_btn }}</button>
         			<hr/>
         			<div class="customGPlusSignIn customBtn" data-gapiattached="true">
 						<span class="icon"></span>

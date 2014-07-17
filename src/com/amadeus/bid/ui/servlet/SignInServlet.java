@@ -17,11 +17,11 @@ import com.amadeus.bid.ui.fwk.json.JSONObject;
 import com.amadeus.bid.ui.generic.ApplicationServlet;
 
 /**
- * servlet class used to register user to database
+ * servlet class to allow user to sign in
  * @author ssinha
  *
  */
-public class RegisterUserServlet extends ApplicationServlet {
+public class SignInServlet extends ApplicationServlet {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -34,13 +34,17 @@ public class RegisterUserServlet extends ApplicationServlet {
 		pattern = Pattern.compile(EMAIL_PATTERN);
 	}
 	
+	public SignInServlet() {
+		super("login");
+	}
+
 	@Override
 	protected void doTask(HttpServletRequest req, HttpServletResponse res) {
 		
 		// read parameters from request
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		String confirmPassword = req.getParameter("confirmPassword");
+		
 		List<MessageBean> messages = new ArrayList<MessageBean>();
 		
 		IUserDataContract user = new UserDataImpl();
@@ -52,16 +56,6 @@ public class RegisterUserServlet extends ApplicationServlet {
 			message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_email_error"));
 			
 			messages.add(message);
-		} else {
-			UserBean existingUser = user.getUserData(email);
-			if (existingUser != null) {
-				MessageBean message = new MessageBean();
-				message.setType("E");
-				message.setNumber("1004");
-				message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_existing"));
-				
-				messages.add(message);
-			}
 		}
 		
 		if (password == null || password.trim().equals("")) {
@@ -71,38 +65,44 @@ public class RegisterUserServlet extends ApplicationServlet {
 			message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_password_error"));
 			
 			messages.add(message);
-		} else if (!password.equals(confirmPassword)) {
-			MessageBean message = new MessageBean();
-			message.setType("E");
-			message.setNumber("1003");
-			message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_no_pwd_match"));
-			
-			messages.add(message);
 		}
-		
-		
 		
 		if (messages.size() == 0) {
-			UserBean bean = new UserBean();
-			bean.setEmail(email);
-			bean.setPassword(password);
-			user.saveUserData(bean);
-		} else {
-			req.setAttribute("errors", messages);
+			UserBean existingUser = user.getUserData(email);
+			if (existingUser != null) {
+				if (!existingUser.getPassword().equals(password)) {
+					MessageBean message = new MessageBean();
+					message.setType("E");
+					message.setNumber("1002");
+					message.setMessage(LocalizationUtil.getString("tx_bidforme_signin_password_error"));
+					
+					messages.add(message);
+				} else {
+					// set user in
+					req.getSession().setAttribute("user", existingUser);
+				}
+			} else {
+				MessageBean message = new MessageBean();
+				message.setType("E");
+				message.setNumber("1002");
+				message.setMessage(LocalizationUtil.getString("tx_bidforme_signin_no_account"));
+				
+				messages.add(message);
+			}
 		}
 		
+		// set error message in request
+		if (messages.size() > 0) {
+			req.setAttribute("errors", messages);
+		}
 	}
 	
-	public RegisterUserServlet() {
-		super("register");
-	}
-
 	@Override
 	protected JSONObject getLabels() {
 		
 		JSONObject labels = new JSONObject();
 		if (!(this.getRequest().getAttribute("errors") instanceof List<?>)) {	
-			labels.put("tx_bidforme_registration_success", LocalizationUtil.getString("tx_bidforme_registration_success"));
+			labels.put("tx_bidforme_nav_myprofile", LocalizationUtil.getString("tx_bidforme_nav_myprofile"));
 		} else {
 			labels.put("tx_bidforme_common_errors", LocalizationUtil.getString("tx_bidforme_common_errors"));
 		}
@@ -112,15 +112,18 @@ public class RegisterUserServlet extends ApplicationServlet {
 
 	@Override
 	protected JSONObject getModel() {
-		
 		JSONObject json = new JSONObject();
-		json.put("success", !(this.getRequest().getAttribute("errors") instanceof List<?>));		
+		if (!(this.getRequest().getAttribute("errors") instanceof List<?>)) {
+			json.put("success", true);
+		} else {
+			json.put("success", false);
+		}
+				
 		return json;
 	}
 
 	@Override
 	protected JSONObject getErrors() {
-		
 		JSONArray errors = new JSONArray();
 		if (this.getRequest().getAttribute("errors") instanceof List<?>) {
 			for (int i = 0; i < ((List<?>)this.getRequest().getAttribute("errors")).size(); i++) {

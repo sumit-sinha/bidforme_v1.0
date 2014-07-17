@@ -12,8 +12,8 @@
 				<td width="22%" class="table-title"><img src="resources/images/criteria.png">{{ label.tx_bidforme_criteria }}</td>
 			</tr>
 			<tr>
-				<td>2 {{ label.tx_bidforme_request_adults }} <br> 1 {{ label.tx_bidforme_request_children }}</td>
-				<td rowspan="4">{{ label.tx_bidforme_request_travelfrom }} Nice <br> {{ label.tx_bidforme_request_to }} Los-Angeles (12-JAN-15) <br> {{ label.tx_bidforme_request_to }} Boston (18-JAN-15) <br> {{ label.tx_bidforme_request_return_date }} 31-JAN-15</td>
+				<td> {{ model.request_nb_adults }} {{ label.tx_bidforme_request_adults }} <br> {{ model.request_nb_children }} {{ label.tx_bidforme_request_children }}</td>
+				<td rowspan="4">{{ label.tx_bidforme_request_travelfrom }} {{ model.request_origin }} <br> {{ label.tx_bidforme_request_to }} {{ model.request_destination }} ({{ model.request_departure_date }}) <br> {{ label.tx_bidforme_request_return_date }} {{ model.request_return_date }}</td>
 				<td rowspan="4">
 					<span class="criteria">No Plane</span>
 					<span class="criteria">4-star</span> 
@@ -30,7 +30,7 @@
 				<td class="table-title"><img src="resources/images/budget.png">{{ label.tx_bidforme_budget }}</td>
 			</tr>
 			<tr>
-				<td>$ 3500</td>
+				<td>$ {{ model.request_budget }}</td>
 			</tr>
 		</table>
 	</div>

@@ -2,6 +2,7 @@ package com.amadeus.bid.dal.bean;
 
 import com.amadeus.bid.dal.contract.IBeanContract;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PropertyContainer;
 
 /**
  * bean class to represent User data structure
@@ -19,7 +20,6 @@ public class UserBean implements IBeanContract {
 
 	@Override
 	public Entity getEntity() {
-		
 		Entity entity = new Entity(this.getName(), this.getEmail());
 		entity.setProperty("username", this.getUsername());
 		entity.setProperty("email", this.getEmail());
@@ -30,8 +30,23 @@ public class UserBean implements IBeanContract {
 		entity.setProperty("country", this.getCountry());
 		entity.setProperty("pincode", this.getPinCode());
 		entity.setProperty("aboutme", this.getAboutMe());
-		
 		return entity;
+	}
+	
+	public static UserBean getUserBean(Entity entity) {
+		
+		UserBean user = new UserBean();
+		user.setAboutMe((String)entity.getProperty("aboutme"));
+		user.setUsername((String)entity.getProperty("username"));
+		user.setEmail((String)entity.getProperty("email"));
+		user.setPassword((String)entity.getProperty("password"));
+		user.setMobile((String)entity.getProperty("mobile"));
+		user.setAddress((String)entity.getProperty("address"));
+		user.setState((String)entity.getProperty("state"));
+		user.setCountry((String)entity.getProperty("country"));
+		user.setPinCode((String)entity.getProperty("pincode"));
+		
+		return user;
 	}
 	
 	private String username;
