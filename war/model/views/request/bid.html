@@ -1,33 +1,144 @@
 <div data-ng-include="" src="headerTpl"></div>
 <div data-ng-include="" src="popupTpl"></div>
 <h3>{{ label.tx_bidforme_plan_holiday }}</h3>
-<div class="panel panel-default">
+<div class="panel panel-default" id="travelSummary">
 	<div class="panel-heading">
-		<h2 class="panel-title">{{ label.tx_bidforme_build_trip }}</h2>
+		<h2 class="panel-title">{{ label.tx_bidforme_request_travel_summary }}</h2>
 	</div>
 	<div class="panel-body">
-		<div class="page-header">
-			<h2><img src="resources/images/1.jpg"/></span> {{ label.tx_bidforme_select_dest_dates }}</h2>
-			<div id="summary">
-				here you'll have the summary of the trip
-			</div>
-		</div>
-
-
-		<div class="page-header">
-		<h2><img src="resources/images/1.jpg"/></span> {{ label.tx_bidforme_select_dest_dates }}</h2>
-			<div id="summary">
-				here instead the list of details
-			</div>
-		</div>
-		
-		<div class="page-header">
-			<h2><img src="resources/images/1.jpg"/></span> {{ label.tx_bidforme_select_dest_dates }}</h2>
-			<div id="summary">
-				and at last the chat
-			</div>
-		</div>
-
-		<button id="submit" class="btn btn-lg btn-success" type="button" data-ng-click="onSubmitPress()">{{ label.tx_bidforme_submit_request }}</button>
+		<table class="basic-table">
+			<tr>
+				<td width="18%" class="table-title"><img src="resources/images/travelers.png">{{ label.tx_bidforme_travelers }}</td>
+				<td width="60%" class="table-title"><img src="resources/images/itinerary.png">{{ label.tx_bidforme_itinerary }}</td>
+				<td width="22%" class="table-title"><img src="resources/images/criteria.png">{{ label.tx_bidforme_criteria }}</td>
+			</tr>
+			<tr>
+				<td>2 {{ label.tx_bidforme_request_adults }} <br> 1 {{ label.tx_bidforme_request_children }}</td>
+				<td rowspan="4">{{ label.tx_bidforme_request_travelfrom }} Nice <br> {{ label.tx_bidforme_request_to }} Los-Angeles (12-JAN-15) <br> {{ label.tx_bidforme_request_to }} Boston (18-JAN-15) <br> {{ label.tx_bidforme_request_return_date }} 31-JAN-15</td>
+				<td rowspan="4">
+					<span class="criteria">No Planes</span>
+					<span class="criteria">4-star</span> 
+					<span class="criteria">Nature</span>
+					<span class="criteria">Quiet</span>
+					<span class="criteria">Trekking</span>
+				</td>
+			</tr>
+			<tr class="hspacer">
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td class="table-title"><img src="resources/images/budget.png">{{ label.tx_bidforme_budget }}</td>
+			</tr>
+			<tr>
+				<td>$ 3500</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="panel panel-default" id="bidList">
+	<div class="panel-heading">
+		<h2 class="panel-title">Bids from providers</h2>
+	</div>
+	<div class="panel-body">
+	
+	<div class="row">
+  		<div class="col-lg-6">
+    		<div class="input-group">
+      			<div class="input-group-btn">
+        			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        				Filter results <span class="caret"></span>
+        			</button>
+			        <ul class="dropdown-menu" role="menu">
+			          <li><a href="#">Action</a></li>
+			          <li><a href="#">Another action</a></li>
+			          <li><a href="#">Something else here</a></li>
+			          <li class="divider"></li>
+			          <li><a href="#">Separated link</a></li>
+			        </ul>
+      			</div><!-- /btn-group -->  			
+      			<input type="text" class="form-control">
+    		</div><!-- /input-group -->
+  		</div><!-- /.col-lg-6 -->
+  		
+  		<div class="col-lg-6">
+    		<div class="input-group">
+      			<input type="text" class="form-control">
+      				<div class="input-group-btn">
+        				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        					Sort by... <span class="caret"></span>
+        				</button>
+				        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+				          <li><a href="#">Action</a></li>
+				          <li><a href="#">Another action</a></li>
+				          <li><a href="#">Something else here</a></li>
+				          <li class="divider"></li>
+				          <li><a href="#">Separated link</a></li>
+				        </ul>
+			     </div><!-- /btn-group -->
+			</div><!-- /input-group -->
+		</div><!-- /.col-lg-6 -->
+	</div><!-- /.row -->
+	
+		<table class="table table-hover">
+      		<thead>
+        		<tr>
+          			<th>#</th>
+          			<th>Travel Provider</th>
+          			<th>Rating</th>
+          			<th>Price</th>
+          			<th><span class="criteria">Criteria #1</span></th>
+          			<th><span class="criteria">Criteria #2</span></th>
+          			<th><span class="criteria">Criteria #3</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>TUI Travel</td>
+          <td>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          </td>
+          <td>300 Euro</td>
+          <td><span class="glyphicon glyphicon-ok"></span></td>
+          <td><span class="glyphicon glyphicon-remove"></span></td>
+          <td><span class="glyphicon glyphicon-remove"></span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Globo Travel</td>
+          <td>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star-empty"></span>
+          </td>
+          <td>340 Euro</td>
+          <td><span class="glyphicon glyphicon-ok"></span></td>
+          <td><span class="glyphicon glyphicon-ok"></span></td>
+          <td><span class="glyphicon glyphicon-remove"></span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Cheaters Plaza</td>
+          <td>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star"></span>
+          	<span class="glyphicon glyphicon-star-empty"></span>
+          	<span class="glyphicon glyphicon-star-empty"></span>
+          	<span class="glyphicon glyphicon-star-empty"></span>
+          </td>
+          <td>30 Euro</td>
+          <td><span class="glyphicon glyphicon-ok"></span></td>
+          <td><span class="glyphicon glyphicon-ok"></span></td>
+          <td><span class="glyphicon glyphicon-remove"></span></td>
+        </tr>
+      </tbody>
+    </table>
 	</div>
 </div>
