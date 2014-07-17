@@ -266,6 +266,15 @@ controllers.TravelerPageCtrl = function ($scope, $location, $injector, appFactor
 			}
 		}
 		
+		if (this.data.tags)
+		{
+			this.data.criteria = "";
+			for (var i=0; i < this.data.tags.length; i++)
+			{
+				this.data.criteria += this.data.tags[i] + "/";
+			}
+		}
+		
         if (this.checkTravelRequestInput())
         {
             requestManager.makeServerCall({
@@ -338,7 +347,7 @@ controllers.RequestPageCtrl = function ($scope, $injector, appFactory) {
 	}
 	
 	$scope.data.bids = [{
-		name: 'TUI Travel',
+		name: 'Mystery Travel',
 		amount: '300'
 	}, {
 		name: 'Global Travel',

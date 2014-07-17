@@ -5,6 +5,35 @@
 	</div>
 	
 	<div class="panel-body">
+	
+		<div class="panel panel-success bigpanel">
+			<div class="panel-heading"><img class="provider-logo" src="resources/images/travelers.png">{{ label.tx_bidforme_travelers }}</div>
+			<div class="panel-body">
+				<span>{{ model.request_nb_adults }} {{ label.tx_bidforme_request_adults }}</span>
+			</div>
+		</div>
+		<div class="panel panel-info bigpanel">
+			<div class="panel-heading"><img class="provider-logo" src="resources/images/itinerary.png">{{ label.tx_bidforme_itinerary }}</div>
+				<div class="panel-body">
+					<span>{{ label.tx_bidforme_request_travelfrom }} <b>{{ model.request_origin }}</b> </span> 
+					<br>
+					<span>{{ label.tx_bidforme_request_to }} <b>{{ model.request_destination }}</b> ({{ model.request_departure_date }}) </span> 
+					<br>
+					<span>{{ label.tx_bidforme_request_return_date }} {{ model.request_return_date }}</span>
+				</div>
+			</div>
+			<div class="panel panel-warning bigpanel" style="height:100%">
+				<div class="panel-heading"><img class="provider-logo" src="resources/images/criteria.png">{{ label.tx_bidforme_criteria }}</div>
+				<div class="panel-body" style="heigth:100%">
+					<span data-ng-repeat="criterion in model.request_criteria" class="criteria">{{ criterion }}</span>
+				</div>
+			</div>
+			<div class="panel panel-danger bigpanel">
+				<div class="panel-heading"><img src="resources/images/budget.png">{{ label.tx_bidforme_budget }}</div>
+				<div class="panel-body">
+					<span>$ {{ model.request_budget }}</span>
+				</div>
+			</div>
 		<table width="100%">
 			<tr>
 				<td style="vertical-align: top; height:100%">
@@ -31,11 +60,7 @@
 					<div class="panel panel-warning" style="height:100%">
 						<div class="panel-heading"><img class="provider-logo" src="resources/images/criteria.png">{{ label.tx_bidforme_criteria }}</div>
 						<div class="panel-body" style="heigth:100%">
-							<span class="criteria">No Plane</span>
-							<span class="criteria">4-star</span> 
-							<span class="criteria">Nature</span>
-							<span class="criteria">Quiet</span>
-							<span class="criteria">Trekking</span>
+							<span data-ng-repeat="criterion in model.request_criteria" class="criteria">{{ criterion }}</span>
 						</div>
 					</div>
 				</td>
