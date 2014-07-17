@@ -5,37 +5,9 @@
 	<div class="panel-heading">
 		<h2 class="panel-title">{{ label.tx_bidforme_request_travel_summary }}</h2>
 	</div>
-	<div class="panel-body">
-		<table class="basic-table">
-			<tr>
-				<td width="18%" class="table-title"><img src="resources/images/travelers.png">{{ label.tx_bidforme_travelers }}</td>
-				<td width="60%" class="table-title"><img src="resources/images/itinerary.png">{{ label.tx_bidforme_itinerary }}</td>
-				<td width="22%" class="table-title"><img src="resources/images/criteria.png">{{ label.tx_bidforme_criteria }}</td>
-			</tr>
-			<tr>
-				<td>2 {{ label.tx_bidforme_request_adults }} <br> 1 {{ label.tx_bidforme_request_children }}</td>
-				<td rowspan="4">{{ label.tx_bidforme_request_travelfrom }} Nice <br> {{ label.tx_bidforme_request_to }} Los-Angeles (12-JAN-15) <br> {{ label.tx_bidforme_request_to }} Boston (18-JAN-15) <br> {{ label.tx_bidforme_request_return_date }} 31-JAN-15</td>
-				<td rowspan="4">
-					<span class="criteria">No Planes</span>
-					<span class="criteria">4-star</span> 
-					<span class="criteria">Nature</span>
-					<span class="criteria">Quiet</span>
-					<span class="criteria">Trekking</span>
-				</td>
-			</tr>
-			<tr class="hspacer">
-				<td>
-				</td>
-			</tr>
-			<tr>
-				<td class="table-title"><img src="resources/images/budget.png">{{ label.tx_bidforme_budget }}</td>
-			</tr>
-			<tr>
-				<td>$ 3500</td>
-			</tr>
-		</table>
-	</div>
-</div>
+	
+	<div data-ng-include="" src="travelSummaryTpl"></div>
+	
 <div class="panel panel-default" id="bidList">
 	<div class="panel-heading">
 		<h2 class="panel-title">Bids from providers</h2>

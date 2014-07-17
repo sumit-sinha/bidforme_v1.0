@@ -163,8 +163,9 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	
 	$scope.onSubmitTravelRequest = function() {
 		
-		this.data.startDate = this.data.startDateObj?this.data.startDateObj.getTime():null
-		this.data.endDate = this.data.endDateObj?this.data.endDateObj.getTime():null;
+        this.data.startDate = this.data.startDateObj?this.data.startDateObj.getTime():null;
+        this.data.endDate = this.data.endDateObj?this.data.endDateObj.getTime():null;
+
 		
 		if (this.data.origin == null ||  this.data.origin == '') {
 			var element = document.getElementById('txtOrigin');
@@ -180,53 +181,52 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 			}
 		}
 		
-		if (this.checkTravelRequestInput())
-		{
-			requestManager.makeServerCall({
-				method: 'POST',
-				url: '/requestCreate',
-				data: $scope.data,
-				showOverlay: true,
-				onSuccessCallback: $scope._onRequestSubmitSuccessCallback,
-				onErrorCallback: $scope._onRequestSubmitSuccessCallback
-			});
-		}
-		else
-		{
-			alert('Missing or invalid information in form!');
-		}
+        if (this.checkTravelRequestInput())
+        {
+            requestManager.makeServerCall({
+                method: 'POST',
+                url: '/requestCreate',
+                data: $scope.data,
+                showOverlay: true,
+                onSuccessCallback: $scope._onRequestSubmitSuccessCallback,
+                onErrorCallback: $scope._onRequestSubmitSuccessCallback
+            });
+        }
+        else
+        {
+            alert('Missing or invalid information in form!');
+        }
 	}
 	
-	$scope.checkTravelRequestInput = function() {
-		
-		if (this.data.destination == null 
-				|| this.data.origin == null 
-				|| this.data.startDate == null 
-				|| this.data.endDate == null 
-				|| this.data.budget == null)
-		{
-				return false;
-		}
-		
-		if (this.data.destination.indexOf("+") != -1 
-				|| this.data.destination.indexOf("/") != -1 
-				|| this.data.origin.indexOf("+") != -1
-				|| this.data.origin.indexOf("/") != -1)
-			{
-				return false;
-			}
-		
-		var aNumericRegex = new RegExp("^[0-9]+$");
-		if (!aNumericRegex.test(this.data.budget)
-				|| !aNumericRegex.test(this.data.startDate)
-				|| !aNumericRegex.test(this.data.endDate))
-			{
-				return false;
-			}
-				
-				
-		return true;
-	}
+    $scope.checkTravelRequestInput = function() {
+        
+        if (this.data.destination == null 
+                || this.data.origin == null 
+                || this.data.startDate == null 
+                || this.data.endDate == null 
+                || this.data.budget == null)
+        {
+                return false;
+        }
+        
+        if (this.data.destination.indexOf("+") != -1 
+                || this.data.destination.indexOf("/") != -1 
+                || this.data.origin.indexOf("+") != -1
+                || this.data.origin.indexOf("/") != -1)
+            {
+                return false;
+            }
+        
+        var aNumericRegex = new RegExp("^[0-9]+$");
+        if (!aNumericRegex.test(this.data.budget)
+                || !aNumericRegex.test(this.data.startDate)
+                || !aNumericRegex.test(this.data.endDate))
+            {
+                return false;
+            }
+                
+        return true;
+    }
 	
 	$scope._onRequestSubmitSuccessCallback = function (args) {
 		hideOverlay();
@@ -287,6 +287,8 @@ controllers.ProviderPageCtrl = function ($scope, appFactory) {
 }
 controllers.RequestPageCtrl = function ($scope, appFactory) {
 	$scope.headerTpl = 'model/views/common/header.html';
+	$scope.travelSummaryTpl = 'model/views/common/travelsummary.html';
+	
 	var requestData = appFactory.getViewData('request');
 	$scope.label = requestData.label;
 	$scope.model = requestData.model;
@@ -314,7 +316,7 @@ app.config(function($routeProvider) {
 		controller: 'RequestPageCtrl',
 		templateUrl: 'model/views/request/request.html'
 	}).when('/bid', {
-		controller: 'TravelerPageCtrl',
+		controller: 'RequestPageCtrl',
 		templateUrl: 'model/views/request/bid.html'
 	}).otherwise( {redirectTo: pathName} )
 	
