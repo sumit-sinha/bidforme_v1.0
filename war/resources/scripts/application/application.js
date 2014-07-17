@@ -266,6 +266,15 @@ controllers.TravelerPageCtrl = function ($scope, $location, $injector, appFactor
 			}
 		}
 		
+		if (this.data.tags)
+		{
+			this.data.criteria = "";
+			for (var i=0; i < this.data.tags.length; i++)
+			{
+				this.data.criteria += this.data.tags[i] + "/";
+			}
+		}
+		
         if (this.checkTravelRequestInput())
         {
             requestManager.makeServerCall({

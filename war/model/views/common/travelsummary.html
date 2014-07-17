@@ -31,11 +31,7 @@
 					<div class="panel panel-warning" style="height:100%">
 						<div class="panel-heading"><img class="provider-logo" src="resources/images/criteria.png">{{ label.tx_bidforme_criteria }}</div>
 						<div class="panel-body" style="heigth:100%">
-							<span class="criteria">No Plane</span>
-							<span class="criteria">4-star</span> 
-							<span class="criteria">Nature</span>
-							<span class="criteria">Quiet</span>
-							<span class="criteria">Trekking</span>
+							<span data-ng-repeat="criterion in model.request_criteria" class="criteria">{{ criterion }}</span>
 						</div>
 					</div>
 				</td>

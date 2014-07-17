@@ -6,6 +6,7 @@ import java.util.Date;
 import com.amadeus.bid.dal.bean.Destination;
 import com.amadeus.bid.dal.bean.TravelRequestBean;
 import com.amadeus.bid.dal.impl.TravelRequestDataImpl;
+import com.amadeus.bid.ui.fwk.json.JSONObject;
 
 /**
  * creates data required to display the provider page
@@ -39,18 +40,18 @@ public class RequestCreateServlet extends RequestPageServlet {
 		aTravelRequest.getDestinations().add(new Destination(aDestination, aStartDate));
 		aTravelRequest.getDestinations().add(new Destination(aOrigin, aEndDate));
 		
-		
 		String aCriteria = req.getParameter("criteria");
 		
 		if (aCriteria != null)
 		{
-			String[] aSplitCriteria = aCriteria.split(",");
+			String[] aSplitCriteria = aCriteria.split("/");
 
 			for (int i = 0; i < aSplitCriteria.length; i++)
 			{
 				aTravelRequest.getCriteria().add(aSplitCriteria[i]);
 			}
 		}
+		
 		int aBudget = Integer.parseInt(req.getParameter("budget"));
 		aTravelRequest.setBudget(aBudget);
 		

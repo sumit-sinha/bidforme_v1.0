@@ -87,7 +87,9 @@ public class RequestPageServlet extends ApplicationServlet {
 		json.put("request_origin", aTravelRequest.getDestinations().get(1).place);
 		json.put("request_destination", aTravelRequest.getDestinations().get(0).place);
 		json.put("request_budget", aTravelRequest.getBudget());
-		json.put("request_comment", "bla bla bla");	
+		json.put("request_criteria", aTravelRequest.getCriteria());
+		json.put("request_comment", aTravelRequest.getFreeTextComment());
+		
 		return json;
 	}
 
