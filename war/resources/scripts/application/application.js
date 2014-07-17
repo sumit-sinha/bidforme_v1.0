@@ -166,6 +166,20 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		this.data.startDate = this.data.startDate.getTime();
 		this.data.endDate = this.data.endDate.getTime();
 		
+		if (this.data.origin == null ||  this.data.origin == '') {
+			var element = document.getElementById('txtOrigin');
+			if (element != null) {
+				this.data.origin = element.value;
+			}
+		}
+		
+		if (this.data.destination == null ||  this.data.destination == '') {
+			var element = document.getElementById('txtDestination');
+			if (element != null) {
+				this.data.destination = element.value;
+			}
+		}
+		
 		requestManager.makeServerCall({
 			method: 'POST',
 			url: '/requestCreate',
