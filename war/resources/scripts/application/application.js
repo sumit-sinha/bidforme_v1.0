@@ -198,10 +198,116 @@ controllers.HeaderCtrl = function ($scope, appFactory, requestManager) {
 	}
 }
 
+controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
+	$scope.no_prev_button = true;
+	$scope.carousalTpl = 'model/views/common/carousal.html';
+	$scope.tutorialimage = 'resources/images/tutorial/tutorial-1.png';
+	
+	var indexData = appFactory.getViewData('index');
+	$scope.label = indexData.label;
+	
+	if ($scope.description == null) {
+		$scope.description = {
+			headline: 'Join Us',
+			message: 'Register with us and we will keep you posted',
+			button: {
+				label: 'Register'
+			}
+		}
+	}
+	
+	$scope.onCloseClick = function() {
+		hideOverlay();
+		$scope['popupTpl'] = null;
+	}
+	
+	$scope.onRegisterClick = function() {
+		showOverlay();
+		$scope.success_message = null;
+		$scope.popupTpl = 'model/views/traveler/register.html';
+	}
+	
+	$scope.onNextSlideClick = function() {
+		var element1 = null;
+		var element2 = null;
+		$scope.no_prev_button = null;
+		if ($scope.tutorialimage.indexOf('tutorial-1') != -1) {
+			element1 = document.getElementById('el1');
+			element2 = document.getElementById('el2');
+			$scope.tutorialimage = 'resources/images/tutorial/tutorial-2.png'
+		} else if ($scope.tutorialimage.indexOf('tutorial-2') != -1) {
+			$scope.no_next_button = true;
+			element1 = document.getElementById('el2');
+			element2 = document.getElementById('el3');
+			$scope.tutorialimage = 'resources/images/tutorial/tutorial-3.png';
+		}
+		
+		if (element1 != null && element2 != null) {
+			element2.className += ' active';
+			element1.className = element2.className.replace( /(?:^|\s)active(?!\S)/g , '' );
+		}
+	}
+	
+	$scope.onPrevSlideClick = function() {
+		var element1 = null;
+		var element2 = null;
+		$scope.no_next_button = null;
+		if ($scope.tutorialimage.indexOf('tutorial-3') != -1) {
+			element1 = document.getElementById('el3');
+			element2 = document.getElementById('el2');
+			$scope.tutorialimage = 'resources/images/tutorial/tutorial-2.png'
+		} else if ($scope.tutorialimage.indexOf('tutorial-2') != -1) {
+			element1 = document.getElementById('el2');
+			element2 = document.getElementById('el1');
+			$scope.no_prev_button = true;
+			$scope.tutorialimage = 'resources/images/tutorial/tutorial-1.png';
+		}
+		
+		if (element1 != null && element2 != null) {
+			element2.className += ' active';
+			element1.className = element2.className.replace( /(?:^|\s)active(?!\S)/g , '' );
+		}
+	}
+	
+	$scope.onSubmitPress = function() {
+		
+		// reset errors
+		$scope.registeration = null;
+		
+		requestManager.makeServerCall({
+			method: 'POST',
+			url: '/register',
+			data: this.register,
+			showOverlay: true,
+			onSuccessCallback: $scope._onRegisterSuccessCallback,
+			onErrorCallback: $scope._onRegisterSuccessCallback
+		});
+	}
+	
+	$scope._onRegisterSuccessCallback = function (args) {
+		
+		if (args.data.register.model.success) {
+			
+			// show success
+			$scope.success_message = true;			
+			$scope.description.headline = 'Thank you';
+			$scope.description.message = 'We will inform you about our cool features soon!!!';
+			$scope.onCloseClick();
+		} else {
+			$scope.registeration = {
+				error: {
+					title: args.data.register.label.tx_bidforme_common_errors,
+					list: args.data.register.error.validation_error
+				}
+			}
+		}	
+	}
+}
+
 controllers.TravelerPageCtrl = function ($scope, $location, $injector, appFactory, requestManager) {
 	
 	$injector.invoke(controllers.HeaderCtrl, this, {$scope: $scope});
-
+	
 	if ($scope.data == null) {
 		$scope.data = {};
 	}
@@ -371,10 +477,13 @@ app.config(function($routeProvider) {
 
 	var pathName = document.location.pathname;
 	if (pathName == null || pathName == '' || pathName == '/') {
-		pathName = '/traveler';
+		pathName = '/index';
 	}
 
-	$routeProvider.when('/traveler', {
+	$routeProvider.when('/index', {
+		controller: 'IndexPageCtrl',
+		templateUrl: 'model/views/common/index.html'
+	}).when('/traveler', {
 		controller: 'TravelerPageCtrl',
 		templateUrl: 'model/views/traveler/traveler.html'
 	}).when('/provider', {

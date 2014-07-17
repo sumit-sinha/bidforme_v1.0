@@ -5,6 +5,14 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
+		<servlet-name>index</servlet-name>
+		<servlet-class>com.amadeus.bid.ui.servlet.IndexPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>index</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>traveler</servlet-name>
 		<servlet-class>com.amadeus.bid.ui.servlet.TravelerPageServlet</servlet-class>
 	</servlet>
@@ -63,6 +71,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<welcome-file-list>
-		<welcome-file>traveler</welcome-file>
+		<welcome-file>index</welcome-file>
 	</welcome-file-list>
 </web-app>

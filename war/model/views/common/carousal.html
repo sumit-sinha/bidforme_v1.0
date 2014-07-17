@@ -1,0 +1,22 @@
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<!-- Indicators -->
+	<ol class="carousel-indicators">
+		<li id="el1" data-slide-to="0" class="active"></li>
+		<li id="el2" data-slide-to="1" class=""></li>
+		<li id="el3" data-slide-to="2" class=""></li>
+	</ol>
+	<div class="carousel-inner">
+		<div class="item active">
+			<img class="tutorial-image" src="{{ tutorialimage }}" alt="First slide">
+			<div class="container" data-ng-show="description != null">
+				<div class="carousel-caption">
+					<h1>{{ description.headline }}</h1>
+					<p>{{ description.message }}</p>
+					<p data-ng-show="description.button != null && success_message == null"><a class="btn btn-lg btn-primary" href="javascript:void(0);" role="button" data-ng-click="onRegisterClick()">{{ description.button.label }}</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a data-ng-show="no_prev_button == null" data-ng-click="onPrevSlideClick()" class="left carousel-control" href="javascript:void(0);" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+	<a data-ng-show="no_next_button == null" data-ng-click="onNextSlideClick()" class="right carousel-control" href="javascript:void(0);" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>

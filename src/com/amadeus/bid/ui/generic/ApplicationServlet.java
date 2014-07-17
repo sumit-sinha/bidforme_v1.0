@@ -112,10 +112,7 @@ public abstract class ApplicationServlet extends HttpServlet {
 		    
 		    // flush the buffer
 		    resp.flushBuffer();
-		}
-		
-		
-		
+		}		
 	}
 	
 	protected void fillHeaderLabels(JSONObject ioJson) {

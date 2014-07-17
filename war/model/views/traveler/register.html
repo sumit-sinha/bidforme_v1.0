@@ -4,7 +4,9 @@
 			<div class="modal-body">
 				<button type="button" class="bootbox-close-button close" data-ng-click="onCloseClick()">x</button>
 				<form role="form">
-					
+					<div class="alert alert-success" role="alert" data-ng-show="success_message.message != null">
+						{{ success_message.message.text }}
+					</div>
 					<div class="alert alert-danger" role="alert" data-ng-show="registeration.error != null">
 						<ul>
 							<li>
