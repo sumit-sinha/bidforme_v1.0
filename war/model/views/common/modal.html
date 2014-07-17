@@ -2,8 +2,5 @@
 	<div class="closeModal">
 		<button type="button" class="close" data-ng-click="onCloseTutorialClick()">x</button>
 	</div>
-	<div class="closeModal">
-		<button type="button" class="next" data-ng-click="onNextTutorialClick()">></button>
-	</div>
-	<div class="msk tutorial1" id="dvTutorial"></div>
+	<div class="msk {{ tutorial.classname }}" id="dvTutorial" data-ng-click="onNextTutorialClick()"></div>
 </div>

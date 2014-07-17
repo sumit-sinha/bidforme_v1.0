@@ -95,21 +95,29 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	}
 	
 	$scope.onCloseTutorialClick = function() {
+		hideOverlay();
 		$scope.popupTpl = null;
 		localStorage.setItem('no_tutorial', 'true');
 	}
 	
 	$scope.onNextTutorialClick = function() {
-		var element = document.getElementById('dvTutorial');
-		if (element.className.indexOf('tutorial1') == -1) {
-			element.className += ' tutorial1';
+		if ($scope.tutorial.classname == 'tutorial1') {
+			$scope.tutorial.classname = 'tutorial2'
+		} else if ($scope.tutorial.classname == 'tutorial2') {
+			$scope.tutorial.classname = 'tutorial3';
 		} else {
-			element.className += ' tutorial2';
-			element.className = element.className.replace( /(?:^|\s)tutorial1(?!\S)/g , '' );
+			$scope.onCloseTutorialClick();
 		}
 	}
 	
 	$scope.onTutorialClick = function() {
+		
+		if ($scope.tutorial == null) {
+			$scope.tutorial = {};
+		}
+		
+		$scope.tutorial.classname = 'tutorial1';
+		
 		showOverlay();
 		$scope.popupTpl = 'model/views/common/modal.html';
 	}
@@ -309,6 +317,11 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 				element.className = element.className.replace( /(?:^|\s)open(?!\S)/g , '' );
 			}
 		}
+	}
+	
+	// to show the tutorial
+	if (localStorage.getItem('no_tutorial') != 'true') {
+		$scope.onTutorialClick();
 	}
 };
 
