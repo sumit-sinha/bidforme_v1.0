@@ -25,10 +25,10 @@ public class RequestCreateServlet extends RequestPageServlet {
 	{
 		TravelRequestBean aTravelRequest = new TravelRequestBean();
 		
-		int aNbOfAdults = 2;
+		int aNbOfAdults = 1;
 		aTravelRequest.setNbOfAdults(aNbOfAdults);
 		
-		int aNbOfChildren = 1;
+		int aNbOfChildren = 0;
 		aTravelRequest.setNbOfChildren(aNbOfChildren);
 		
 		String aOrigin = req.getParameter("origin");

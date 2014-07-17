@@ -2,6 +2,8 @@
 
 package com.amadeus.bid.ui.servlet;
 
+import java.text.DateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -77,8 +79,10 @@ public class RequestPageServlet extends ApplicationServlet {
 		json.put("request_nb_adults", aTravelRequest.getNbOfAdults());
 		json.put("request_nb_children", aTravelRequest.getNbOfChildren());
 		
-		json.put("request_departure_date", aTravelRequest.getDestinations().get(0).arrivalDate);
-		json.put("request_return_date", aTravelRequest.getDestinations().get(1).arrivalDate);
+		DateFormat aFormatter = DateFormat.getDateInstance();
+		
+		json.put("request_departure_date", aFormatter.format(aTravelRequest.getDestinations().get(0).arrivalDate));
+		json.put("request_return_date", aFormatter.format(aTravelRequest.getDestinations().get(1).arrivalDate));
 		
 		json.put("request_origin", aTravelRequest.getDestinations().get(1).place);
 		json.put("request_destination", aTravelRequest.getDestinations().get(0).place);
