@@ -205,6 +205,9 @@ controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 	
 	var indexData = appFactory.getViewData('index');
 	$scope.label = indexData.label;
+	$scope.model = {
+		no_social_buttons: true
+	}
 	
 	if ($scope.description == null) {
 		$scope.description = {
