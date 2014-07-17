@@ -15,6 +15,13 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		$scope.data = {};
 	}
 	
+	if ($scope.register == null) {
+		$scope.register = {};
+	}
+	
+	// for prefilling
+	$scope.register.username = localStorage.getItem('email');
+	
 	// for autocomplete [START] */
 	$scope.data.origin = '';
 	$scope.data.destination = '';
@@ -55,7 +62,11 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	
 	$scope.onSignInClick = function() {
 		showOverlay();
-		$scope.register = null;
+		$scope.signin = null;
+		if ($scope.register != null) {
+			$scope.register.message = null;
+		}
+		
 		$scope.popupTpl = 'model/views/traveler/loginPopup.html';
 	}
 	
@@ -103,6 +114,11 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	}
 	
 	$scope.onLoginClick = function() {
+		
+		if (this.login.remember) {
+			localStorage.setItem('email', this.login.email);
+		}
+		
 		requestManager.makeServerCall({
 			method: 'POST',
 			url: '/signin',
