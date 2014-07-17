@@ -249,6 +249,8 @@ controllers.ProviderPageCtrl = function ($scope, appFactory) {
 }
 controllers.RequestPageCtrl = function ($scope, appFactory) {
 	$scope.headerTpl = 'model/views/common/header.html';
+	$scope.travelSummaryTpl = 'model/views/common/travelsummary.html';
+	
 	var requestData = appFactory.getViewData('request');
 	$scope.label = requestData.label;
 	$scope.model = requestData.model;
@@ -276,7 +278,7 @@ app.config(function($routeProvider) {
 		controller: 'RequestPageCtrl',
 		templateUrl: 'model/views/request/request.html'
 	}).when('/bid', {
-		controller: 'TravelerPageCtrl',
+		controller: 'RequestPageCtrl',
 		templateUrl: 'model/views/request/bid.html'
 	}).otherwise( {redirectTo: pathName} )
 	
