@@ -74,19 +74,11 @@
 		</div>
 		<div class="row logo content lessmargin">
 			<div class="col-md-11">
-				<div>
-			        <div class="input-group">
-						<input type="text" class="form-control" id="criteria0">
-						<span class="input-group-btn">
-							<button class="btn btn-default glyphicon glyphicon-plus" style="margin-top: -1px;" type="button" data-ng-click="onNewCriteriaClick()"></button>
-						</span>
-			        </div>
-			        <div class="input-group marginup" data-ng-repeat="criteria in criterias">
-						<input type="text" class="form-control" id="criteria{{ $index + 1 }}">
-						<span class="input-group-btn">
-							<button class="btn btn-default glyphicon glyphicon-minus" style="margin-top: -1px;" type="button" data-ng-click="onCriteriaRemoveClick()"></button>
-						</span>
-			        </div>
+				<div class="tag-editor criteria fullwidth" data-ng-click="onTagClick()">
+					<div class="tag-group" data-ng-repeat="tag in data.tags">
+						<span class="post-tag">{{ tag }}<span class="glyphicon glyphicon-remove-sign" title="remove this tag" data-ng-click="onRemoveTag($index)"></span></span>
+					</div>
+					<input type="text" id="txtTag" class="criteria" data-ng-model="data.tag" data-ng-change="onTagEntry()"><span></span>
 				</div>
 			</div>
 		</div>

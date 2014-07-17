@@ -78,17 +78,32 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 		$scope['popupTpl'] = null;
 	}
 	
-	$scope.onNewCriteriaClick = function() {
-		if ($scope.criterias == null) {
-			$scope.criterias = [];
+	$scope.onTagEntry = function() {
+		if ($scope.data.tag != null && $scope.data.tag.indexOf(';') != -1) {
+			if ($scope.data.tags == null) {
+				$scope.data.tags = [];
+			}
+			var tags = $scope.data.tag.split(';');
+			for (var i = 0; i < tags.length; i++) {
+				if (tags[i] != null && tags[i] != '') {
+					$scope.data.tags.push(tags[i]);
+				}
+			}
+			
+			$scope.data.tag = '';
 		}
-		
-		$scope.criterias.push({});
 	}
 	
-	$scope.onCriteriaRemoveClick = function() {
-		if ($scope.criterias != null && $scope.criterias.length > 0) {
-			$scope.criterias.pop();
+	$scope.onRemoveTag = function(index) {
+		if ($scope.data.tags != null && $scope.data.tags.length > 0) {
+			$scope.data.tags.splice(index,1);
+		}
+	}
+	
+	$scope.onTagClick = function() {
+		var element = document.getElementById('txtTag');
+		if (element != null) {
+			element.focus();
 		}
 	}
 	
