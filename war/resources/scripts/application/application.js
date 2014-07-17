@@ -315,7 +315,8 @@ controllers.TravelerPageCtrl = function ($scope, $location, $injector, appFactor
 	
 	$scope._onRequestSubmitSuccessCallback = function (args) {
 		hideOverlay();
-		document.location = 'request?request=' + args.data.request.model.request_id;
+		appFactory.setViewData({key: 'request', data: args.data.request});
+		$location.path('request');
 	}
 };
 
@@ -410,7 +411,7 @@ app.factory('appFactory', function() {
 			data = {};
 		}
 
-		data[args.key] == args.data;
+		data[args.key] = args.data;
 	}
 
 	return factory;
