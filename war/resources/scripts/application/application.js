@@ -192,6 +192,7 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	
 	$scope._onRequestSubmitSuccessCallback = function (args) {
 		hideOverlay();
+		document.location = 'request?request=' + args.data.request.model.request_id;
 	}
 	
 	$scope._onRegisterSuccessCallback = function (args) {
