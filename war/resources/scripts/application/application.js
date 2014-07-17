@@ -22,19 +22,7 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	$scope.details1 = '';
 	// for autocomplete [ END ] */
 	
-	$scope.data.mode = {
-		air: 1,
-		car: 1,
-		ship: 1,
-		train: 1
-	}
-	
 	$scope.headerTpl = 'model/views/common/header.html';
-	$scope.transport.airsegment = 'resources/images/air-checked.png';
-	$scope.transport.carsegment = 'resources/images/car-checked.png';
-	$scope.transport.trainsegment = 'resources/images/train-checked.png';
-	$scope.transport.shipsegment = 'resources/images/ship-checked.png';
-	
 	var indexData = appFactory.getViewData('traveler');
 	$scope.user = appFactory.getViewData('user');
 	$scope.label = indexData.label;
@@ -56,12 +44,20 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 	$scope.onSignInClick = function() {
 		showOverlay();
 		$scope.signin = null;
+		
 		if ($scope.register != null) {
 			$scope.register.message = null;
+		}
+		
+		// data prefilling
+		if ($scope.login == null) {
+			$scope.login = {};
 		} else {
-			$scope.register = {};
-			$scope.register.username = localStorage.getItem('email');
-		}	
+			$scope.login.email = null;
+			$scope.login.password = null;
+		}
+		
+		$scope.login.email = localStorage.getItem('email');
 		
 		$scope.popupTpl = 'model/views/traveler/loginPopup.html';
 	}
@@ -190,13 +186,16 @@ controllers.TravelerPageCtrl = function ($scope, $location, appFactory, requestM
 			
 			// show success
 			$scope.register = {
-				username: args.config.params.email,
 				message: {
 					type: 'I',
 					text: args.data.register.label.tx_bidforme_registration_success
 				}
 			}
 			
+			if ($scope.login == null) {
+				$scope.login = {};
+			}
+			$scope.login.email = args.config.params.email;
 			$scope.popupTpl = 'model/views/traveler/loginPopup.html';
 			
 		} else {
