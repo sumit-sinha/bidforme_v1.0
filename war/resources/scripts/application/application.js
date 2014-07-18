@@ -201,7 +201,7 @@ controllers.HeaderCtrl = function ($scope, appFactory, requestManager) {
 controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 	$scope.no_prev_button = true;
 	$scope.carousalTpl = 'model/views/common/carousal.html';
-	$scope.tutorialimage = 'resources/images/tutorial/tutorial-1.png';
+	$scope.tutorialimage = 'resources/images/tutorial/tutorial-1.png';	
 	
 	var indexData = appFactory.getViewData('index');
 	$scope.label = indexData.label;
@@ -211,13 +211,25 @@ controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 	
 	if ($scope.description == null) {
 		$scope.description = {
-			headline: 'Join Us',
-			message: 'Register with us and we will keep you posted',
+			headline: 'Stop Searching',
+			message: 'Sit back, relax and for the first time let providers bid for you',
 			button: {
-				label: 'Register'
+				label: 'Start Asking'
 			}
 		}
 	}
+	
+	$scope.changeHtmlCss = function(cssname) {
+		var elements = document.getElementsByTagName('html');
+		if (elements != null && elements.length > 0) {
+			for (var i = 0; i < elements.length; i++) {
+				elements[i].className = cssname;
+			}
+		}
+	}
+	
+	// change background
+	$scope.changeHtmlCss('screen first');
 	
 	$scope.onCloseClick = function() {
 		hideOverlay();
@@ -225,9 +237,14 @@ controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 	}
 	
 	$scope.onRegisterClick = function() {
-		showOverlay();
-		$scope.success_message = null;
-		$scope.popupTpl = 'model/views/traveler/register.html';
+		
+		if ($scope.description.button.label !== 'Start Asking') {
+			showOverlay();
+			$scope.success_message = null;
+			$scope.popupTpl = 'model/views/traveler/register.html';
+		} else {
+			$scope.onNextSlideClick();
+		}
 	}
 	
 	$scope.onNextSlideClick = function() {
@@ -249,6 +266,9 @@ controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 			element2.className += ' active';
 			element1.className = element2.className.replace( /(?:^|\s)active(?!\S)/g , '' );
 		}
+		
+		$scope.description.button.label = "Register";
+		$scope.changeHtmlCss('screen second');
 	}
 	
 	$scope.onPrevSlideClick = function() {
@@ -270,6 +290,9 @@ controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 			element2.className += ' active';
 			element1.className = element2.className.replace( /(?:^|\s)active(?!\S)/g , '' );
 		}
+		
+		$scope.description.button.label = "Start Asking";
+		$scope.changeHtmlCss('screen first');
 	}
 	
 	$scope.onSubmitPress = function() {

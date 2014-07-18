@@ -437,10 +437,18 @@ a.carousel-control {
 	cursor: pointer;
 }
 .bigpanel{
-	
 	width: 100%;
 }
-
+html.screen.first {
+	background: url(../images/home_screen_1.png) no-repeat center center fixed;
+	background-size: cover;
+	background-color: transparent;
+}
+html.screen.second {
+	background: url(../images/home_screen_2.png) no-repeat center center fixed;
+	background-size: cover;
+	background-color: transparent;
+}
 .sidebutton{
 	width:100px;
 }
