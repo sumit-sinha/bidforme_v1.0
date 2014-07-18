@@ -1,5 +1,6 @@
 package com.amadeus.bid.dal.bean;
 
+import com.amadeus.bid.be.util.EncryptionUtil;
 import com.amadeus.bid.dal.contract.IBeanContract;
 import com.google.appengine.api.datastore.Entity;
 
@@ -11,6 +12,8 @@ import com.google.appengine.api.datastore.Entity;
 public class UserBean implements IBeanContract {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static final String encryptionKey = "A2ERuQ@q!0123ASDcASDw23jhsadf8#12e12!@#dqwed8!dqw!@3WSd";
 
 	@Override
 	public String getName() {
@@ -21,7 +24,7 @@ public class UserBean implements IBeanContract {
 	public Entity getEntity() {
 		Entity entity = new Entity(this.getName(), this.getEmail());
 		entity.setProperty("username", this.getUsername());
-		entity.setProperty("email", this.getEmail());
+		entity.setProperty("email", EncryptionUtil.AES.encrypt(this.getEmail(), encryptionKey));
 		entity.setProperty("password", this.getPassword());
 		entity.setProperty("mobile", this.getMobile());
 		entity.setProperty("address", this.getAddress());
@@ -38,7 +41,7 @@ public class UserBean implements IBeanContract {
 		user.setAboutMe((String)entity.getProperty("aboutme"));
 		user.setUsername((String)entity.getProperty("username"));
 		user.setEmail((String)entity.getProperty("email"));
-		user.setPassword((String)entity.getProperty("password"));
+		user.setPassword(EncryptionUtil.AES.decrypt((String)entity.getProperty("password"),encryptionKey));
 		user.setMobile((String)entity.getProperty("mobile"));
 		user.setAddress((String)entity.getProperty("address"));
 		user.setState((String)entity.getProperty("state"));

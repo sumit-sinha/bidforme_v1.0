@@ -1,17 +1,16 @@
 package com.amadeus.bid.ui.servlet;
 
 import java.io.UnsupportedEncodingException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.regex.Pattern;
 
-import javax.mail.Session;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.amadeus.bid.be.fwk.LocalizationUtil;
+import com.amadeus.bid.be.util.SendEmailUtil;
 import com.amadeus.bid.dal.bean.MessageBean;
 import com.amadeus.bid.dal.bean.UserBean;
 import com.amadeus.bid.dal.contract.IUserDataContract;
@@ -19,14 +18,7 @@ import com.amadeus.bid.dal.impl.UserDataImpl;
 import com.amadeus.bid.ui.fwk.json.JSONArray;
 import com.amadeus.bid.ui.fwk.json.JSONObject;
 import com.amadeus.bid.ui.generic.ApplicationServlet;
-
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMultipart;
 
 /**
  * servlet class used to register user to database
@@ -100,15 +92,7 @@ public class RegisterUserServlet extends ApplicationServlet {
 			bean.setPassword(password);
 			user.saveUserData(bean);
 			
-			try {
-				this.sendEmail(bean);
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			this.sendEmail(bean);
 		} else {
 			req.setAttribute("errors", messages);
 		}
@@ -160,21 +144,39 @@ public class RegisterUserServlet extends ApplicationServlet {
 	 * @throws MessagingException 
 	 * @throws UnsupportedEncodingException 
 	 */
-	private void sendEmail(UserBean user) throws UnsupportedEncodingException, MessagingException {
+	private void sendEmail(UserBean user) {
 		
-		Message message = new MimeMessage(Session.getDefaultInstance(new Properties(), null));
-		message.setFrom(new InternetAddress("amadeuseia14@gmail.com", "Ask&Travel Admin"));
-		message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
-		message.setSubject("Thank you for registeration!!!");
+		MessageFormat emailContent = new MessageFormat("<link href=\"http://askntravel.appspot.com/resources/css/bootstrap.min.css\" rel=\"stylesheet\">" +
+									"<link href=\"http://askntravel.appspot.com/resources/css/email-template.css\" rel=\"stylesheet\">" +
+									"<div class=\"container content\">" +
+										"<div class=\"page-header\">" +
+											"<h1>{0}</h1>" +
+										"</div>" +
+										"<p class=\"lead\">{1}</p>" +
+										"<p>{2}</p>" +
+									"</div>" +
+									"<div class=\"footer\">" +
+										"<div class=\"container logo\">" +
+											"<p class=\"text-muted\">&nbsp;</p>" +
+										"</div>" +
+									"</div>");
 		
-		Multipart content = new MimeMultipart();
 		
-		MimeBodyPart part1 = new MimeBodyPart();
-		part1.setText("Thank you for registeration!!!<br/>We will keep you posted on any updates", "text/html");
+		String[] args = new String[3];
+		args[0] = "Dear Traveller";
+		args[1] = "Thanks a lot for signing up for ThereUGo! The whole team is delighted to have you onboard. We will notify you as soon as the site is up and running. In the mean time, we are working on building our travel expert network. Please feel free to share with us an early feedback.";
+		args[2] = "Simone Campora, CEO";
+
+        //adding group name and email to message
+        String message = emailContent.format(args);
+
+        SendEmailUtil emailUtil = new SendEmailUtil();
+        emailUtil.setFrom("amadeuseia14@gmail.com");
+        emailUtil.setTo(user.getEmail());
+        emailUtil.setMessage(message);
+        emailUtil.setSubject("Thank you for registration!!!");
+        emailUtil.setMessageType("text/html");
         
-        content.addBodyPart(part1);
-		
-		message.setContent(content);
-		Transport.send(message);
+        emailUtil.sendMail();
 	}
 }
