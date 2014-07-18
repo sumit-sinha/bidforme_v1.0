@@ -267,7 +267,14 @@ controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 			element1.className = element2.className.replace( /(?:^|\s)active(?!\S)/g , '' );
 		}
 		
-		$scope.description.button.label = "Register";
+		$scope.description = {
+			headline: 'Join Us',
+			message: 'We are building our network of expert, please register to be the first to use our service!',
+			button: {
+				label: 'Register'
+			}
+		}
+		
 		$scope.changeHtmlCss('screen second');
 	}
 	
@@ -291,7 +298,13 @@ controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 			element1.className = element2.className.replace( /(?:^|\s)active(?!\S)/g , '' );
 		}
 		
-		$scope.description.button.label = "Start Asking";
+		$scope.description = {
+			headline: 'Stop Searching',
+			message: 'Sit back, relax and for the first time let providers bid for you',
+			button: {
+				label: 'Start Asking'
+			}
+		}
 		$scope.changeHtmlCss('screen first');
 	}
 	

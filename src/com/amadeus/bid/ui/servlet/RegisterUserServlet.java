@@ -1,9 +1,13 @@
 package com.amadeus.bid.ui.servlet;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.regex.Pattern;
 
+import javax.mail.Session;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +19,14 @@ import com.amadeus.bid.dal.impl.UserDataImpl;
 import com.amadeus.bid.ui.fwk.json.JSONArray;
 import com.amadeus.bid.ui.fwk.json.JSONObject;
 import com.amadeus.bid.ui.generic.ApplicationServlet;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMultipart;
 
 /**
  * servlet class used to register user to database
@@ -87,6 +99,16 @@ public class RegisterUserServlet extends ApplicationServlet {
 			bean.setEmail(email);
 			bean.setPassword(password);
 			user.saveUserData(bean);
+			
+			try {
+				this.sendEmail(bean);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			req.setAttribute("errors", messages);
 		}
@@ -131,5 +153,28 @@ public class RegisterUserServlet extends ApplicationServlet {
 		
 		return new JSONObject().put("validation_error", errors);
 	}
-
+	
+	/**
+	 * 683194008
+	 * @param user
+	 * @throws MessagingException 
+	 * @throws UnsupportedEncodingException 
+	 */
+	private void sendEmail(UserBean user) throws UnsupportedEncodingException, MessagingException {
+		
+		Message message = new MimeMessage(Session.getDefaultInstance(new Properties(), null));
+		message.setFrom(new InternetAddress("amadeuseia14@gmail.com", "Ask&Travel Admin"));
+		message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
+		message.setSubject("Thank you for registeration!!!");
+		
+		Multipart content = new MimeMultipart();
+		
+		MimeBodyPart part1 = new MimeBodyPart();
+		part1.setText("Thank you for registeration!!!<br/>We will keep you posted on any updates", "text/html");
+        
+        content.addBodyPart(part1);
+		
+		message.setContent(content);
+		Transport.send(message);
+	}
 }
