@@ -1,48 +1,100 @@
 <div data-ng-include="" src="popupTpl"></div>
-<img class="logo" src="resources/images/new/logo.png"/>
-<div class="content" align="center">
-	<table class="maintable"  cellspacing="20">
-		<tr>
-			<td><img class="pictures" src="resources/images/new/1.png"/></td>
-			<td><img src="resources/images/new/arrow.png"></td>
-			<td><img  class="pictures" src="resources/images/new/2.png"/></td>
-			<td><img src="resources/images/new/arrow.png"></td>
-			<td><img class="pictures"  src="resources/images/new/3.png"/></td>
-		</tr>
-		<tr>
-			<td class="action">
-				<h1>You Ask</h1>
-			</td>
-			<td></td>
-			<td class="action">
-				<h1>They Bid</h1>
-			</td>
-			<td></td>
-			<td class="action">
-				<h1>You Go</h1>
-			</td>
-		</tr>
-		<tr>
-			<td class="action">
-				<h2>Tell us about your travel plan</h2>
-			</td>
-			<td></td>
-			<td class="action">
-				<h2>Let our network of travel experts build a tailor made offer</h2>
-			</td>
-			<td></td>
-			<td class="action">
-				<h2>
-				Compare, Adjust and book your vacation
-				<h2>
-			</td>
-		</tr>
-	</table>
-</div>
-<div class="importanttext">
-	Here is the story that Amandine is writing, and we hope it will arrive before end of the year
-</div>
-<div class="buttons">
-	<a class="btn btn-lg btn-danger" href="javascript:void(0);" role="button" data-ng-click="onRegisterClick()">Sign Up</a>
-	<a class="btn btn-lg btn-danger" href="javascript:void(0);" role="button">Take a Tour</a>
-</div>
+       <div class="logo">
+            
+            <div class="comment">
+            	<a style="color: white;" href="javascript:void(0);" data-ng-click="onContactUsClick()">About Us</a>
+                <img src="resources/images/new/logo.png"/><br/><br/>
+            <span>Sit back, relax and for a change, let our network of experts make you a personalised offer</span>
+            </div>
+        </div>
+        
+
+        
+        <div class="main">
+        
+            <div class="content" align="left">
+                
+                <table width="100%">
+                    <tr>
+                        <td>
+                <table class="maintable" style="margin-top: 40px;" >
+                    
+                    <tr>
+                        <td class="action"><h1>Ask</h1></td>
+                        <td class="action"><h1>Bid</h1></td>
+                        <td class="action"><h1>Go</h1></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><a href="javascript:void(0)" data-ng-click="onScrollReq('ask')"><img class="pictures" src="resources/images/new/1.png"/></a></td>
+                        <td><a href="javascript:void(0)" data-ng-click="onScrollReq('bidder')"><img  class="pictures" src="resources/images/new/2.png"/></a></td>
+                        <td><a href="javascript:void(0)" data-ng-click="onScrollReq('go')"><img class="pictures"  src="resources/images/new/3.png"/></a></td>
+                    </tr>
+
+                    <tr>
+                        <td class="action"><h2>Tell us about your travel plan</h2></td>
+                        <td class="action"><h2>Let our network of travel experts build a tailor made offer</h2></td>
+                        <td class="action"><h2>Compare, Adjust and book your vacation<h2></td>
+                    </tr>
+
+                </table>
+                    </td>
+                    <td style="width:30%">
+                                <div class="buttons">
+                                    <a class="btn btn-lg btn-danger" href="javascript:void(0);" role="button" data-ng-click="onRegisterClick()">Sign Up!</a>
+                                    <br/>
+                                     <br/>
+                                    To get updated when We'll be On Line!
+                                    
+                                </div>
+                    </td>
+                    </tr>
+                </table>
+            </div>
+            
+            </div>
+        <div>
+            
+        <h3 id="ask">Ask: Tell us about your travel plan</h3>
+        <div class="screens">
+
+            <table style="width:100%; text-align:right;">
+                <tr>
+                    <td width="100%">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</td>
+                    <td><img src="resources/images/new/ipad.png"></td>
+                </tr>
+            </table>
+            
+        </div>
+            
+            <div class="divider"></div>
+            
+        <h3 id="bidder" >Bid: Let our network of travel experts build a tailor made offer</h3>
+        <div class="screens">
+            
+            <table style="width:100%; text-align:right;">
+                <tr>
+                    <td  width="100%">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</td>
+                    <td><img src="resources/images/new/ipad.png"></td>
+                </tr>
+            </table>
+            
+            </div>
+            
+            <div class="divider"></div>
+
+                    <h3 id="go">Go: Compare, Adjust and book your vacation</h3>
+        <div class="screens">
+            
+            <table style="width:100%; text-align:right;">
+                <tr>
+                    <td  width="100%">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</td>
+                    <td><img src="resources/images/new/ipad.png"></td>
+                </tr>
+            </table>
+            
+            </div>
+            
+            <div class="divider"></div>
+        
+        </div>
