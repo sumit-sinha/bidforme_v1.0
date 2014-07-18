@@ -17,9 +17,7 @@
     	<link rel="stylesheet" type="text/css" href="resources/css/datetimepicker.css"/>
     	
     	<!-- Specific Google fonts -->
-	    <link href="http://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" type="text/css">
-	    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-	    <link href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 			
