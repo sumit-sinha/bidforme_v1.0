@@ -13,7 +13,7 @@ public class UserBean implements IBeanContract {
 
 	private static final long serialVersionUID = 1L;
 	
-	private static final String encryptionKey = "A2ERuQ@q!0123ASDcASDw23jhsadf8#12e12!@#dqwed8!dqw!@3WSd";
+	private static final String encryptionKey = "A2ERuQ@q!0123ASD";
 
 	@Override
 	public String getName() {
@@ -24,8 +24,8 @@ public class UserBean implements IBeanContract {
 	public Entity getEntity() {
 		Entity entity = new Entity(this.getName(), this.getEmail());
 		entity.setProperty("username", this.getUsername());
-		entity.setProperty("email", EncryptionUtil.AES.encrypt(this.getEmail(), encryptionKey));
-		entity.setProperty("password", this.getPassword());
+		entity.setProperty("email", this.getEmail());
+		entity.setProperty("password", EncryptionUtil.AES.encrypt(this.getPassword(),encryptionKey));
 		entity.setProperty("mobile", this.getMobile());
 		entity.setProperty("address", this.getAddress());
 		entity.setProperty("state", this.getState());
