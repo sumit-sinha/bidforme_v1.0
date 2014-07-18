@@ -124,5 +124,17 @@ Still not quite representing your plan?  Use the free text form to provide addit
 			</tr>
 		</table>
 	</div>
-	<div class="divider"></div>
+	<div class="divider">
+	<br/>
+						<div class="buttons" data-ng-show="success_message == null">
+						<a class="btn btn-lg btn-danger" href="javascript:void(0);" role="button" data-ng-click="onRegisterClick()">Sign Up!</a>
+						<br/>
+						<br/>
+						To get updated when We'll be On Line!
+					</div>
+					<div data-ng-show="success_message != null" class="buttons">
+						<p>{{ description.headline }}<br/>{{ description.message }}</p>
+					</div>
+	
+	</div>
 </div>
