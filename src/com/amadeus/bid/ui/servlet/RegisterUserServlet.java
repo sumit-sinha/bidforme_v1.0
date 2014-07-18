@@ -146,8 +146,8 @@ public class RegisterUserServlet extends ApplicationServlet {
 	 */
 	private void sendEmail(UserBean user) {
 		
-		MessageFormat emailContent = new MessageFormat("<link href=\"http://askntravel.appspot.com/resources/css/bootstrap.min.css\" rel=\"stylesheet\">" +
-									"<link href=\"http://askntravel.appspot.com/resources/css/email-template.css\" rel=\"stylesheet\">" +
+		MessageFormat emailContent = new MessageFormat("<link href=\"http://there-u-go.appspot.com/resources/css/bootstrap.min.css\" rel=\"stylesheet\">" +
+									"<link href=\"http://there-u-go.appspot.com//resources/css/email-template.css\" rel=\"stylesheet\">" +
 									"<div class=\"container content\">" +
 										"<div class=\"page-header\">" +
 											"<h1>{0}</h1>" +
@@ -164,8 +164,8 @@ public class RegisterUserServlet extends ApplicationServlet {
 		
 		String[] args = new String[3];
 		args[0] = "Dear Traveller";
-		args[1] = "Thanks a lot for signing up for ThereUGo! The whole team is delighted to have you onboard. We will notify you as soon as the site is up and running. In the mean time, we are working on building our travel expert network. Please feel free to share with us an early feedback.";
-		args[2] = "Simone Campora, CEO";
+		args[1] = "Thanks a lot for signing up for Thereyougo! The whole team is delighted to have you onboard. We will notify you as soon as the site is up and running. In the mean time, we are working on building our travel expert network. Please feel free to share with us an early feedback.";
+		args[2] = "Thereyougo Team";
 
         //adding group name and email to message
         String message = emailContent.format(args);
