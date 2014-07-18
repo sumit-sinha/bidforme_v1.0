@@ -344,6 +344,8 @@ controllers.IndexPageCtrl = function ($scope, $location, appFactory, requestMana
 					list: args.data.register.error.validation_error
 				}
 			}
+			
+			removeOverlayClass({name: 'loading'});
 		}	
 	}
 }
