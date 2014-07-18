@@ -6,7 +6,7 @@
 
 <%-- set resource file location --%>
 <fmt:setBundle basename="properties.ResourceBundle"/>
-<html>
+<html class="screen">
 	<head>
 		<title><fmt:message key="tx_bidforme_app_name"/></title>
     	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
