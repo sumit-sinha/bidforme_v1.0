@@ -198,7 +198,7 @@ controllers.HeaderCtrl = function ($scope, appFactory, requestManager) {
 	}
 }
 
-controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
+controllers.IndexPageCtrl = function ($scope, $location, appFactory, requestManager) {
 	$scope.no_prev_button = true;
 	$scope.carousalTpl = 'model/views/common/carousal.html';
 	$scope.tutorialimage = 'resources/images/tutorial/tutorial-1.png';	
@@ -217,6 +217,16 @@ controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 				label: 'Start Asking'
 			}
 		}
+	}
+	
+	$scope.onContactUsClick = function() {
+		showOverlay();
+		$scope.popupTpl = 'model/views/common/contactus.html';
+	}
+	
+	$scope.onScrollReq = function(location) {
+		$location.hash(location);
+		$anchorScroll();
 	}
 	
 	$scope.changeHtmlCss = function(cssname) {
