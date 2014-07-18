@@ -211,8 +211,8 @@ controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 	
 	if ($scope.description == null) {
 		$scope.description = {
-			headline: 'Stop Planning',
-			message: 'We will help you discover a new world of travel',
+			headline: 'Stop Searching',
+			message: 'Sit back, relax and for the first time let providers bid for you',
 			button: {
 				label: 'Start Asking'
 			}
