@@ -172,3 +172,10 @@ div.msk {
 .modal-dialog.profile {
 	width: 400px;
 }
+.alert ul li:first-child{
+  list-style: none;
+  margin-left: -30px;
+}
+div.modal-body div.alert {
+	margin-top: 15px;
+}
