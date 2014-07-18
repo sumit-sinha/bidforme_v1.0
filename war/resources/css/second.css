@@ -93,5 +93,20 @@ padding-right: 10px;
 }
 
 .btn{
-font-family: 'Josefin Slab', serif;
+	font-family: 'Josefin Slab', serif;
+}
+div.msk {
+  position:fixed;
+  z-index:1001;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+.hidden {
+	display: none;
+}
+.modal-dialog.profile {
+	width: 400px;
 }

@@ -13,7 +13,7 @@
     	<link rel="icon" type="image/png" href="resources/images/favicon.png" />
     	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     	<link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css"/>
-    	<link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+    	<link rel="stylesheet" type="text/css" href="resources/css/second.css"/>
     	<link rel="stylesheet" type="text/css" href="resources/css/datetimepicker.css"/>
     	
     	<!-- Specific Google fonts -->

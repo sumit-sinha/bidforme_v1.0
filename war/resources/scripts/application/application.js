@@ -237,14 +237,9 @@ controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 	}
 	
 	$scope.onRegisterClick = function() {
-		
-		if ($scope.description.button.label !== 'Start Asking') {
-			showOverlay();
-			$scope.success_message = null;
-			$scope.popupTpl = 'model/views/traveler/register.html';
-		} else {
-			$scope.onNextSlideClick();
-		}
+		showOverlay();
+		$scope.success_message = null;
+		$scope.popupTpl = 'model/views/traveler/register.html';
 	}
 	
 	$scope.onNextSlideClick = function() {
