@@ -2,7 +2,7 @@
 <div class="panel panel-default traveler">
 	<div class="panel-body">
 		<div class="row logo">
-			<div class="col-md-1">
+			<div class="col-md-1 firstrow">
 				<img src="resources/images/1.jpg"/>
 			</div>
 			<div class="col-md-10 section-title">{{ label.tx_bidforme_select_dest_dates }}</div>
@@ -75,7 +75,8 @@
 				</div>
 			</div>
 		</div>
-		
-		<button type="button" class="btn btn-primary dropdown-toggle marginup" data-toggle="dropdown" data-ng-click="onSubmitTravelRequest()">{{ label.tx_bidforme_submit_request }}</button>
+		<div id="buttonContainer" style="width:100%; text-align: right;">
+			<button type="button" class="btn btn-primary dropdown-toggle marginup sidebutton" data-toggle="dropdown" data-ng-click="onSubmitTravelRequest()">{{ label.tx_bidforme_submit_request }}</button>
+		</div>
 	</div>
 </div>

@@ -284,9 +284,10 @@ div.row.logo.content.lessmargin {
 	margin-top: 10px !important;
 }
 button.btn.btn-primary.dropdown-toggle.marginup.ng-binding {
-	width: 83%;
+	width: 160px;
 	height: 40px;
 	margin-left: 100px;
+	margin-right: 80px;
 }
 .fullwidth {
 	width: 100% !important;
@@ -438,4 +439,12 @@ a.carousel-control {
 .bigpanel{
 	
 	width: 100%;
+}
+
+.sidebutton{
+	width:100px;
+}
+
+.firstrow{
+	margin-top: 15px;
 }
