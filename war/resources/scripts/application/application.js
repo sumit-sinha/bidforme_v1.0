@@ -200,6 +200,7 @@ controllers.HeaderCtrl = function ($scope, appFactory, requestManager) {
 
 controllers.IndexPageCtrl = function ($scope, appFactory, requestManager) {
 	$scope.no_prev_button = true;
+	$scope.success_message = null;
 	$scope.carousalTpl = 'model/views/common/carousal.html';
 	$scope.tutorialimage = 'resources/images/tutorial/tutorial-1.png';	
 	
