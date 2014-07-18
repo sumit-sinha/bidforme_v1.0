@@ -345,7 +345,9 @@ controllers.IndexPageCtrl = function ($scope, $location, appFactory, requestMana
 				}
 			}
 			
-			removeOverlayClass({name: 'loading'});
+			removeOverlayClass({
+				classes: 'loading'
+			});
 		}	
 	}
 }
