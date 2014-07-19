@@ -534,6 +534,9 @@ app.config(function($routeProvider) {
 	}).when('/traveler', {
 		controller: 'TravelerPageCtrl',
 		templateUrl: 'model/views/traveler/traveler.html'
+	}).when('/register', {
+			controller: 'IndexPageCtrl',
+			templateUrl: 'model/views/traveler/register.html'
 	}).when('/provider', {
 		controller: 'ProviderPageCtrl',
 		templateUrl: 'model/views/provider/provider.html'

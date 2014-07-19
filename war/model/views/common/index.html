@@ -2,54 +2,37 @@
 <div class="logo">
 	<div class="comment">
 		<a style="color: white;" href="javascript:void(0);" data-ng-click="onContactUsClick()">About Us</a>
-		<img src="resources/images/new/logo.png"/><br/><br/>
+		<img class="img-responsive" src="resources/images/new/logo.png"/><br/><br/>
 		<span>Sit back, relax and for a change, let our network of experts make you a personalised offer</span>
 	</div>
 </div>
 <div class="main">
 	<div class="content" align="left">
-		<table width="100%">
-			<tr>
-				<td>
-					<table class="maintable" style="margin-top: 40px;" >
-						<tr>
-							<td class="action">
-								<h1>Ask</h1>
-							</td>
-							<td></td>
-							<td class="action">
-								<h1>Bid</h1>
-							</td>
-							<td></td>
-							<td class="action">
-								<h1>Go</h1>
-							</td>
-						</tr>
-						<tr>
-							<td><a href="javascript:void(0)" data-ng-click="onScrollReq('ask')"><img class="pictures" src="resources/images/new/1.png"/></a></td>
-							<td><img src="resources/images/new/three-dots.png"/></td>
-							<td><a href="javascript:void(0)" data-ng-click="onScrollReq('bidder')"><img  class="pictures" src="resources/images/new/2.png"/></a></td>
-							<td><img src="resources/images/new/three-dots.png"/></td>
-							<td><a href="javascript:void(0)" data-ng-click="onScrollReq('go')"><img class="pictures"  src="resources/images/new/3.png"/></a></td>
-						</tr>
-						<tr>
-							<td class="action">
-								<h2>Tell us about your travel plan</h2>
-							</td>
-							<td></td>
-							<td class="action">
-								<h2>Let our network of travel experts build a tailor made offer</h2>
-							</td>
-							<td></td>
-							<td class="action">
-								<h2>
-								Compare, Adjust and book your vacation
-								<h2>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td style="width:30%">
+	
+		<div class="container">
+			<div class="row"  style="display:table-cell; vertical-align:middle; text-align:center">
+				<div class="cols-xs2 col-sm-2" style="text-align:center;">
+					<h1>Ask</h1>
+					<a href="javascript:void(0)" data-ng-click="onScrollReq('ask')"><img class="pictures img-responsive" src="resources/images/new/1.png"/></a>
+					<h2>Tell us about your travel plan</h2>
+				</div>
+				<div class="cols-xs1 col-sm-1">
+					<img class="img-responsive" src="resources/images/new/three-dots.png"/>
+				</div>
+				<div class="cols-xs2 col-sm-2">
+					<h1>Bid</h1>
+					<a href="javascript:void(0)" data-ng-click="onScrollReq('bidder')"><img  class="pictures img-responsive" src="resources/images/new/2.png"/></a>
+					<h2>Let our network of travel experts build a tailor made offer</h2>
+				</div>
+				<div class="cols-xs1 col-sm-1">
+					<img class="img-responsive" src="resources/images/new/three-dots.png"/>
+				</div>
+				<div class="cols-xs2 col-sm-2" style="text-align:center;">
+					<h1>Go</h1>
+					<a href="javascript:void(0)" data-ng-click="onScrollReq('go')"><img class="pictures img-responsive"  src="resources/images/new/3.png"/></a>
+					<h2>Let our network of travel experts build a tailor made offer</h2>
+				</div>
+				<div class="cols-xs4 col-sm-4">
 					<div class="buttons" data-ng-show="success_message == null">
 						<a class="btn btn-lg btn-danger" href="javascript:void(0);" role="button" data-ng-click="onRegisterClick()">Sign Up!</a>
 						<br/>
@@ -59,82 +42,89 @@
 					<div data-ng-show="success_message != null" class="buttons">
 						<p>{{ description.headline }}<br/>{{ description.message }}</p>
 					</div>
-				</td>
-			</tr>
-		</table>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div>
 	<h3 id="ask">Ask: Tell us about your travel plan</h3>
 	<div class="screens">
-		<table style="width:100%; text-align:right;">
-			<tr>
-				<td width="100%">
-				
-Create a request that looks like you!
-<br/>
-With simple guided steps, tell our travel experts about your plans:  
-<br/>
-Criteria are flexible, tick, slide and tag the trip you have in mind
-<br/>
-Still not quite representing your plan?  Use the free text form to provide additional details
-				
-				</td>
-				<td><img src="resources/images/new/first.png"></td>
-			</tr>
-		</table>
+		<div class="container">
+			<div class="row">
+				    <div class="row">
+                   		<div class="col-sm-6" style="text-align:right; margin-top:60px;">
+		                   	Create a request that looks like you!
+							<br/>
+							With simple guided steps, tell our travel experts about your plans:  
+							<br/>
+							Criteria are flexible, tick, slide and tag the trip you have in mind
+							<br/>
+							Still not quite representing your plan?  Use the free text form to provide additional details
+                   		</div>
+						<div class="col-sm-6"><img class="img-responsive" src="resources/images/new/first.png"></div>
+					</div>
+			</div>
+		</div>
 	</div>
+	
 	<div class="divider"></div>
+	
 	<h3 id="bidder" >Bid: Let our network of travel experts build a tailor made offer</h3>
 	<div class="screens">
-		<table style="width:100%; text-align:right;">
-			<tr>
-				<td  width="100%">
-					So who are the experts? 
-					We are building a network of travel agencies and independent providers. 
-					These are cherry picked, independent travel agencies with experience in the destinations or activities you are searching.
-				</td>
-				<td><img src="resources/images/new/second.png"></td>
-			</tr>
-		</table>
+		<div class="container">
+			<div class="row">
+				<div class="row">
+	                 <div class="col-sm-6" style="text-align:right; margin-top:60px;">
+						So who are the experts? 
+						We are building a network of travel agencies and independent providers. 
+						These are cherry picked, independent travel agencies with experience in the destinations or activities you are searching.
+	                 </div>
+					 <div class="col-sm-6"><img class="img-responsive" src="resources/images/new/second.png"></div>
+				</div>
+			</div>
+		</div>
 	</div>
+	
 	<div class="divider"></div>
+	
 	<h3 id="go">Go: Compare, Adjust and book your vacation</h3>
 	<div class="screens">
-		<table style="width:100%; text-align:right;">
-			<tr>
-				<td  width="100%">
-					<div>We will notify you when an offer comes in for you to review. </div>
-					<br/>
-					<div>
-						Thereyougo provides a simple interface that allows you to
-					</div>
-					<br/>
-					<div>
+		<div class="container">
+			<div class="row">
+				<div class="row">
+	                 <div class="col-sm-6" style="text-align:right; margin-top:60px;">
+						<div>We will notify you when an offer comes in for you to review. </div>
+						<br/>
+						<div>
+							Thereyougo provides a simple interface that allows you to
+						</div>
+						<br/>
+						<div>
+							Compare the different offers in a personalised matrix including custom criteria based on your request 
+							<br/>
+							Adjust the travel plan either by selecting the items you wish to change and messaging the agent 
+							<br/>
+							Book... and go!
+						</div>
+	                 </div>
+					 <div class="col-sm-6"><img class="img-responsive" src="resources/images/new/third.png"></div>
+				</div>
+			</div>
+		</div>
 
-								Compare the different offers in a personalised matrix including custom criteria based on your request 
-<br/>
-								Adjust the travel plan either by selecting the items you wish to change and messaging the agent 
-<br/>
-								Book... and go!
-
-					</div>
-				</td>
-				<td><img src="resources/images/new/third.png"></td>
-			</tr>
-		</table>
 	</div>
 	<div class="divider">
-	<br/>
-						<div class="buttons" data-ng-show="success_message == null">
-						<a class="btn btn-lg btn-danger" href="javascript:void(0);" role="button" data-ng-click="onRegisterClick()">Sign Up!</a>
-						<br/>
-						<br/>
-						To get updated when We'll be On Line!
-					</div>
-					<div data-ng-show="success_message != null" class="buttons">
-						<p>{{ description.headline }}<br/>{{ description.message }}</p>
-					</div>
-	
+		<br/>
+							
+		<div class="buttons" data-ng-show="success_message == null">
+			<a class="but 	btn btn-lg btn-danger" href="javascript:void(0);" role="button" data-ng-click="onRegisterClick()">Sign Up!</a>
+			<br/>
+			<br/>
+			To get updated when We'll be On Line!
+		</div>
+		<div data-ng-show="success_message != null" class="buttons">
+			<p>{{ description.headline }}<br/>{{ description.message }}</p>
+		</div>
 	</div>
 </div>
