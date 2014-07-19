@@ -226,7 +226,6 @@ controllers.IndexPageCtrl = function ($scope, $location, appFactory, requestMana
 	
 	$scope.onScrollReq = function(location) {
 		$location.hash(location);
-		$anchorScroll();
 	}
 	
 	$scope.changeHtmlCss = function(cssname) {
