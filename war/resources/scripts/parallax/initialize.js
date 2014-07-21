@@ -44,10 +44,21 @@ function registerUser() {
 		 data += '&feedback=' + element.value;
 	 }
 	 
+	 var pElement = document.getElementById('ulMessage');
 	 var dvError = document.getElementById('dvError');
+	 var dvSuccess = document.getElementById('dvSuccess');
 	 if (dvError != null) {
 		$("#dvError ul li").remove();
 		dvError.style.display = 'none';
+		dvSuccess.style.display = 'none';
+	 }
+	 
+	 if (dvSuccess != null) {
+		dvSuccess.style.display = 'none';
+	 }
+	 
+	 if (pElement != null) {
+		 pElement.innerHTML = '';
 	 }
 	 
 	 showOverlay({
@@ -64,9 +75,8 @@ function registerUser() {
 				&& data.register != null 
 				&& data.register.model != null) {
 			if (data.register.model.success) {
-				var pElement = document.getElementById('ulSuccess');
-				if (pElement != null) {
-					pElement.innerHTML = "Thank you<br/>We are delighted to receive your feedback";
+				if (dvSuccess != null) {
+					dvSuccess.style.display = 'block';
 				}
 			} else {
 				var liContent = "<li><span>Error Messages</span></li>";

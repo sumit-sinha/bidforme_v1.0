@@ -18,6 +18,8 @@ import com.amadeus.bid.dal.impl.UserDataImpl;
 import com.amadeus.bid.ui.fwk.json.JSONArray;
 import com.amadeus.bid.ui.fwk.json.JSONObject;
 import com.amadeus.bid.ui.generic.ApplicationServlet;
+import com.google.appengine.api.datastore.Text;
+
 import javax.mail.MessagingException;
 
 /**
@@ -93,7 +95,11 @@ public class RegisterUserServlet extends ApplicationServlet {
 			UserBean bean = new UserBean();
 			bean.setEmail(email);
 			bean.setUsername(name);
-			bean.setFeedback(feedback);
+			
+			// to support more than 500 characters
+			Text txtFeedback = new Text(feedback);
+			bean.setFeedback(txtFeedback);
+			
 			bean.setPassword(password);
 			user.saveUserData(bean);
 			
@@ -150,7 +156,6 @@ public class RegisterUserServlet extends ApplicationServlet {
 	 * @throws UnsupportedEncodingException 
 	 */
 	private void sendEmail(UserBean user) {
-		
 		MessageFormat emailContent = new MessageFormat("<link href=\"http://there-u-go.appspot.com/resources/css/bootstrap.min.css\" rel=\"stylesheet\">" +
 									"<link href=\"http://there-u-go.appspot.com//resources/css/email-template.css\" rel=\"stylesheet\">" +
 									"<div class=\"container content\">" +

@@ -1,6 +1,8 @@
 package com.amadeus.bid.be.util;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -11,7 +13,12 @@ import javax.mail.internet.*;
  *
  */
 public class SendEmailUtil {
-
+	
+	/**
+	 * {@link Logger} instance to log any errors during email process
+	 */
+	private static Logger logger = Logger.getLogger(SendEmailUtil.class.getName());
+	
     private List<String> to;
     private String from;
     private List<String> cc;
@@ -109,7 +116,9 @@ public class SendEmailUtil {
                 try{
                     InternetAddress internetAddress = new InternetAddress(this.getTo().get(i));
                     toIds[i] = internetAddress;
-                } catch(AddressException e) { /* no action in case of error */ }
+                } catch(AddressException e) {
+                	logger.log(Level.SEVERE, "Error while creating To addresses", e);
+                }
             }
 
             InternetAddress[] ccIds = new InternetAddress[this.getCc().size()];
@@ -117,7 +126,9 @@ public class SendEmailUtil {
                 try{
                     InternetAddress internetAddress = new InternetAddress(this.getCc().get(i));
                     ccIds[i] = internetAddress;
-                } catch(AddressException e) { /* no action in case of error */ }
+                } catch(AddressException e) { 
+                	logger.log(Level.SEVERE, "Error while creating cc addresses", e); 
+                }
             }
 
             InternetAddress[] bccIds = new InternetAddress[this.getBcc().size()];
@@ -125,7 +136,9 @@ public class SendEmailUtil {
                 try{
                     InternetAddress internetAddress = new InternetAddress(this.getBcc().get(i));
                     bccIds[i] = internetAddress;
-                } catch(AddressException e) { /* no action in case of error */ }
+                } catch(AddressException e) { 
+                	logger.log(Level.SEVERE, "Error while creating bcc addresses", e); 
+                }
             }
 
             try {
@@ -143,13 +156,20 @@ public class SendEmailUtil {
                 Transport.send(msg);
 
             } catch (AddressException e) {
+            	logger.log(Level.SEVERE, "Error while creating message", e);
                 return false;
             } catch (MessagingException e) {
+            	logger.log(Level.SEVERE, "Error while creating message", e);
                 return false;
             } catch(UnsupportedEncodingException e){
+            	logger.log(Level.SEVERE, "Error while creating message", e);
                 return false;
+            } catch (Exception e) {
+            	logger.log(Level.SEVERE, "Error while creating message", e);
+            	return false;
             }
         }else{
+        	logger.log(Level.WARNING, "There are no address provided to send mail");
             return false;
         }
 

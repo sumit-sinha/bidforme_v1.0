@@ -3,6 +3,8 @@ package com.amadeus.bid.be.util;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -20,6 +22,11 @@ import com.amadeus.bid.be.base.Base64Impl;
 public class EncryptionUtil {
 	
 	/**
+	 * {@link Logger} instance for tracking error while encryption
+	 */
+	private static Logger logger = Logger.getLogger(EncryptionUtil.class.getName());
+	
+	/**
 	 * AES algorithm implementation
 	 * @author ssinha
 	 *
@@ -35,6 +42,7 @@ public class EncryptionUtil {
 		public static String encrypt(String value, String key) {
 			
 			if (value == null || key == null) {
+				logger.log(Level.WARNING, "Correct input are missing while trying to decrypt");
 				return value;
 			}
 			
@@ -45,16 +53,22 @@ public class EncryptionUtil {
 				cipher.init(Cipher.ENCRYPT_MODE, keySpec);
 				return new String(Base64Impl.encodeBase64(cipher.doFinal(value.getBytes("UTF-8"))), "UTF-8");
 			} catch (NoSuchAlgorithmException e) {
+				logger.log(Level.SEVERE, "Exception while trying to encrypt", e);				
 				return value;
 			} catch (NoSuchPaddingException e) {
+				logger.log(Level.SEVERE, "Exception while trying to encrypt", e);
 				return value;
 			} catch (UnsupportedEncodingException e) {
+				logger.log(Level.SEVERE, "Exception while trying to encrypt", e);
 				return value;
 			} catch (InvalidKeyException e) {
+				logger.log(Level.SEVERE, "Exception while trying to encrypt", e);
 				return value;
 			} catch (BadPaddingException e) {
+				logger.log(Level.SEVERE, "Exception while trying to encrypt", e);
 				return value;
 			} catch (IllegalBlockSizeException e) {
+				logger.log(Level.SEVERE, "Exception while trying to encrypt", e);
 				return value;
 			}		
 		}
@@ -68,6 +82,7 @@ public class EncryptionUtil {
 		public static String decrypt(String encrypted, String key) {
 			
 			if (encrypted == null || key == null) {
+				logger.log(Level.WARNING, "Correct input are missing while trying to decrypt");
 				return encrypted;
 			}
 			
@@ -81,16 +96,22 @@ public class EncryptionUtil {
 			     
 			    return new String(decryptedTextBytes);
 			} catch (NoSuchAlgorithmException e) {
+				logger.log(Level.SEVERE, "Exception while trying to decrypt", e);
 				return encrypted;
 			} catch (NoSuchPaddingException e) {
+				logger.log(Level.SEVERE, "Exception while trying to decrypt", e);
 				return encrypted;
 			} catch (UnsupportedEncodingException e) {
+				logger.log(Level.SEVERE, "Exception while trying to decrypt", e);
 				return encrypted;
 			} catch (InvalidKeyException e) {
+				logger.log(Level.SEVERE, "Exception while trying to decrypt", e);
 				return encrypted;
 			} catch (BadPaddingException e) {
+				logger.log(Level.SEVERE, "Exception while trying to decrypt", e);
 				return encrypted;
 			} catch (IllegalBlockSizeException e) {
+				logger.log(Level.SEVERE, "Exception while trying to decrypt", e);
 				return encrypted;
 			}
 		}

@@ -3,6 +3,8 @@ package com.amadeus.bid.dal.util;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.amadeus.bid.dal.contract.IBeanContract;
 import com.google.appengine.api.datastore.DatastoreService;
@@ -24,7 +26,13 @@ public class DataStoreUtil {
 	 */
 	private static DatastoreService dataStore;
 	
+	/**
+	 * an instance of {@link Logger} to track errors
+	 */
+	private static Logger logger;
+	
 	static {
+		logger = Logger.getLogger(DataStoreUtil.class.getName());
 		dataStore = DatastoreServiceFactory.getDatastoreService();
 	}
 	
@@ -33,9 +41,15 @@ public class DataStoreUtil {
 	 * @param contract
 	 */
 	public static Key addEntity(IBeanContract contract) {
-		Entity aEntity = contract.getEntity();
-		dataStore.put(aEntity);
-		return (aEntity.getKey());
+		try {
+			Entity aEntity = contract.getEntity();
+			dataStore.put(aEntity);
+			return (aEntity.getKey());
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, "Unable to add entity in database", e);
+		}
+		
+		return null;
 	}
 	
 	/**

@@ -3,6 +3,7 @@ package com.amadeus.bid.dal.bean;
 import com.amadeus.bid.be.util.EncryptionUtil;
 import com.amadeus.bid.dal.contract.IBeanContract;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Text;
 
 /**
  * bean class to represent User data structure
@@ -48,7 +49,13 @@ public class UserBean implements IBeanContract {
 		user.setState((String)entity.getProperty("state"));
 		user.setCountry((String)entity.getProperty("country"));
 		user.setPinCode((String)entity.getProperty("pincode"));
-		user.setFeedback((String)entity.getProperty("feedback"));
+		
+		if (entity.getProperty("feedback") instanceof String) {
+			Text txt = new Text((String)entity.getProperty("feedback"));
+			user.setFeedback(txt);
+		} else if (entity.getProperty("feedback") instanceof Text) {
+			user.setFeedback((Text)entity.getProperty("feedback"));
+		}
 		
 		return user;
 	}
@@ -71,7 +78,7 @@ public class UserBean implements IBeanContract {
 	
 	private String aboutMe;
 	
-	private String feedback;
+	private Text feedback;
 
 	public String getEmail() {
 		return email;
@@ -150,11 +157,11 @@ public class UserBean implements IBeanContract {
 		this.password = password;
 	}
 
-	public String getFeedback() {
+	public Text getFeedback() {
 		return feedback;
 	}
 
-	public void setFeedback(String feedback) {
+	public void setFeedback(Text feedback) {
 		this.feedback = feedback;
 	}
 }
