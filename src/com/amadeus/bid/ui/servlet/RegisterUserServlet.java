@@ -168,7 +168,7 @@ public class RegisterUserServlet extends ApplicationServlet {
 		
 		
 		String[] args = new String[3];
-		args[0] = "Dear " + user.getName();
+		args[0] = "Dear Traveller";
 		args[1] = "Thanks a lot for signing up for Thereyougo! The whole team is delighted to have you onboard. We will notify you as soon as the site is up and running. In the mean time, we are working on building our travel expert network. Please feel free to share with us an early feedback.";
 		args[2] = "Thereyougo Team";
 
