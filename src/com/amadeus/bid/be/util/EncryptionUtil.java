@@ -42,7 +42,7 @@ public class EncryptionUtil {
 		public static String encrypt(String value, String key) {
 			
 			if (value == null || key == null) {
-				logger.log(Level.WARNING, "Correct input are missing while trying to decrypt");
+				logger.log(Level.FINE, "Correct input are missing while trying to decrypt");
 				return value;
 			}
 			
@@ -82,7 +82,7 @@ public class EncryptionUtil {
 		public static String decrypt(String encrypted, String key) {
 			
 			if (encrypted == null || key == null) {
-				logger.log(Level.WARNING, "Correct input are missing while trying to decrypt");
+				logger.log(Level.FINE, "Correct input are missing while trying to decrypt");
 				return encrypted;
 			}
 			
