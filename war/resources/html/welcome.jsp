@@ -112,13 +112,9 @@
 				<div class="col-md-12 full-panel street">
 					<div class="in-panel" id="street">
 						<h2>Early Registration</h2>
-						<p>Want to be the first to try our new service? Subscribe today and we will notify you as soon as we'll be online, Thanks!</p>
+						<p id="ulSuccess">Want to be the first to try our new service? Subscribe today and we will notify you as soon as we'll be online, Thanks!</p>
 						<div class="earlyreg">
 							<form class="ng-pristine ng-valid" role="form">
-								
-								<div class="alert alert-success" role="alert" id="dvSuccess" style="display:none">
-									<ul id="ulSuccess"></ul>
-								</div>
 							
 								<div class="alert alert-danger" role="alert" id="dvError" style="display:none;">
 									<ul id="ulError"></ul>

@@ -45,12 +45,9 @@ function registerUser() {
 	 }
 	 
 	 var dvError = document.getElementById('dvError');
-	 var dvSuccess = document.getElementById('dvSuccess');
 	 if (dvError != null) {
 		$("#dvError ul li").remove();
-		$("#dvSuccess ul li").remove();
 		dvError.style.display = 'none';
-		dvSuccess.style.display = 'none';
 	 }
 	 
 	 showOverlay({
@@ -67,9 +64,10 @@ function registerUser() {
 				&& data.register != null 
 				&& data.register.model != null) {
 			if (data.register.model.success) {
-				var liContent = "<li><span>Hurray!!! You Registered<br/>Thank you. We are delighted to recieve your feedback</span></li>";
-				$("#ulSuccess").append(liContent);
-				dvSuccess.style.display = 'block';
+				var pElement = document.getElementById('ulSuccess');
+				if (pElement != null) {
+					pElement.innerHTML = "Thank you<br/>We are delighted to recieve your feedback";
+				}
 			} else {
 				var liContent = "<li><span>Error Messages</span></li>";
 				for (var i = 0; i < data.register.error.validation_error.length; i++) {
