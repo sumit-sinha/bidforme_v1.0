@@ -128,7 +128,7 @@
 									<input class="form-control ng-pristine ng-valid" id="NAME_1" placeholder="Your Name" type="text">
 								</div>
 								<div id="feedback" class="form-group">
-									<label class="ng-binding" for="FEEDBACK_1">Feedback</label>
+									<label class="ng-binding" for="FEEDBACK_1">Feedback (max. 500 characters)</label>
 									<textarea size="3" class="form-control ng-pristine ng-valid" id="FEEDBACK_1" placeholder="What do you think of us?"></textarea>
 								</div>
 								<button class="btn btn-lg btn-primary btn-block ng-binding" type="button" onclick="registerUser()">Register</button>
