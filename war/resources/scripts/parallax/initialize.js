@@ -66,7 +66,7 @@ function registerUser() {
 			if (data.register.model.success) {
 				var pElement = document.getElementById('ulSuccess');
 				if (pElement != null) {
-					pElement.innerHTML = "Thank you<br/>We are delighted to recieve your feedback";
+					pElement.innerHTML = "Thank you<br/>We are delighted to receive your feedback";
 				}
 			} else {
 				var liContent = "<li><span>Error Messages</span></li>";
