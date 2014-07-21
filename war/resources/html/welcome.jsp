@@ -100,9 +100,9 @@
 							<br/> <br/> 
 							We will notify you when a new offer comes in, for you to review and compare.
 							<br/> <br/>
-							<b>Compare</b> the different offers in a personalised matrix including custom criteria based on your request
+							<b>Compare</b> the different offers in a personalised matrix including custom criteria based on your request.
 							<br/> <br/>
-							<b>Adjust</b> the travel plan either by selecting the items you wish to change and messaging the agent
+							<b>Adjust</b> the travel plan by selecting the items you wish to change and messaging the agent for a direct interaction.
 							<br/> <br/>
 							<b>Book</b>... and go!
 							<img class="img-responsive" src="resources/images/parallax/third.png"/>
@@ -112,14 +112,10 @@
 				<div class="col-md-12 full-panel street">
 					<div class="in-panel" id="street">
 						<h2>Early Registration</h2>
-						<p>Want to be the first to try our new service? Subscribe today and we will notify you as soon as we'll be online, Thanks!</p>
+						<p id="ulSuccess">Want to be the first to try our new service? Subscribe today and we will notify you as soon as we'll be online, Thanks!</p>
 						<div class="earlyreg">
 							<form class="ng-pristine ng-valid" role="form">
-								
-								<div class="alert alert-success" role="alert" id="dvSuccess" style="display:none">
-									<ul id="ulSuccess"></ul>
-								</div>
-							
+
 								<div class="alert alert-danger" role="alert" id="dvError" style="display:none;">
 									<ul id="ulError"></ul>
 								</div>
