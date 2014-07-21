@@ -13,6 +13,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>provider</servlet-name>
+		<servlet-class>com.amadeus.bid.ui.servlet.TravelProviderWelcomeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>provider</servlet-name>
+		<url-pattern>/provider</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>traveler</servlet-name>
 		<servlet-class>com.amadeus.bid.ui.servlet.TravelerPageServlet</servlet-class>
 	</servlet>
@@ -45,12 +53,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/register</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>provider</servlet-name>
+		<servlet-name>travelprovider</servlet-name>
 		<servlet-class>com.amadeus.bid.ui.servlet.ProviderPageServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>provider</servlet-name>
-		<url-pattern>/provider</url-pattern>
+		<servlet-name>travelprovider</servlet-name>
+		<url-pattern>/travelprovider</url-pattern>
 	</servlet-mapping>
 		<servlet>
 		<servlet-name>request</servlet-name>
