@@ -14,6 +14,11 @@
 		<link href="resources/css/parallax/style.css" rel="stylesheet">
 		<!-- Google web Font -->
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,100' rel='stylesheet' type='text/css'>
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
 	</head>
 	<body data-spy="scroll" data-target="#my-navbar">
 		<div class="container">
@@ -29,9 +34,9 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#home">What is It</a></li>
-						<li><a href="#intro"><b>01. Ask</b></a></li>
-						<li><a href="#people"><b>02. Bid</b></a></li>
-						<li><a href="#work"><b>03. Go</b></a></li>
+						<li><a href="#intro"><b>1. You ask</b></a></li>
+						<li><a href="#people"><b>2. They bid</b></a></li>
+						<li><a href="#work"><b>3. You go</b></a></li>
 						<li><a href="#street">Early Registration</a></li>
 					</ul>
 				</div>
@@ -41,7 +46,26 @@
 		<div class="full-panel" id="home">
 			<div id="copertina">
 				There You Go <img class="logo img-responsive" style="float:right;padding:20px;" src="resources/images/parallax/logo.png"/>
-				<h3>Comparing your travel offers.<br/><br/>booking your next holidays?<br/><br/> Sit back, relax and let our network of experts make you personalised offers</h3>
+				<h3>A new, really easy way to book tailor made holidays</h3>
+				<div class="container motto">
+					<div class="row"  style="text-align:center">
+						<div class="cols-xs3 col-sm-3" style="text-align:center;">
+							<h1>You ask</h1>
+							<a href="#intro"><img class="pictures img-responsive" src="resources/images/new/1.png"/></a>
+							<h2>Tell us about your travel plan</h2>
+						</div>
+						<div class="cols-xs3 col-sm-3">
+							<h1>They bid</h1>
+							<a href="#people"><img  class="pictures img-responsive" src="resources/images/new/2.png"/></a>
+							<h2>Let our network of travel experts build a tailor made offer</h2>
+						</div>
+						<div class="cols-xs3 col-sm-3" style="text-align:center;">
+							<h1>You go</h1>
+							<a href="#work"><img class="pictures img-responsive"  src="resources/images/new/3.png"/></a>
+							<h2>Compare, Adjust and book your vacation</h2>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="my-container">
@@ -76,8 +100,6 @@
 							<br/> <br/> 
 							We will notify you when a new offer comes in, for you to review and compare.
 							<br/> <br/>
-							<b>ThereYouGo</b> provides a simple interface that allows you to
-							<br/> <br/>
 							<b>Compare</b> the different offers in a personalised matrix including custom criteria based on your request
 							<br/> <br/>
 							<b>Adjust</b> the travel plan either by selecting the items you wish to change and messaging the agent
@@ -93,7 +115,7 @@
 						<p>Want to be the first to try our new service? Subscribe today and we will notify you as soon as we'll be online, Thanks!</p>
 						<div class="earlyreg">
 							<form class="ng-pristine ng-valid" role="form">
-							
+								
 								<div class="alert alert-success" role="alert" id="dvSuccess" style="display:none">
 									<ul id="ulSuccess"></ul>
 								</div>
@@ -101,7 +123,7 @@
 								<div class="alert alert-danger" role="alert" id="dvError" style="display:none;">
 									<ul id="ulError"></ul>
 								</div>
-							
+								
 								<div class="form-group">
 									<label class="ng-binding" for="EMAIL_1">Email Address</label>
 									<input class="form-control ng-pristine ng-valid ng-valid-email" id="EMAIL_1" placeholder="Email Address" type="email">
@@ -121,10 +143,8 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="msk loading hidden">&nbsp;</div>
-		<!-- /.container -->
-		<!-- Bootstrap core JavaScript
-			================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
 		<script src="resources/scripts/parallax/bootstrap.min.js"></script>
