@@ -1,4 +1,100 @@
- $('body').scrollspy({
+/**
+ * displays the overlay
+ * @param args JSON which contains a Boolean loading, if true displays the loading icon
+ */
+function showOverlay(args) {
+	var mskEls = document.getElementsByClassName('msk');
+	for (var i = 0; i < mskEls.length; i++) {
+		mskEls[i].className = 'msk';
+		if (args != null && args.loading) {
+			mskEls[i].className += ' loading';
+		}
+	}
+}
+
+/**
+ * hides the overlay
+ */
+function hideOverlay() {
+	var mskEls = document.getElementsByClassName('msk');
+	for (var i = 0; i < mskEls.length; i++) {
+		mskEls[i].className = 'msk loading hidden';
+	}
+}
+
+/**
+ * javascript function to register user
+ * @returns
+ */ 
+function registerUser() {
+	 
+	 var data = "no_password_req=true";
+	 var element = document.getElementById('EMAIL_1');
+	 if (element != null) {
+		 data += '&email=' + element.value;
+	 }
+	 
+	 var element = document.getElementById('NAME_1');
+	 if (element != null) {
+		 data += '&name=' + element.value;
+	 }
+	 
+	 var element = document.getElementById('FEEDBACK_1');
+	 if (element != null) {
+		 data += '&feedback=' + element.value;
+	 }
+	 
+	 var dvError = document.getElementById('dvError');
+	 var dvSuccess = document.getElementById('dvSuccess');
+	 if (dvError != null) {
+		$("#dvError ul li").remove();
+		$("#dvSuccess ul li").remove();
+		dvError.style.display = 'none';
+		dvSuccess.style.display = 'none';
+	 }
+	 
+	 showOverlay({
+		 loading: true
+	 });
+	 
+	 $.ajax({
+	  url: "/register",
+	  method: "POST",
+	  headers: {'X-HTTP-RESULT': 'json'},
+	  data: data
+	}).done(function(data) {
+		if (data != null 
+				&& data.register != null 
+				&& data.register.model != null) {
+			if (data.register.model.success) {
+				var liContent = "<li><span>Hurray!!! You Registered<br/>Thank you. We are delighted to recieve your feedback</span></li>";
+				$("#ulSuccess").append(liContent);
+				dvSuccess.style.display = 'block';
+			} else {
+				var liContent = "<li><span>Error Messages</span></li>";
+				for (var i = 0; i < data.register.error.validation_error.length; i++) {
+					var error = data.register.error.validation_error[i];	
+					liContent += "<li><span class='ng-binding'>" + error.message + "</span></li>"
+				}
+				
+				$("#ulError").append(liContent);
+				if (dvError != null) {
+					dvError.style.display = 'block';
+				}
+			}
+		} else {
+			var liContent = "<li><span>Error Messages</span></li><li><span class='ng-binding'>Sorry!!! We encountered an unknown error. Please try again</span></li>";		
+			$("#ulError").append(liContent);
+			if (dvError != null) {
+				dvError.style.display = 'block';
+			}
+		}
+		
+		hideOverlay();
+	});
+ }
+
+$('body').scrollspy({
      target: '#my-navbar'
  })
 
@@ -42,5 +138,4 @@
              });
          }); // end window scroll
      }); // end section function
-
  }); // close out script

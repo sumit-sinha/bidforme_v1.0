@@ -32,6 +32,7 @@ public class UserBean implements IBeanContract {
 		entity.setProperty("country", this.getCountry());
 		entity.setProperty("pincode", this.getPinCode());
 		entity.setProperty("aboutme", this.getAboutMe());
+		entity.setProperty("feedback", this.getFeedback());
 		return entity;
 	}
 	
@@ -47,6 +48,7 @@ public class UserBean implements IBeanContract {
 		user.setState((String)entity.getProperty("state"));
 		user.setCountry((String)entity.getProperty("country"));
 		user.setPinCode((String)entity.getProperty("pincode"));
+		user.setFeedback((String)entity.getProperty("feedback"));
 		
 		return user;
 	}
@@ -68,6 +70,8 @@ public class UserBean implements IBeanContract {
 	private String pinCode;
 	
 	private String aboutMe;
+	
+	private String feedback;
 
 	public String getEmail() {
 		return email;
@@ -144,5 +148,13 @@ public class UserBean implements IBeanContract {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
 	}
 }

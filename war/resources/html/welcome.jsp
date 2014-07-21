@@ -14,11 +14,6 @@
 		<link href="resources/css/parallax/style.css" rel="stylesheet">
 		<!-- Google web Font -->
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,100' rel='stylesheet' type='text/css'>
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-		<![endif]-->
 	</head>
 	<body data-spy="scroll" data-target="#my-navbar">
 		<div class="container">
@@ -98,28 +93,35 @@
 						<p>Want to be the first to try our new service? Subscribe today and we will notify you as soon as we'll be online, Thanks!</p>
 						<div class="earlyreg">
 							<form class="ng-pristine ng-valid" role="form">
+							
+								<div class="alert alert-success" role="alert" id="dvSuccess" style="display:none">
+									<ul id="ulSuccess"></ul>
+								</div>
+							
+								<div class="alert alert-danger" role="alert" id="dvError" style="display:none;">
+									<ul id="ulError"></ul>
+								</div>
+							
 								<div class="form-group">
 									<label class="ng-binding" for="EMAIL_1">Email Address</label>
 									<input class="form-control ng-pristine ng-valid ng-valid-email" id="EMAIL_1" placeholder="Email Address" type="email">
 								</div>
 								<div class="form-group">
-									<label class="ng-binding" for="PASSWORD_1">Name</label>
-									<input class="form-control ng-pristine ng-valid" id="PASSWORD_1" placeholder="Your Name" type="text">
+									<label class="ng-binding" for="NAME_1">Name</label>
+									<input class="form-control ng-pristine ng-valid" id="NAME_1" placeholder="Your Name" type="text">
 								</div>
 								<div id="feedback" class="form-group">
-									<label class="ng-binding" for="CONFIRM_PASSWORD_1">Feedback</label>
-									<textarea size="3" class="form-control ng-pristine ng-valid" id="CONFIRM_PASSWORD_1" placeholder="What do you think of us?"></textarea>
+									<label class="ng-binding" for="FEEDBACK_1">Feedback</label>
+									<textarea size="3" class="form-control ng-pristine ng-valid" id="FEEDBACK_1" placeholder="What do you think of us?"></textarea>
 								</div>
-								<button class="btn btn-lg btn-primary btn-block ng-binding" type="button" data-ng-click="onSubmitPress()">Register</button>
-								<div style="display: none;" class="social-buttons" data-ng-show="model.no_social_buttons == null">
-									<hr>
-								</div>
+								<button class="btn btn-lg btn-primary btn-block ng-binding" type="button" onclick="registerUser()">Register</button>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="msk loading hidden">&nbsp;</div>
 		<!-- /.container -->
 		<!-- Bootstrap core JavaScript
 			================================================== -->

@@ -43,7 +43,10 @@ public class RegisterUserServlet extends ApplicationServlet {
 		
 		// read parameters from request
 		String email = req.getParameter("email");
+		String feedback = req.getParameter("feedback");
+		String name = req.getParameter("name");
 		String password = req.getParameter("password");
+		boolean noPasswordReq = Boolean.parseBoolean(req.getParameter("no_password_req"));
 		String confirmPassword = req.getParameter("confirmPassword");
 		List<MessageBean> messages = new ArrayList<MessageBean>();
 		
@@ -68,27 +71,29 @@ public class RegisterUserServlet extends ApplicationServlet {
 			}
 		}
 		
-		if (password == null || password.trim().equals("")) {
-			MessageBean message = new MessageBean();
-			message.setType("E");
-			message.setNumber("1002");
-			message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_password_error"));
-			
-			messages.add(message);
-		} else if (!password.equals(confirmPassword)) {
-			MessageBean message = new MessageBean();
-			message.setType("E");
-			message.setNumber("1003");
-			message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_no_pwd_match"));
-			
-			messages.add(message);
+		if (!noPasswordReq) {
+			if (password == null || password.trim().equals("")) {
+				MessageBean message = new MessageBean();
+				message.setType("E");
+				message.setNumber("1002");
+				message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_password_error"));
+				
+				messages.add(message);
+			} else if (!password.equals(confirmPassword)) {
+				MessageBean message = new MessageBean();
+				message.setType("E");
+				message.setNumber("1003");
+				message.setMessage(LocalizationUtil.getString("tx_bidforme_registration_no_pwd_match"));
+				
+				messages.add(message);
+			}
 		}
-		
-		
 		
 		if (messages.size() == 0) {
 			UserBean bean = new UserBean();
 			bean.setEmail(email);
+			bean.setUsername(name);
+			bean.setFeedback(feedback);
 			bean.setPassword(password);
 			user.saveUserData(bean);
 			
@@ -163,7 +168,7 @@ public class RegisterUserServlet extends ApplicationServlet {
 		
 		
 		String[] args = new String[3];
-		args[0] = "Dear Traveller";
+		args[0] = "Dear " + user.getName();
 		args[1] = "Thanks a lot for signing up for Thereyougo! The whole team is delighted to have you onboard. We will notify you as soon as the site is up and running. In the mean time, we are working on building our travel expert network. Please feel free to share with us an early feedback.";
 		args[2] = "Thereyougo Team";
 

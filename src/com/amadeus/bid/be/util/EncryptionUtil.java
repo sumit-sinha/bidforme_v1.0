@@ -33,6 +33,11 @@ public class EncryptionUtil {
 		 * @return encrypted {@link String}
 		 */
 		public static String encrypt(String value, String key) {
+			
+			if (value == null || key == null) {
+				return value;
+			}
+			
 			try {
 				Cipher cipher = Cipher.getInstance("AES");
 				SecretKeySpec keySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
@@ -61,6 +66,11 @@ public class EncryptionUtil {
 		 * @return descrypted {@link String}
 		 */
 		public static String decrypt(String encrypted, String key) {
+			
+			if (encrypted == null || key == null) {
+				return encrypted;
+			}
+			
 			try {
 				Cipher cipher = Cipher.getInstance("AES");
 				SecretKeySpec keySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");

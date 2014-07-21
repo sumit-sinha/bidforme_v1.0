@@ -103,3 +103,14 @@ body,html {padding: 0px;overflow-x: hidden;font-family: lato;}
 .earlyreg input,textarea{
 	opacity:1;
 }
+.msk.loading {
+  background:url('../../images/ajax-loader.gif') no-repeat center rgba(0, 0, 0, 0.5) !important;
+  z-index: 9999;
+}
+.hidden {
+	display: none;
+}
+.alert ul li:first-child{
+  list-style: none;
+  margin-left: -30px;
+}
