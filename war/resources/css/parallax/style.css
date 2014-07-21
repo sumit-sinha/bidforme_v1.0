@@ -11,7 +11,7 @@ body,html {padding: 0px;overflow-x: hidden;font-family: lato;}
 	
 	.in-panel {width:970px;margin: 0 auto;}
 	.in-panel h2{margin-top:120px;text-transform: uppercase; font-weight:300; font-size:40px;float:left; }
-	.in-panel p{text-align:right;font-size:18px;width:100%; clear: both; -moz-column-count:2;-webkit-column-count:2;column-count:2;margin-bottom:90px}
+	.in-panel p{text-align:left;font-size:18px;width:100%; clear: both; -moz-column-count:2;-webkit-column-count:2;column-count:2;margin-bottom:90px}
 				
 		strong{font-size: 24px; font-weight: 300}
 		cite a{color: #00ebbe;font-weight: 700; text-transform: capitalize; font-style: italic;font-size: 16px}
@@ -23,7 +23,7 @@ body,html {padding: 0px;overflow-x: hidden;font-family: lato;}
 		-o-background-size: cover;
 		background-size: cover;
 	}
-	#copertina{background: #fff; padding:15px 30px;color:#000;opacity: 0.8;position: absolute; bottom: 50%; left:50%; font-size: 90px; font-weight: 300; text-transform: uppercase; margin-left:-485px;margin-bottom:-200px;width:970px;}
+	#copertina{background: #fff; padding:15px 30px;color:#000;opacity: 0.8;position: absolute; bottom: 50%; left:50%; font-size: 90px; font-weight: 300; text-transform: uppercase; margin-left:-485px;margin-bottom:-240px;width:970px;}
 
 
 	.people{background: url(../../images/parallax/1.jpg) no-repeat 50% 0 fixed; height: 640px;
@@ -57,7 +57,7 @@ body,html {padding: 0px;overflow-x: hidden;font-family: lato;}
 
 	#home{height:620px}
 	
-	#copertina{position: absolute; bottom: 20%; left:0%; font-size: 30px; font-weight: 300; margin-left: 0;margin-bottom:0;width:100%;}
+	#copertina{position: absolute; bottom: 20%; left:0%; font-size: 30px; font-weight: 300; margin-left: 0;margin-bottom:0;width:100%; margin-bottom: 100px;}
 	
 	.in-panel{width:90%; margin-right:5%}
 	.in-panel h2{margin-top:70px; font-size:22px;}
@@ -68,6 +68,12 @@ body,html {padding: 0px;overflow-x: hidden;font-family: lato;}
 	.footer p{font-size:30px;}
 
     .logo{
+        visibility: hidden;
+        height: 0px;
+        width: 0px;
+    }
+    
+    .motto{
         visibility: hidden;
         height: 0px;
         width: 0px;
@@ -102,4 +108,21 @@ body,html {padding: 0px;overflow-x: hidden;font-family: lato;}
 
 .earlyreg input,textarea{
 	opacity:1;
+}
+
+.img-responsive {
+    margin: 0 auto;
+}
+
+.motto{
+	text-align:center;
+	
+}
+
+.motto h1 {
+	font-size: 18px;
+}
+
+.motto h2{
+	font-size: 14px;
 }

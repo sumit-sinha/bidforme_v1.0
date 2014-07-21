@@ -43,9 +43,9 @@
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
 	          	<li class="active"><a href="#home">What is It</a></li>
-	            <li><a href="#intro"><b>01. Ask</b></a></li>
-	            <li><a href="#people"><b>02. Bid</b></a></li>
-	            <li><a href="#work"><b>03. Go</b></a></li>
+	            <li><a href="#intro"><b>1. You ask</b></a></li>
+	            <li><a href="#people"><b>2. They bid</b></a></li>
+	            <li><a href="#work"><b>3. You go</b></a></li>
 	            <li><a href="#street">Early Registration</a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
@@ -57,7 +57,28 @@
     
     	<div id="copertina">
     		There You Go <img class="logo img-responsive" style="float:right;padding:20px;" src="resources/images/parallax/logo.png"/>
-            <h3>Comparing your travel offers.<br/><br/>booking your next holidays?<br/><br/> Sit back, relax and let our network of experts make you personalised offers</h3>
+            <h3>A new, really easy way to book tailor made holidays</h3>
+    	
+    			<div class="container motto">
+					<div class="row"  style="text-align:center">
+						<div class="cols-xs3 col-sm-3" style="text-align:center;">
+							<h1>You ask</h1>
+							<a href="#intro"><img class="pictures img-responsive" src="resources/images/new/1.png"/></a>
+							<h2>Tell us about your travel plan</h2>
+						</div>
+						<div class="cols-xs3 col-sm-3">
+							<h1>They bid</h1>
+							<a href="#people"><img  class="pictures img-responsive" src="resources/images/new/2.png"/></a>
+							<h2>Let our network of travel experts build a tailor made offer</h2>
+						</div>
+						<div class="cols-xs3 col-sm-3" style="text-align:center;">
+							<h1>You go</h1>
+							<a href="#work"><img class="pictures img-responsive"  src="resources/images/new/3.png"/></a>
+							<h2>Compare, Adjust and book your vacation</h2>
+						</div>
+					</div>
+				</div>
+    	
     	</div>    
      
     </div> 
@@ -102,8 +123,6 @@ Create a request that looks like you! With simple guided steps, tell our travel 
                         
 We will notify you when a new offer comes in, for you to review and compare.
 <br/> <br/>
-<b>ThereYouGo</b> provides a simple interface that allows you to
-<br/> <br/>
 <b>Compare</b> the different offers in a personalised matrix including custom criteria based on your request
 <br/> <br/>
 <b>Adjust</b> the travel plan either by selecting the items you wish to change and messaging the agent
@@ -147,13 +166,6 @@ We will notify you when a new offer comes in, for you to review and compare.
 			  	</div>
 			  		 
 			</div>
-			
-			<div class="col-md-12 full-panel footer">
-			 	
-			 	<p>THERE YOU GO. ONLINE TRAVEL BOOKINGS</p>
-			 	
-			</div>
-
 
     </div><!-- /.container -->
 
@@ -169,6 +181,24 @@ We will notify you when a new offer comes in, for you to review and compare.
     $('body').scrollspy({ target: '#my-navbar' })
  
     $(".navbar-collapse ul li a[href^='#']").on('click', function(e) {
+	    
+	    target = this.hash;
+       // prevent default anchor click behavior
+       e.preventDefault();
+
+       // animate
+       $('html, body').animate({
+           scrollTop: $(this.hash).offset().top 
+         }, 300, function(){
+   
+           // when done, add hash to url
+           // (default click behaviour)
+           window.location.hash = target;
+         });
+
+    });
+    
+$(".motto a").on('click', function(e) {
 	    
 	    target = this.hash;
        // prevent default anchor click behavior
