@@ -34,10 +34,10 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#home">What is It</a></li>
-						<li><a href="#intro"><b>1. You ask</b></a></li>
-						<li><a href="#people"><b>2. They bid</b></a></li>
-						<li><a href="#work"><b>3. You go</b></a></li>
-						<li><a href="#street">Early Registration</a></li>
+						<li><a href="#ask"><b>1. You ask</b></a></li>
+						<li><a href="#bid"><b>2. They bid</b></a></li>
+						<li><a href="#go"><b>3. You go</b></a></li>
+						<li><a href="#register">Early Registration</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -51,17 +51,17 @@
 					<div class="row"  style="text-align:center">
 						<div class="cols-xs3 col-sm-3" style="text-align:center;">
 							<h1>You ask</h1>
-							<a href="#intro"><img class="pictures img-responsive" src="resources/images/new/1.png"/></a>
+							<a href="#ask"><img class="pictures img-responsive" src="resources/images/new/1.png"/></a>
 							<h2>Tell us about your travel plan</h2>
 						</div>
 						<div class="cols-xs3 col-sm-3">
 							<h1>They bid</h1>
-							<a href="#people"><img  class="pictures img-responsive" src="resources/images/new/2.png"/></a>
+							<a href="#bid"><img  class="pictures img-responsive" src="resources/images/new/2.png"/></a>
 							<h2>Let our network of travel experts build a tailor made offer</h2>
 						</div>
 						<div class="cols-xs3 col-sm-3" style="text-align:center;">
 							<h1>You go</h1>
-							<a href="#work"><img class="pictures img-responsive"  src="resources/images/new/3.png"/></a>
+							<a href="#go"><img class="pictures img-responsive"  src="resources/images/new/3.png"/></a>
 							<h2>Compare, Adjust and book your vacation</h2>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 		<div class="my-container">
 			<div class="row">
 				<div class="col-md-12 full-panel intro">
-					<div class="in-panel" id="intro">
+					<div class="in-panel" id="ask">
 						<h2>01. You Ask</h2>
 						<p>
 							<strong>Tell us about your travel plan</strong> 
@@ -84,7 +84,7 @@
 					</div>
 				</div>
 				<div class="col-md-12 full-panel people">
-					<div class="in-panel" id="people">
+					<div class="in-panel" id="bid">
 						<h2>02. They Bid</h2>
 						<p>
 							<strong>Let our network of travel experts build a tailor made offer</strong>
@@ -94,7 +94,7 @@
 					</div>
 				</div>
 				<div class="col-md-12 full-panel work">
-					<div class="in-panel" id="work">
+					<div class="in-panel" id="go">
 						<h2>03. You Go</h2>
 						<p><strong>Compare, Adjust and book your vacation</strong>  
 							<br/> <br/> 
@@ -110,7 +110,7 @@
 					</div>
 				</div>
 				<div class="col-md-12 full-panel street">
-					<div class="in-panel" id="street">
+					<div class="in-panel" id="register">
 						<h2>Early Registration</h2>
 						<p id="ulSuccess">Want to be the first to try our new service? Subscribe today and we will notify you as soon as we'll be online, Thanks!</p>
 						<div class="earlyreg">
