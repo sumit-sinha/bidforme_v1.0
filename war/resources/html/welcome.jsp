@@ -10,7 +10,7 @@
 		<title>There You Go! Stop Searching for Travel: Start Asking!</title>
 		
 		<!-- favicon icon -->
-		<link rel="icon" type="image/png" href="favicon.png" />
+		<link rel="icon" type="image/png" href="resources/images/favicon.png" />
 		
 		<!-- Bootstrap core CSS -->
 		<link href="resources/css/parallax/bootstrap.css" rel="stylesheet">
