@@ -115,7 +115,7 @@
 				</div>
 				<div class="col-md-12 full-panel street">
 					<div class="in-panel" id="register">
-						<h2 class="register">Early Registration</h2>
+						<h2 class="register less-margin">Early Registration</h2>
 						<p id="ulMessage">Want to be the first to try our new service? Subscribe today and we will notify you as soon as we are online, Thanks!</p>
 						<div class="earlyreg">
 							<form class="ng-pristine ng-valid" role="form">

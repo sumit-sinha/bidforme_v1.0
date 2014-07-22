@@ -29,6 +29,7 @@ public class UserBean implements IBeanContract {
 		entity.setProperty("password", EncryptionUtil.AES.encrypt(this.getPassword(),encryptionKey));
 		entity.setProperty("mobile", this.getMobile());
 		entity.setProperty("address", this.getAddress());
+		entity.setProperty("city", this.getCity());
 		entity.setProperty("state", this.getState());
 		entity.setProperty("country", this.getCountry());
 		entity.setProperty("pincode", this.getPinCode());
@@ -46,6 +47,7 @@ public class UserBean implements IBeanContract {
 		user.setPassword(EncryptionUtil.AES.decrypt((String)entity.getProperty("password"),encryptionKey));
 		user.setMobile((String)entity.getProperty("mobile"));
 		user.setAddress((String)entity.getProperty("address"));
+		user.setCity((String)entity.getProperty("city"));
 		user.setState((String)entity.getProperty("state"));
 		user.setCountry((String)entity.getProperty("country"));
 		user.setPinCode((String)entity.getProperty("pincode"));
@@ -70,6 +72,16 @@ public class UserBean implements IBeanContract {
 	
 	private String address;
 	
+	private String city;
+	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	private String state;
 	
 	private String country;
@@ -157,10 +169,14 @@ public class UserBean implements IBeanContract {
 		this.password = password;
 	}
 
-	public Text getFeedback() {
-		return feedback;
+	public String getFeedback() {
+		return feedback.getValue();
 	}
-
+	
+	public void setFeedback(String feedback) {
+		this.feedback = new Text(feedback);
+	}
+	
 	public void setFeedback(Text feedback) {
 		this.feedback = feedback;
 	}

@@ -21,6 +21,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/provider</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>registerProvider</servlet-name>
+		<servlet-class>com.amadeus.bid.ui.servlet.RegisterProviderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>registerProvider</servlet-name>
+		<url-pattern>/registerProvider</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>traveler</servlet-name>
 		<servlet-class>com.amadeus.bid.ui.servlet.TravelerPageServlet</servlet-class>
 	</servlet>

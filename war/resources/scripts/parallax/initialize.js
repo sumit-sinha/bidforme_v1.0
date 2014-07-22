@@ -102,6 +102,91 @@ function registerUser() {
 	});
  }
 
+/**
+ * javascript function to register user
+ * @returns
+ */ 
+function registerProvider() {
+	 
+	 var data = "no_password_req=true";
+	 var element = document.getElementById('EMAIL_1');
+	 if (element != null) {
+		 data += '&email=' + element.value;
+	 }
+	 
+	 var element = document.getElementById('COMPANY_1');
+	 if (element != null) {
+		 data += '&company_name=' + element.value;
+	 }
+	 
+	 var element = document.getElementById('FEEDBACK_1');
+	 if (element != null) {
+		 data += '&feedback=' + element.value;
+	 }
+	 
+	 var element = document.getElementById('CITY_1');
+	 if (element != null) {
+		 data += '&city=' + element.value;
+	 }
+	 
+	 var pElement = document.getElementById('ulMessage');
+	 var dvError = document.getElementById('dvError');
+	 var dvSuccess = document.getElementById('dvSuccess');
+	 if (dvError != null) {
+		$("#dvError ul li").remove();
+		dvError.style.display = 'none';
+		dvSuccess.style.display = 'none';
+	 }
+	 
+	 if (dvSuccess != null) {
+		dvSuccess.style.display = 'none';
+	 }
+	 
+	 if (pElement != null) {
+		 pElement.innerHTML = '';
+	 }
+	 
+	 showOverlay({
+		 loading: true
+	 });
+	 
+	 $.ajax({
+	  url: "/registerProvider",
+	  method: "POST",
+	  headers: {'X-HTTP-RESULT': 'json'},
+	  data: data
+	}).done(function(data) {
+		if (data != null 
+				&& data.register_provider != null 
+				&& data.register_provider.model != null) {
+			if (data.register_provider.model.success) {
+				if (dvSuccess != null) {
+					dvSuccess.style.display = 'block';
+				}
+			} else {
+				var liContent = "<li><span>Error Messages</span></li>";
+				for (var i = 0; i < data.register_provider.error.validation_error.length; i++) {
+					var error = data.register_provider.error.validation_error[i];	
+					liContent += "<li><span class='ng-binding'>" + error.message + "</span></li>"
+				}
+				
+				$("#ulError").append(liContent);
+				if (dvError != null) {
+					dvError.style.display = 'block';
+				}
+			}
+		} else {
+			var liContent = "<li><span>Error Messages</span></li><li><span class='ng-binding'>Sorry!!! We encountered an unknown error. Please try again</span></li>";		
+			$("#ulError").append(liContent);
+			if (dvError != null) {
+				dvError.style.display = 'block';
+			}
+		}
+		
+		hideOverlay();
+	});
+}
+
 $('body').scrollspy({
      target: '#my-navbar'
  })

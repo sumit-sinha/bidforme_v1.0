@@ -101,13 +101,13 @@
 				</div>
 				<div class="col-md-12 full-panel street">
 					<div class="in-panel" id="register">
-						<h2 class="register">Early Registration</h2>
+						<h2 class="register less-margin provider">Early Registration</h2>
 						<p id="ulMessage">Want to be the first to try our new service? Subscribe today and we will notify you as soon as we'll be online, Thanks!</p>
 						<div class="earlyreg">
 							<form class="ng-pristine ng-valid" role="form">
 								
 								<div class="alert alert-success" role="alert" id="dvSuccess" style="display:none;">
-									<strong>Thank You!</strong><br/>We are delighted to receive your feedback.
+									Thank You!<br/>We are delighted to receive your feedback.
 								</div>
 								
 								<div class="alert alert-danger" role="alert" id="dvError" style="display:none;">
@@ -115,18 +115,22 @@
 								</div>
 								
 								<div class="form-group">
-									<label class="ng-binding" for="EMAIL_1">Email Address</label>
+									<label class="ng-binding" for="COMPANY_1">Company Name*</label>
+									<input class="form-control ng-pristine ng-valid" id="COMPANY_1" placeholder="Your company name" type="text">
+								</div>
+								<div class="form-group">
+									<label class="ng-binding" for="EMAIL_1">Email Address*</label>
 									<input class="form-control ng-pristine ng-valid ng-valid-email" id="EMAIL_1" placeholder="Email Address" type="email">
 								</div>
 								<div class="form-group">
-									<label class="ng-binding" for="NAME_1">Name</label>
-									<input class="form-control ng-pristine ng-valid" id="NAME_1" placeholder="Your Name" type="text">
+									<label class="ng-binding" for="CITY_1">City</label>
+									<input class="form-control ng-pristine ng-valid ng-valid-email" id="CITY_1" placeholder="Email Address" type="email">
 								</div>
 								<div id="feedback" class="form-group">
 									<label class="ng-binding" for="FEEDBACK_1">Feedback</label>
 									<textarea size="3" class="form-control ng-pristine ng-valid" id="FEEDBACK_1" placeholder="What do you think of us?"></textarea>
 								</div>
-								<button class="btn btn-lg btn-primary btn-block ng-binding" type="button" onclick="registerUser()">Register</button>
+								<button class="btn btn-lg btn-primary btn-block ng-binding" type="button" onclick="registerProvider()">Register</button>
 							</form>
 						</div>
 					</div>

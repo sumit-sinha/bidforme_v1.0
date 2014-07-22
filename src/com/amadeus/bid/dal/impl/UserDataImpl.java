@@ -1,5 +1,6 @@
 package com.amadeus.bid.dal.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,22 @@ public class UserDataImpl implements IUserDataContract {
 
 	@Override
 	public List<UserBean> getUserData() {
-		// TODO Auto-generated method stub
+		
+		Query query = new Query("UserTable");
+		List<UserBean> users = new ArrayList<UserBean>();
+		
+		// read from storage
+		Map<Key, Entity> entities = DataStoreUtil.getData(query);
+		if (entities != null && entities.keySet().size() > 0) {
+			for (Key key: entities.keySet()) {
+				users.add(UserBean.getUserBean(entities.get(key)));
+			}
+		}
+		
+		if (users.size() > 0) {
+			return users;
+		}
+		
 		return null;
 	}
 
