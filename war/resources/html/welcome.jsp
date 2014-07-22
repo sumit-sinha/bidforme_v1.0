@@ -10,7 +10,7 @@
 		<title>There You Go! Stop Searching for Travel: Start Asking!</title>
 		
 		<!-- favicon icon -->
-		<link rel="icon" type="image/png" href="resources/images/favicon.png" />
+		<link rel="icon" type="image/png" href="resources/images/parallax/logo.png" />
 		
 		<!-- Bootstrap core CSS -->
 		<link href="resources/css/parallax/bootstrap.css" rel="stylesheet">
@@ -42,6 +42,7 @@
 						<li><a href="#bid"><b>2. They bid</b></a></li>
 						<li><a href="#go"><b>3. You go</b></a></li>
 						<li><a href="#register">Early Registration</a></li>
+						<li class="fb-share-button" data-href="http://there-u-go.appspot.com/">&nbsp;</li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -148,7 +149,9 @@
 			</div>
 		</div>
 		
+		<div id="fb-root"></div>
 		<div class="msk loading hidden">&nbsp;</div>
+		
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
 		<script src="resources/scripts/parallax/bootstrap.min.js"></script>
